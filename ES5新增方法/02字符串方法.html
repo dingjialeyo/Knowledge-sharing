@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="" id="txt"> 
+    <br>
+    <input type="button" value="提交" id="btn">
+
+    <script>
+        // trim方法 用于除去字符串两边空白 但是去不掉中间空格   并且返回一个新的数组     可以用于判断用户是否输入值而不是空格
+        var str = '     djl      ';
+        // console.log(str.length)     14
+        var newArr = str.trim();
+        // console.log(newArr.length)   3
+
+
+        var txt = document.querySelector('#txt');
+        var btn = document.querySelector('#btn');
+        btn.addEventListener('click', function() {
+            var txtValue = txt.value.trim();
+            if (txtValue === '') {
+                alert('请输入内容')
+            }
+            console.log(txtValue);
+        })
+    </script>
+</body>
+</html>

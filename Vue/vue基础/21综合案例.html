@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grid {
+            margin: auto;
+            width: 500px;
+            text-align: center;
+        }
+
+        .grid table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .grid th,
+        td {
+            padding: 10;
+            border: 1px solid #ccc;
+            height: 35px;
+            line-height: 35px;
+        }
+
+        .grid th {
+            background-color: pink;
+        }
+
+        .grid .total {
+            height: 30px;
+            line-height: 30px;
+            background-color: pink;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="grid">
+            <div>
+                <h1>图书管理</h1>
+                <div class="book">
+                    <div>
+                        <label for="id">
+                            编号:
+                        </label>
+                        <input type="text" id="id" v-model="id" :disabled="flag" v-focus>
+                        <label for="name">
+                            名称:
+                        </label>
+                        <input type="text" id="name" v-model="name">
+                        <button @click="add" :disabled="submitFlag">提交</button>
+                    </div>
+                </div>
+            </div>
+            <div class="total">
+                <span>图书总数:</span>
+                <span>{{total}}</span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>名称</th>
+                        <th>时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr :key="item.id" v-for="item in books">
+                        <td>
+                            {{item.id}}
+                        </td>
+                        <td>
+                            {{item.name}}
+                        </td>
+                        <td>
+                            {{item.date | formatDateTime(item.date)}}
+                        </td>
+                        <td>
+                            <a href="" @click.prevent="update(item.id)">修改</a>
+                            <span>|</span>
+                            <a href="" @click.prevent="del(item.id)">删除</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <script src="./vue.js"></script>
+    <script>
+        // 时间过滤器应用场景
+        Vue.filter("formatDateTime", function formatDateTime(value) {
+            var date = new Date(value);
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            if (month < 10) {
+                month = "0" + month;
+            }
+            if (day < 10) {
+                day = "0" + day;
+            }
+            return year + "-" + month + "-" + day + " " + hours + ":" + minutes;
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                flag: false,
+                id: '',
+                submitFlag : false,
+                name: '',
+                books: []
+            },
+            methods: {
+                add: function () {
+                    if (this.flag == true) {
+                        // 修改
+                        console.log("修改操作");
+                        this.books.some((item) => {
+                            if (item.id == this.id) {
+                                item.name = this.name;
+                                // 找到就终止
+                                return true;
+                            }
+                        });
+                        this.id = "";
+                        this.name = "";
+                    } else if (this.id.trim() == "") {
+                        alert('请输入编号');
+                    } else {
+                        // 添加
+                        var arr = {};
+                        arr.id = this.id;
+                        arr.name = this.name;
+                        arr.date = 2525609975000;
+                        this.books.push(arr)
+                        // 清空表单
+                        this.id = "";
+                        this.name = "";
+                    };
+
+                    this.flag = false;
+                },
+                update: function (id) {
+                    this.flag = true;
+                    // 返回的是当前对应ID的数组
+                    var book = this.books.filter(function (item, index) {
+                        return item.id == id
+                    });
+                    this.id = book[0].id;
+                    this.name = book[0].name;
+                },
+                del: function (id) {
+                    // 方法一:通过索引查找
+                    // var index = this.books.findIndex((item) => {
+                    //     return item.id == id;
+                    // });
+                    // this.books.splice(index,1);
+                    // 方法二:通过过滤器返回新数组来删除
+                    this.books = this.books.filter((item) => {
+                        return item.id != id;
+                    })
+                },
+                
+            },
+            // 局部指令使用方法   自定义属性的使用场景
+            directives : {
+                    focus : {
+                        inserted : function(el) {
+                            el.focus()
+                        }
+                    }
+            },
+            // 计算属性应用场景
+            computed: {
+                total :function () {
+                    return this.books.length;
+                }
+            },
+            // 侦听器的应用场景
+            watch: {
+                name : function (val) {
+                    this.submitFlag = this.books.some( item => {
+                        return item.name == val;
+                    })
+                }
+            },
+            // 生命周期应用场景
+            mounted : function () {
+                // 该生命周期钩子函数被触发时，模板已经可以使用了
+                // 一般此时用于后台数据，然后把数据填充到模板中来
+                // 例: 这个数据来自后台
+                var data = [{
+                    id: 1,
+                    name: '三国演义',
+                    date: 2525609975000
+                }, {
+                    id: 2,
+                    name: '水浒传',
+                    date: 2525609975000
+                }, {
+                    id: 3,
+                    name: '西游记',
+                    date: 2525609975000
+                }, {
+                    id: 4,
+                    name: '红楼梦',
+                    // 后台给的时间都是毫秒数  需要格式化
+                    date: 2525609975000
+                }]
+                this.books = data;
+            },
+        })
+    </script>
+</body>
+
+</html>

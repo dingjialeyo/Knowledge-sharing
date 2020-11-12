@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box { 
+            position: absolute;
+        }
+        .box img {
+            height: 150px;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="box">
+        <img src="./轮播图img/毛细3.png" alt="">
+    </div>
+
+
+    <script>
+        function my$(id) {
+            return document.getElementById(id)
+        }
+
+
+        //鼠标在页面中移动，元素跟着鼠标移动  并且要移动的话要脱离文档流
+        document.onmousemove = function(e){
+            //鼠标的移动靠横纵坐标
+            //可视区域的横坐标
+            //可视区域的纵坐标
+            my$("box").style.left = e.clientX+"px";
+            my$("box").style.top = e.clientY+"px"
+        }
+    </script>
+</body>
+</html>

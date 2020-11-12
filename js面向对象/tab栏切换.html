@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .tabboxes {
+            /* 整个盒子 */
+            width: 800px;
+            height: 500px;
+            margin: 100px auto;
+            border: 1px solid pink;
+        }
+
+        .firstnav {
+            /* 导航栏 */
+            position: relative;
+            width: 800px;
+            height: 50px;
+            /* border-bottom: 1px solid #ccc; */
+        }
+
+        .firstnav ul li {
+            position: relative;
+            width: 80px;
+            height: 50px;
+            list-style: none;
+            text-align: center;
+            line-height: 50px;
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            float: left;
+            overflow: hidden;
+        }
+
+        .bordernone {
+            /* 切换按钮时 哪个li被选中底部边框变成none */
+            border-bottom: none !important;
+        }
+
+        .del {
+            /* 删除 */
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-color: black;
+            border-radius: 50%;
+        }
+
+        @font-face {
+            /* 声明字体 注意点：路径问题*/
+            font-family: 'icomoon';
+            src: url('fonts/icomoon.eot?m1bylt');
+            src: url('./fonts/icomoon.eot?m1bylt#iefix') format('embedded-opentype'), url('./fonts/icomoon.ttf?m1bylt') format('truetype'), url('./fonts/icomoon.woff?m1bylt') format('woff'), url('./fonts/icomoon.svg?m1bylt#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+            font-display: block;
+        }
+
+        .del::after {
+            /* 利用伪元素选择器添加×号到删除选项中 
+    注意：一定不要忘记目录里放fonts文件夹 content 和 font-family也不要忘记写  */
+            position: absolute;
+            bottom: -12px;
+            left: 7px;
+            content: '\e907';
+            font-family: 'icomoon';
+            font-size: 8px;
+            color: white;
+        }
+
+        .tabadd {
+            /* 添加 */
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid #ccc;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .tabscontent {
+            /* 内容面板 */
+            position: relative;
+        }
+
+        .tabscontent section {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            width: 100%;
+            height: 450px;
+            margin: 50px;
+        }
+
+        .visible { 
+            /* 设置为显示 当切换到相应的li时添加这个类 */
+            display: block !important;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="tabboxes" id="tab">
+            <!-- tab标签 -->
+            <nav class="firstnav">
+                <!-- tab导航栏 -->
+                <ul>
+                    <li class="bordernone"><span>测试1</span><span class="del"></span></li>
+                    <li><span>测试2</span><span class="del"></span></li>
+                    <li><span>测试3</span><span class="del"></span></li>
+                </ul>
+                <!-- 添加按钮 -->
+                <div class="tabadd">
+                    <span>+</span>
+                </div>
+            </nav>
+            <!-- tab内容 -->
+            <div class="tabscontent">
+                <section class="visible">测试1</section>
+                <section>测试2</section>
+                <section>测试3</section>
+            </div>
+        </div>
+    </main>
+
+
+
+    <script>
+        //定义一个变量存放this
+        var that;
+        // 定义计数器
+        var count = 0;
+        // 定义Tab类
+        class Tab {
+            // 构造函数
+            constructor(id) {
+                that = this;
+                // 获取元素
+                this.main = document.querySelector(id);
+                this.add = this.main.querySelector('.tabadd');
+                this.ul = this.main.querySelector('.firstnav ul');
+                this.addcontent = this.main.querySelector('.tabscontent');
+                // 把初始化函数放在这里，为了创建时就调用
+                this.init();
+            }
+            // 初始化功能
+            init() {
+                // 调用函数获取li和section等经常更新的元素
+                this.upload();
+                // 为添加按钮绑定添加函数
+                //addTab不加括号是为了不立即执行，以下方法也是同样道理
+                this.add.onclick = this.addTab;
+                // 初始化操作使相关的元素绑定相关的属性操作
+                for (var i = 0; i < this.lis.length; i++) {
+                    this.lis[i].index = i;
+                    // 为每个li绑定单击响应函数
+                    this.lis[i].onclick = this.toggleTab;
+                    // 绑定删除函数
+                    this.move[i].onclick = this.moveTab;
+                    // 绑定修改函数 双击事件ondblblick
+                    this.spans[i].ondblclick = this.edit;
+                    this.sections[i].ondblclick = this.edit;
+                }
+            }
+            // 重新(动态)获取页面中所有的li 和 section del span
+            upload() {
+                this.lis = this.main.querySelectorAll('li');
+                this.sections = this.main.querySelectorAll('section');
+                // 获取删除
+                this.move = this.main.querySelectorAll('.del');
+                // 获取span
+                this.spans = this.main.querySelectorAll('.firstnav li span:first-child');
+
+            }
+            // 清除li和section的类
+            clearclass() {
+                for (var i = 0; i < this.lis.length; i++) {
+                    this.lis[i].className = '';
+                    this.sections[i].className = '';
+                }
+            }
+            // 切换功能，点击每个li切换到不同的section
+            toggleTab() {
+                // 这里的this指向单击的那个li
+                that.clearclass();
+                this.className = 'bordernone';
+                that.sections[this.index].className = 'visible';
+            }
+            // 增加功能
+            addTab() {
+                // 这里的this指向添加按钮
+                that.clearclass();
+                // 计算ul中的li个数
+                count = that.ul.childElementCount + 1;
+                var li = '<li class="bordernone"><span>测试' + count + '</span><span class="del"></span></li>';
+                // 将li字符串加入到ul中
+                that.ul.insertAdjacentHTML('beforeend', li);
+                var section = ' <section class="visible">测试' + count + '</section>';
+                that.addcontent.insertAdjacentHTML('beforeend', section);
+                // 这里有一个bug，新添加的小li没有切换啊什么的那些功能，所以需要重新获取li和section即需要调用upload()
+                // that.upload();不调用这个是为了新增的也有切换功能
+                that.init();
+            }
+            // 删除功能
+            moveTab(e) {
+                // 这里的this指向删除按钮
+                var index = this.parentNode.index;
+                // 阻止冒泡 防止li出现切换效果
+                e.stopPropagation();
+                console.log(index);
+                // remove()方法可以直接删除指定的元素
+                that.lis[index].remove();
+                that.sections[index].remove();
+                that.init();
+                // 如果删除的不是选中状态的li 则让原来选中的li保持不变
+                if (document.querySelector('.del')) return;
+                // 当删除li时，让前一个li处于选中状态 click()方法可以手动调用点击事件，不需要鼠标触发
+                // 但是若index=0，此时-- index=-1会报错,所以用that.lis[index]来判断是否有index，有再触发点击事件
+                index--;
+                that.lis[index] && that.lis[index].click();
+
+            }
+            // 修改功能
+            edit() {
+                // 这里的this指向双击选中的span或者section
+                // 获取原来span中的文字
+                var text = this.innerHTML;
+                // 双击禁止选中文字
+                window.getSelection ? window.getSelection().removeAllRanges() : document.sections.empty();
+                // span中添加一个input文本框
+                this.innerHTML = '<input type="text" >';
+                // 获取input
+                var input = this.children[0];
+                input.value = text;
+                // 让文本框中的文字处于选中状态
+                input.select();
+                // 当离开input时修改内容， 失去焦点时发生事件：onblur
+                input.onblur = function () {
+                    // 这里的this是input
+                    this.parentNode.innerHTML = this.value;
+                }
+                // 当按下enter键时也修改内容
+                input.onkeyup = function (e) {
+                    if (e.keyCode == 13) {
+                        // 手动触发失去焦点事件 blur()
+                        this.blur();
+                    }
+                }
+            }
+        }
+
+        // 创建实例
+        new Tab('#tab');
+    </script>
+</body>
+
+</html>

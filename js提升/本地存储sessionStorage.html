@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" class="txt">
+    <button class="set">存储数据</button>
+    <button class="get">获取数据</button>
+    <button class="remove">删除数据</button>
+    <button class="del">清空数据</button>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!-- 案例 -->
+    用户名<input type="text" class="ipt">
+    <input type="checkbox" class="chk">记住用户名
+
+
+    <script>
+        // 本地存储数据之sessionStorage
+        var txt = document.querySelector('.txt');
+        var set = document.querySelector('.set');
+        var get = document.querySelector('.get');
+        var remove = document.querySelector('.remove');
+        var del = document.querySelector('.del');
+        var val = txt.value;
+        set.addEventListener('click', function () {
+            // 点击之后可以将文本里面的值存储
+            val = txt.value;
+            sessionStorage.setItem('uname', val);
+            sessionStorage.setItem('pwd', val);
+        });
+        get.addEventListener('click', function () {
+            // 点击之后可以将文本里面的值获取       通过 键 来获取
+            var t = sessionStorage.getItem('uname');
+            console.log(t)
+        })
+        remove.addEventListener('click', function () {
+            // 点击之后可以 通过 键 指定删除
+            sessionStorage.removeItem('uname');
+        })
+        del.addEventListener('click', function () {
+            // 点击之后可以清空存储
+            sessionStorage.clear();
+        })
+
+
+        // 案例之 记住用户名 
+        var ipt = document.querySelector('.ipt');
+        var chk = document.querySelector('.chk');
+        var value = ipt.value;
+        if (localStorage.getItem('uname')) {
+            ipt.value = localStorage.getItem('ipt');
+            chk.checked = true;
+        }
+
+        chk.addEventListener('change', function () {
+            if (this.checked) {
+                localStorage.setItem('uname', ipt.value);
+            }
+            else {
+                localStorage.removeItem('uname');
+            }
+        })
+    </script>
+</body>
+
+</html>

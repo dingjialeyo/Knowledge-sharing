@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        .box {
+            margin: 0 auto;
+            height: 400px;
+            width: 450px;
+            margin-top: 200px;
+            /* border: 1px solid red; */
+        }
+
+        .inner {
+            height: 400px;
+            width: 450px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .inner ul {
+            list-style: none;
+            position: absolute;
+            width: 1000%;
+            /* top:-400px; */
+        }
+
+        img {
+            vertical-align: top;
+            height: 400px;
+            width: 450px;
+        }
+
+        .square {
+            position: absolute;
+            width: 120px;
+            height: 30px;
+            border-radius: 25px;
+            background: rgba(0, 0, 0, 0.5);
+            bottom: 20px;
+            left: 50%;
+            margin-left: -60px;
+        }
+
+        .square span {
+            background-color: #fff;
+            /* padding: 2px; */
+            height: 8px;
+            color: black;
+            margin: 4px;
+            font-size: 20px;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        .frist {
+            background-color: red !important;
+        }
+        .ull li{
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" class="box">
+        <div class="inner" id="inn">
+            <ul class="ull" id="ul">
+                <li><a href="#"><img src="./轮播图img/毛细3.png" /> </a></li>
+                <li><a href="#"><img src="./轮播图img/毛细4.png" /> </a></li>
+                <li><a href="#"><img src="./轮播图img/毛细5.png" /> </a></li>
+                <li><a href="#"><img src="./轮播图img/毛细6.png" /> </a></li>
+                <li><a href="#"><img src="./轮播图img/毛细7.png" /> </a></li>
+            </ul>
+            <div class="square">
+                <span class="frist">1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function my$(id) {
+            return document.getElementById(id)
+        }
+        var box = my$("box"); //获取父级元素
+        var inner = box.children[0]; //父级元素的第一个孩子对应了类inner
+        var width = my$("inn").offsetWidth //获取边框宽度
+        var ul = my$("ul"); //获取ul元素，ul元素是类inner的第一个子元素
+        var spans = document.getElementsByTagName("span"); //获取所有的span标签，   从inner的第二个孩子类square的第一个孩子就是span标签不用索引因为获取所有
+
+        //循环所有span标签，注册鼠标进入事件
+        for (var i = 0; i < spans.length; i++) {
+            //循环的时候保存各span元素的索引    //存放在创建的一个自定义属性setAttribute获取index值
+            spans[i].setAttribute("index", i)
+
+            //注册鼠标进入事件
+            spans[i].onmouseover = function () {
+
+                //鼠标进入时去掉所有的span背景色         ///////排他功能
+                for (var j = 0; j < spans.length; j++) {
+                    spans[j].removeAttribute("class"); //移除了所有span标签的类样式  removeAttribute移除
+                }
+                //设置当前鼠标指向的span元素的背景色
+                this.className = "frist";
+
+                //移动ul（每个图片的高度*鼠标放在这个span元素的索引值）
+                var index = this.getAttribute("index"); //获取鼠标进入span标签的index值
+                animate(ul,-index*width)
+                
+            };
+        }
+
+
+        //封装动画函数    element元素     target移动到哪个目标      
+        function animate(element,target){
+            //先清理定时器
+            clearInterval(element.time);
+            element.time = setInterval(function(){
+                //获取当前元素的位置      如果样式的代码是在style标签中设置，外面是获取不到的 ；  当时如果是在style属性中设置的，是可以获取到的
+                var now = element.offsetLeft;   //数字类型,没有px  now是当前位置
+                //每次移动多少像素
+                var step = 10;
+                step = now<target?step:-step; //判断当前位置和目标位置谁大，是走正数还是负数
+                //每次移动后的位置
+                now+=step;
+                //设置目标位置
+                if(Math.abs(target-now)>Math.abs(step)){
+                    element.style.marginLeft = now+"px"
+                }
+                else{
+                    clearInterval(element.time);  //清除计时器
+                    element.style.marginLeft=target+"px"
+                }
+            },20)
+        }
+    </script>
+</body>
+
+</html>

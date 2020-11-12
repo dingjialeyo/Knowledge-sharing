@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+
+    <script>
+        // 扩展运算符可以将数组或者对象转为用逗号分隔的参数列表
+        let arr = [1, 2, 3];
+        console.log(...arr) // 1 2 3      逗号被看成console.log的参数分隔符  所以没有逗号
+        console.log(1, 2, 3) // 1 2 3      一致
+
+        // 扩展运算符 可以应用在合并数组中
+        // 1. 第一种方法
+        let arr1 = [1, 2, 3];
+        let arr2 = [4, 5, 6];
+        let arr3 = [...arr1, ...arr2];
+        console.log(arr3) // [1, 2, 3, 4, 5, 6]
+        // 2. 第二种方法
+        arr1.push(...arr2);
+        console.log(arr1) // [1, 2, 3, 4, 5, 6]
+
+        // 可以将伪数组转换为真正的数组       伪数组 是不能用数组中的方法的   所以要转换
+        let lis = document.querySelectorAll('li');
+        // lis.push('a')      没有转换真正数组是不能使用数组方法  会报错
+        console.log(lis); // 伪数组       NodeList(4) [li, li, li, li]
+        lis = [...lis]; // 转换
+        lis.push('a')
+        console.log(lis) // 真正的数组    [li, li, li, li, "a"]
+
+        // 构造函数方法 : Array.from   将伪数组 或 可遍历对象 转换为 真正的数组   还可以接受第二个参数(函数)  用来对每个元素进行处理
+        // 伪数组      伪数组必须添加length   并且属性名必须为下标数字
+        var user = {
+            "0": "djl",
+            "1": "男",
+            "2": 19,
+            "length": 3
+        }
+        var newuser = Array.from(user, item => item + 'a'); // 将每个元素 加一个字符a
+        console.log(newuser); // ["djla", "男a", "19a"];
+
+
+        // 实例方法 find()  用于找出第一个符合条件的成员数组并返回该成员，如果没有找到返回undefined
+        let arry = [{
+            id: 1,
+            name: 'djl',
+        }, {
+            id : 2,
+            name : 'xmy'
+        }]
+        let getarry = arry.find(item => {        // find方法 有两个参数 item对应的数据 和 index索引
+            return item.id == 2
+        })
+        console.log(getarry)      // {id: 2, name: "xmy"}
+
+        // 实例方法 findIndex()  用于找出第一个符合条件的成员的位置  返回对应索引，如果没有找到返回-1;
+        let abc = [1,5,9,6,8,1,2,3,5,3];
+        let indx = abc.findIndex(value => {      // value是该数组的数据
+            return value > 10
+        })
+        console.log(indx)    // -1
+
+        // 实例方法 include()   表示某个数组是否包含给定的值 返回布尔值
+        var inclu = [1,2,3,5,6,]
+        var adc = inclu.includes(5);
+        console.log(adc)      // true
+    </script>
+</body>
+
+</html>

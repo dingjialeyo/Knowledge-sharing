@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father {
+            background-color: pink;
+            height: 500px;
+            width: 500px;
+            position: relative;
+        }
+        .son {
+            background-color: purple;
+            width: 200px;
+            height: 200px;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <button>传统点击事件</button>
+    <button>监听注册事件</button>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+
+
+    <script>
+        var button = document.querySelectorAll('button');
+        // 传统点击事件
+        button[0].onclick = function () {
+            alert('haha')
+        }
+        // 监听注册事件     优势在于同一个事件可以多次触发不同的效果    传统的不行
+        button[1].addEventListener('click', function () {
+            alert('lala');
+            alert('aaaaa');
+        })
+
+
+        // DOM事件流 三个阶段   捕获阶段  当前目标阶段  冒泡阶段
+        // 1. JS代码只能执行捕获或者冒泡其中一种阶段
+        // 2. onclik 和 attachEvent (IE) 只能得到冒泡阶段
+        // 3. 捕获阶段 如果 addEventListener 第三个参数是 true 那么则处于捕获阶段 --> document -> html -> body -> father -> son(当前目标阶段)
+        // var son = document.querySelector('.son');
+        // son.addEventListener('click', function () {
+        //     alert('son');
+        // }, true);
+        // // 这个执行的是捕获阶段 当你点击 son 的时候会先执行 father 的事件 然后在执行 son 事件    依次从外往里执行
+        // var father = document.querySelector('.father');
+        // father.addEventListener('click', function () {
+        //     alert('father');
+        // }, true);
+
+        // 4. 冒泡阶段 如果 addEventListener 第三个参数是 false (默认就是false) 那么则处于冒泡阶段 --> son(当前目标阶段) -> father -> body -> html -> document
+        // 冒泡阶段 依次从里往外执行   当你son 和 father 都有事件的时候 点击son 会先执行 son 后执行 father 如果外面还有还会执行 依次从外往里执行 所以后面有阻止事件冒泡
+        // 实际开发中我们更关注事件冒泡 很少用事件捕获  ************
+        // 有些事件是没有冒泡的， 比如 onblur onfocus onmouseenter onmouseleave
+        var son = document.querySelector('.son');
+        son.addEventListener('click', function (e) {
+            alert('son');
+            // 阻止事件 当你点击 son 事件 father 和 document 就不会触发了
+            e.stopPropagation(); // 标准写法
+            // e.cancelBubble = true;   IE 写法 要写兼容
+        }, false);
+        var father = document.querySelector('.father');
+        father.addEventListener('click', function () {
+            alert('father');
+        }, false);
+        document.addEventListener('click', function() {
+            alert ('docm');
+        })
+    </script>
+</body>
+
+</html>

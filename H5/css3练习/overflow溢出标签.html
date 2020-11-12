@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .box{
+        width: 150px;
+        height: 150px;
+        /* background-color: pink; */
+        border: 1px solid red;
+        overflow: hidden;
+        margin: 0 auto;
+        margin-top: 200px;
+    }
+    .one,.two,.three{
+        width: 150px;
+        height: 150px;
+        position: absolute;
+    }
+    .one{
+        background-color: pink;
+        /* z-index: 1; */
+    }
+    .two{
+        background-color: black;
+        /* z-index: 2; */
+    }
+    .three{
+        background-color: purple;
+        z-index: 0;
+    }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="one" id="a"></div>
+        <div class="two" id="b"></div>
+        <div class="three" id="c"></div>
+    </div>
+
+    <script>
+        function my$(id){
+            return document.getElementById(id)
+        }
+        window.onload = function () {
+            var a = 0;
+            var b = 0;
+            function oO() {
+                // if(a == 0){
+                //     b+=2;
+                // }
+                // if(b == 2){
+                //     a+=3
+                // }
+                // if(a>=3){
+                //     b=0
+                // }
+                // if(b == 0){
+                //     a=0
+                // }
+                // my$("a").style.zIndex = a
+                // my$("b").style.zIndex = b
+            }
+            setInterval(oO,2000);
+        }
+    </script>
+</body>
+</html>

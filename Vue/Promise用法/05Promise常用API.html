@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        function foo() {
+            return new Promise(function (resolve, reject) {
+                setTimeout(() => {
+                    resovle('one');
+                }, 100);
+            })
+        };
+
+        // 三个API用法
+        foo()
+            // 正常结果   接收resolve
+            .then((data) => {
+                console.log(data);
+            })
+            // 异常结果   接收reject
+            .catch((data) => {
+                console.log(data)
+            })
+            // 无论结果怎样都会输出
+            .finally(() => {
+                console.log('finally')
+            })
+    </script>
+</body>
+</html>

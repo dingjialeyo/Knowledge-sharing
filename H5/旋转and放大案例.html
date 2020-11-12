@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            overflow: hidden;
+            position: relative;
+            width: 80px;
+            height: 80px;
+            border: 1px solid #ccc;
+            margin: 200px auto;
+        }
+        p {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            background-color: pink;
+            color: #fff;
+            transform-origin: left bottom;
+            transition: all 1s ease;
+            transform: rotate(0deg);
+        }
+        .box p:hover {
+            transform: rotate(360deg);
+        }
+
+        .box1 {
+            background-color: purple;
+            width: 200px;
+            height: 200px;
+            transition: all 1s;
+        }
+        .box1:hover {
+            /* 意思是本身的一倍  scale(1,1) x,y  宽，高    并且不占位置 围中心放大缩小*/
+            transform: scale(2) rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p>你好</p>
+    </div>
+
+    <!-- 缩小 -->
+    <div class="box1">
+
+    </div>
+</body>
+</html>

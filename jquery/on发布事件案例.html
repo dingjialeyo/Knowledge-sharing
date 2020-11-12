@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <span>发布留言</span>
+        <textarea name="" id="txt" cols="30" rows="10"></textarea>
+        <button class="btn">发布</button>
+        <ul></ul>
+    </div>
+
+    <!-- 解绑 -->
+    <button class="bn">点我变化</button>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script>
+        $('.btn').on('click', function () {
+            var val = $('#txt').val();
+            var li = $("<li>"+val+"<a class='aaa' href='javascript:;'>删除</a></li>");    // 创建li
+            $('ul').append(li); // 追加li
+            $('ul li').css({
+                color: 'red',
+                listStyle: 'none'
+            });
+            $('#txt').val('')
+            $('.aaa').on('click',function(){
+                $(this).parent('li').slideUp(function(){      // 上拉隐藏但是不会删掉   所以调用里面的函数来删掉
+                    $(this).remove();
+                });
+            });
+        })
+
+
+        // on的解绑事件 --------->off
+        $('.bn').on({
+            click: function() {
+                $(this).css('background','pink')
+            },
+            mouseenter: function () {  
+                $(this).css('width','500px')
+            }
+        });
+        // 解绑
+        // $('.bn').off();  // 解除这个元素身上的所有事件
+        $('.bn').off('click');  // 解除这个元素身上的点击事件
+
+
+        // 解绑事件委托
+        $('ul').on('click','li', function (){
+            alert('aaaa');
+        });
+        $('ul').off('click','li')  // 解绑
+
+
+
+    
+    </script>
+</body>
+</html>

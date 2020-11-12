@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 钩子函数中 inserted -->
+        <input type="text" v-focustwo>
+        <input type="text" v-color='msg'>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+        // 自定义指令      也可以使用局部指令
+        // 自定义获取焦点
+        Vue.directive('foucs', { // 第一个参数 指令名称(自定义)   
+            inserted: function (el) { // el表示指令所绑定的元素
+                el.focus(); // 选择的事件
+            }
+        });
+        // 自定义改变颜色
+        Vue.directive('color', { // 第一个参数 指令名称(自定义)   
+            bind: function (el, binding) { // el表示指令所绑定的元素  可以实现DOM操作    binding 一个对象 有许多属性
+                // 其中 binding对象中的value 就是绑定的msg    根据参数设置背景颜色
+                console.log(binding.value.color)
+                el.style.backgroundColor = binding.value.color
+            }
+        });
+        new Vue({
+            el: '#app',
+            data: {
+                message : 'djl',
+                msg : {
+                    color : 'red'
+                }
+            },
+            methods: {
+
+            },
+            // 局部指令使用方法
+            directives : {
+                focustwo : {
+                    inserted : function(el) {
+                        el.focus()
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

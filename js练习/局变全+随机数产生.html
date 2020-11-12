@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .map {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            left: 50%;
+            margin-left: -400px;
+            top: 100px;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="map" id="map">
+        
+    </div>
+
+
+
+    <script>
+        // 函数的自调用   一次性函数
+        // (function () {  
+        //     console.log("hhaa1")
+        // }());
+
+
+            //将局部变量利用window的权限改为全局变量
+            // (function (window) {  
+            //     var num = 10 // 局部变量  外部访问不到
+            //     window.num = num;
+            // }(window))  //实参
+            // console.log(num);
+
+        //通过自调用函数产生随机数对象------自调用函数外面调用该方法产生随机数
+        (function (window){
+            //产生随机数的构造函数
+            function Random(){
+            }
+            //构造函数不添加方法在原型中添加
+            Random.prototype.getRandom = function(min,max){
+                return Math.floor(Math.random()*(max-min)+min);       //floor向下取整
+            }
+            //实例化      使返回来的随机数变为全局变量   
+            window.Random = new Random();  //random == Random
+            // window.Random = Random;    //那么外部引用要 var rm = new Random()
+        })(window);
+        var rm = Random;
+        // console.log(rm.getRandom(10,30));
+        
+
+        //产生小方块
+        (function(window){
+            var map = document.getElementById("map");
+            //创建构造函数
+            function Food(width,height,color){
+                this.width = width || 20,   //可以改变宽度也可以默认为20
+                this.height = height || 20,
+                this.color = color,
+                //坐标随机产生的先默认为0
+                this.x = 0,
+                this.y = 0
+                this.element = document.createElement("div");   //小方块
+            }
+            // 方法添加在原型中显示效果及位置----在map中
+            Food.prototype.init = function (map) {  
+                var div = this.element;   //将小方块元素传给了div
+                //设置小方块的样式
+                div.style.position = "absolute";
+                div.style.width = this.width+"px";
+                div.style.height = this.height+"px";
+                div.style.backgroundColor = this.color;
+                map.appendChild(div);
+                //调用这个render方法
+                this.render(map);
+            };
+            //产生随机位置
+            Food.prototype.render = function (map){
+                //横坐标
+                var x = Random.getRandom(0,map.offsetWidth/this.width)*this.width;        //宽度800，小方块20 能放40个但是向下取整
+                //纵坐标
+                var y = Random.getRandom(0,map.offsetHeight/this.height)*this.height;
+                this.x = x;
+                this.y = y;
+                var div = this.element;
+                div.style.left = this.x+"px";
+                div.style.top = this.y +"px";
+            }
+            var rm = new Food(20,20,"black");
+            rm.init(map);
+            // window.map = map;
+            // window.Food = Food;
+        })(window);
+        var rm = new Food(20,20,"black");
+        rm.init()
+    </script>
+</body>
+</html>

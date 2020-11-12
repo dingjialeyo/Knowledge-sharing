@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <button id="btn">获取缓存数据</button>
+
+    <script>
+
+        // 在低版本的IE浏览器中，Ajax请求有严重的缓存问题，及服务器端更新了数据，客户端依然拿到的是旧数据
+        // 解决方案: 在请求地址后面添加参数保证每次请求参数的不同
+        var btn = document.getElementById('btn');
+        btn.onclick = function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('get', 'http://localhost:3000/cache?t='+Math.random());
+            xhr.send();
+            xhr.onload = function() {
+                console.log(xhr.responseText)
+                // xhr.status 获取http状态码
+                console.log(xhr.status) // 400
+                // 这里可以编辑各个http状态码的任务
+                if (xhr.status == 200 && xhr.readyState==4) {
+                    alert(xhr.responseText)
+                }
+            };
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <button id="btn">发送请求</button>
+        <!-- 获取参数方法 serialize()使用 -->
+        <form action="" id="form">
+            <input type="text" name="uname" >
+            <input type="current-password" name="password">
+            <input type="submit" value="提交">
+        </form>
+        <!-- 发送jsonp请求 -->
+        <button id="jsonp_btn">发送jsonp请求</button>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+
+    <script>
+        $(function () {
+            $('#btn').on('click', function () {
+                $.ajax({
+                    type: 'get',
+                    // url 前面公共部分可以省略
+                    url : '/jquery',
+                    // 虽然你写的是对象但是方法会将对象转换为对象字符串 name=tlss&age=3  方便许多
+                    // data : {
+                    //     name : 'tlss',
+                    //     age : 3
+                    // },
+                    // 直接写对象字符串也行
+                    data : 'name=tlss&age=3',
+                    // 指定格式类型   默认为 application/x-www-form-urlencoded   也就是name=tlss&age=3
+                    // 如果格式是JSON类型 那么要将data参数转换为JSON字符串才行 
+                    contentType : 'application/x-www-form-urlencoded', 
+                    // 请求发送之前使用    可以做判断 对用户输入的内容进行验证 如果验证不通过 可以添加一个 return false 来终止执行
+                    beforeSend : function () {
+                        alert('即将发送请求')
+                    },
+                    success : function (response) {
+                        // 如果返回的是JSON字符串会自动改为JSON对象
+                        console.log(response)
+                    },
+                    error : function (err) {
+                        console.log(err)
+                    }
+                })
+            });
+            // 获取参数方法 serialize()
+            $('#form').on('submit', function ()  {
+                // 将表单提交的值拼接成字符串赋给params
+                var params = $('#form').serialize();
+                console.log(params);
+                $.ajax({
+                    type : 'get',
+                    data : params,
+                    url : '/jqueryapi',
+                    success : function(data) {
+                        console.log(data)
+                    }
+                })
+                return false
+            });
+            // jQueryAjax方法中的jsonp请求
+            $('#jsonp_btn').on('click', function () {
+                $.ajax({
+                    url : 'http://localhost:3001/tongyuan',
+                    // 代表当前发送jsonp请求
+                    dataType : 'jsonp',
+                    // 这两个在有需求的时候才用
+                    // // 修改callback参数名称
+                    // jsonp: 'ab',
+                    // // 指定函数名称
+                    // jsonpCallback : 'fnName',
+                    success : function (result) {
+                        console.log(result) // {name: "zwl", age: 20}
+                    }
+                })
+            })
+        });
+    </script>
+</body>
+</html>

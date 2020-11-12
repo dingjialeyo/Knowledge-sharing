@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <script>
+        
+    // 三个事件的执行速度    keydown  ->  keypress  ->  keyup
+        // 键盘按键抬起时
+        document.addEventListener('keyup',function () {
+            console.log('抬起了')
+        })
+        // 键盘按键按下时    能识别功能键    先执行down
+        document.addEventListener('keydown',function () {
+            console.log('按下了down')
+        })
+        // 键盘按键按下时    不能识别功能键 比如 Ctrl shift
+        document.addEventListener('keydown',function () {
+            console.log('press按下了')
+        })
+
+        // 键盘事件对象中的keyCode属性可以得到相应的ASCII码    keyup 和 keydown 不区分大小写
+        document.addEventListener('keyup', function(e) {
+            console.log('down:'+e.keyCode);
+        })
+        // keypress 区分大小写
+        document.addEventListener('keypress', function(e) {
+            console.log('press:'+e.keyCode);
+        })
+    </script>
+</body>
+</html>

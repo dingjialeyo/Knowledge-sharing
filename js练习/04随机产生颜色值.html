@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+        div{
+            height: 250px;
+            width: 250px;
+            background-color: #ff66ff;
+        }
+        
+        </style>
+    </head>
+    <body>
+        <script>
+            function getColor(){
+                var str = "#";
+                var arr = ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e"];
+                for(var i=0;i<6;i++){
+                    var num = parseInt(Math.random(arr)*16);
+                    str+=arr[num];
+                }
+                return str
+            }
+            window.onload = function(){
+                document.getElementById("cc").style.backgroundColor = getColor();
+            }
+            console.log(getColor())
+        </script>
+        <div id="cc"></div>
+    </body>
+</html>

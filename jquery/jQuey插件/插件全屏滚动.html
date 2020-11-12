@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/fullpage.min.css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/fullpage.min.js"></script>
+
+    <style>
+        .section1 {
+            background: url(http://idowebok.u.qiniudn.com//77/1.jpg) 50%;
+        }
+        .section2 {
+            background: url(http://idowebok.u.qiniudn.com//77/2.jpg) 50%;
+        }
+        .section3 {
+            background: url(http://idowebok.u.qiniudn.com//77/3.jpg) 50%;
+        }
+        .section4 {
+            background: url(http://idowebok.u.qiniudn.com//77/4.jpg) 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="dowebok">
+        <div class="section section1">第一屏</div>
+        <div class="section section2">第二屏</div>
+        <div class="section section3">
+            <div class="slide">第三屏的第一屏</div>
+            <div class="slide">第三屏的第二屏</div>
+            <div class="slide">第三屏的第三屏</div>
+            <div class="slide">第三屏的第四屏</div>
+        </div>
+        <div class="section section4">第四屏</div>
+    </div>
+
+
+
+
+    <script>
+        $(function () {
+            $('#dowebok').fullpage({      // 这里的属性可以在说明里面看
+                // sectionsColor: ['red','pink','purple','skyblue'],
+                navigation: true,
+                // slidesNavigation: true,
+                controlArrowColor: '#000',   
+            });
+        });
+    </script>
+</body>
+
+</html>

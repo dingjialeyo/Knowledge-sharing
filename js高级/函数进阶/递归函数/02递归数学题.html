@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        // 1 求阶乘
+        // function fn(n) {
+        //     if (n == 1) {
+        //         return 1;
+        //     }
+        //     return n * fn(n - 1);
+        // }
+        // console.log(fn(3));
+
+        // 2. 求斐波那契序列
+        function fn(n) {
+            if (n == 1 || n == 2) {
+                return 1;
+            }
+            return fn(n-1) + fn(n-2);
+        }
+        console.log(fn(8)) // 21
+    </script>
+</body>
+
+</html>

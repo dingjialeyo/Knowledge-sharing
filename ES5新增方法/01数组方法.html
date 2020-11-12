@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+// 数组方法
+    // foreach 和 filter 都是循环语句
+        // foreach方法
+        var arr = [1, 2, 5, 7, 9, 4, 5, 3, 4, 5, 8]
+        var sum = 0; // 简单求和
+        arr.forEach(function (value, index, array) { // value是数组中的每一个元素 index是每一个元素的索引号  array数组本身
+            console.log(value)
+            console.log(index)
+            console.log(array)
+            sum += value;
+
+        })
+        console.log(sum)
+        // filter方法   筛选        返回的是一个数组  所以可以接收
+        var arr2 = [100, 2, 0, 6, 48, 2, 100]
+        var abc = arr2.filter(function (value, index, array) {
+            if (value > 2) {
+                return value
+            }
+        })
+        console.log(abc)
+
+        // some方法      返回布尔值      并且找到了满足条件的元素 就终止循环
+        var arr3 = [1,2,3,4,5,6];
+        var cba = arr3.some(function (value,index,array) {  
+            return value > 6
+        })
+        console.log(cba)  // false
+    </script>
+</body>
+
+</html>

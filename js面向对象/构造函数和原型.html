@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Star(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            // this.sing = function(sing) {
+            //     console.log('你在说'+sing)
+            // }
+        }
+        var ldh = new Star('刘德华', 20, '男');
+        var zxy = new Star('张学友', 22, '男');
+        // 这种方法好用但是一起使用sing函数时浪费内存因为函数指向的是不同的地址    所以我们需要    共享数据----------原型对象prototype
+        // 每个构造函数都存在一个原型对象
+        Star.prototype.sing = function () { // 当两个不同的实例对象调用这个函数，则指向同一个地址
+            console.log('sing')
+        }
+        console.dir(Star)
+        ldh.sing()
+        // 构造函数中的原型对象----------prototype
+        // 实例对象中的对象原型----------__proto__            等价
+        // 查找顺序   先看对象本身有没有这个方法，没有的话通过__proto__找到对应的构造函数中的原型对象查看有没有这个方法
+        console.log(ldh.__proto__ === Star.prototype);
+
+
+        // constructor 构造函数
+        // 在__proto__对象原型 和 prototype原型对象中都有一个constructor属性       并且指向的都是构造函数本身
+        // 很多情况下我们都需要通过constructor来指向回我们的构造函数
+        // 比如以下代码   如果prototype是对象来赋值方法的话  就没有了constructor这个属性 我们就要手动来添加这个属性
+        Star.prototype = {
+            constructor: Star, // 手动指回原来的构造函数
+            movie: function () {
+                console.log('movie')
+            },
+            aloud: function () {
+
+            }
+        };
+        console.log(Star.prototype.constructor);
+        console.log(ldh.__proto__.constructor);
+
+        // 我们Star构造函数中的原型对象里面也有一个__proto__原型  但是它指向的是 Object.prototype
+
+
+        // 原型对象函数中的this 指向的是 实例对象
+
+        // 扩展内置对象方法
+        Array.prototype.sum = function () {
+            var sum = 0;
+            for (var i = 0; i < this.length; i++) { // this.length 指向的是实例对象
+                sum += this[i];
+            };
+            return sum;
+        }
+        var arr = [1, 2, 3, 4];
+        console.log(arr.sum())
+        // Array这个对象中的一系列方法  然后添加了一个sum方法
+        console.log(Array.prototype);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // const 作用: 声明常量， 常量就是值(内存地址)不能变化的量  并且声明常量时必须赋值不然报错
+        // 1. 具有块级作用域
+        // if (true) {
+        //     const a = 10;
+        // }
+        // console.log(a) // a is not defined
+
+        if (true) {
+            const b = 10;
+            // b = 30;   // 如果在同一 块级 作用域下给const常量赋值两次 将会报错
+            if (true) {
+                const b = 20;
+                console.log(b);     // 20
+            }
+            console.log(b)      // 10
+        }
+        console.log(b)      // b is not defined
+
+        // 如何修改const值
+        // 1. 常量声明后是不可修改的
+        // 2. 复杂数据类型是可以修改的    只要不更改地址即可
+        const arr = [100,200];
+        // 可以通过获取下标的方法重新赋值
+        arr[0] = 50;
+        arr[1] = 5;
+        console.log(arr) // [50,5]
+    </script>
+</body>
+</html>

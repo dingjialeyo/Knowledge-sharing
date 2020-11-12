@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form div {
+            height: 40px;
+            line-height: 40px;
+        }
+        form div span:first-child{
+            display: inline-block;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+        <div id="app">
+            <form>
+                <div>
+                    <span>姓名:</span>
+                    <span>
+                        <input type="text" v-model="uname">
+                    </span>
+                </div>
+                <div>
+                    <span>性别:</span>
+                    <span>
+                        <input type="radio" name="" id="nan" value="0" v-model="sex">
+                        <label for="male">男</label>
+                        <input type="radio" name="" id="nv" value="1" v-model="sex">
+                        <label for="nv">女</label>
+                    </span>
+                </div>
+                <div>
+                    <span>爱好:</span>
+                    <span>
+                        <input type="checkbox" name="" id="ball" value="1" v-model="hobby">
+                        <label for="ball">篮球</label>
+                        <input type="checkbox" name="" id="play" value="2" v-model="hobby">
+                        <label for="ball">游戏</label>
+                        <input type="checkbox" name="" id="web" value="3" v-model="hobby">
+                        <label for="web">前端</label>
+                    </span>
+                </div>
+                <div>
+                    <span>职业:</span>
+                    <select v-model="job">
+                        <option value="0" >请选择职业</option>
+                        <option value="1">程序员</option>
+                        <option value="2">教师</option>
+                        <option value="3">律师</option>
+                    </select>
+                </div>
+                <div>
+                    <span>个人简介:</span>
+                    <textarea name="" id="" cols="30" rows="10" v-model="textarea"></textarea>
+                </div>
+                <div>
+                    <input type="submit" value="提交" @click.prevent="submit">
+                </div>
+            </form>
+        </div>
+
+    <script src="./vue.js"></script>
+    <script>
+
+        // 表单基本操作
+        // 表单的三个修饰符 number转为数值  trim去掉两边空格  lazy将input事件切换为change事件   用法:v-model.number
+        new Vue({
+            el: '#app',
+            data : {
+                uname : '',
+                sex : null,
+                // 复选框的 是一个伪数组
+                hobby : [],
+                // 单选框用值 多选框用数组
+                job : null,
+                textarea : null
+            },
+            methods: {
+                submit: function () {
+                    console.log(this.uname)
+                    console.log(this.sex)
+                    console.log(this.hobby.toString());
+                    console.log(this.job)
+                    console.log(this.textarea)
+                }
+            },
+        })
+    </script>
+</body>
+</html>

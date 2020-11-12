@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            width: 300px;
+            height: 200px;
+            border: 2px solid #ccc;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        打啊是沙发是否是发送到发
+        打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发
+        打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发打啊是沙发是否是发送到发
+    </div>
+    <input type="button" value="显示">
+
+
+
+
+    <script>
+        function my$(id) {
+            return document.getElementById(id)
+        }
+
+
+
+        // offset系列获取元素值            对象.style.xxx获取元素是获取不到style标签里的，只能获取style属性中的值
+        // offsetWidth: 获取元素的宽   并且包括边框
+        // offsetHight: 获取元素的高    并且包括边框
+        // offsetLeft: 获取距离最左边的值，子绝父相除外
+        // offsetLeft: 获取距离最上边边的值，子绝父相除外
+
+
+        //scroll系列 ：卷曲
+        // scrollWidth :元素内容实际的宽度，不包括边框,如果内容小于元素大小最小就为元素的大小
+        // scrollHight :元素内容实际的高度，不包括边框，如果内容小于元素大小最小就为元素的大小
+        console.log(my$("box").scrollWidth) ///和内容有关，内容实际的宽度
+        
+        console.log(my$("box").scrollLeft)   //向左卷曲出去的距离
+        console.log(my$("box").scrollTop)   //向上卷曲出去的距离
+
+        // div的滚动事件
+        my$("box").onscroll = function (){
+            console.log(this.scrollTop)
+        }
+
+        //client系列  可视区   不包括边框
+        // clientWidth       不包括边框
+        // clientHight       不包括边框
+        // clientLeft        从最左边到可视区距离加上边框
+        // clientTop        从最上边到可视区距离加上边框
+    </script>
+</body>
+</html>

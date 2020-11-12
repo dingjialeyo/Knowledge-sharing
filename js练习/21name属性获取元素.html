@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="弹框" id="btn"><br>
+    <input type="text" value="你好" name="nameya1"><br>
+    <input type="text" value="你好" name="nameya2"><br>
+    <input type="text" value="你好" name="nameya3"><br>
+    <input type="text" value="你好" name="nameya1"><br>
+    <input type="text" value="你好" name="nameya1"><br>
+
+    <script>
+    //点击弹框将name值改为文本框value值
+    function my$(id){
+        return document.getElementById(id)
+    }
+    my$("btn").onclick = function(){
+        //通过name属性值获取元素------表单的标签   首先获取name---getElementsByName
+        var name = document.getElementsByName("nameya1");
+        for(var i=0;i<name.length;i++){
+            name[i].value = "我不好！"
+        }
+    }
+
+
+
+
+//其他获取元素方法
+        // document.querySelector("#+id名")  //根据你的选择器来选；id和类   querySelectorAll是可以添加类，并且类可以存在多个标签中
+
+
+    //基本方法:    但是最后两个少用，有些浏览器不支持
+//1.根据id属性值获取元素，返回一个元素对象
+    document.getElementById("id属性值")
+//2.根据标签名获取元素，返回一个伪数组，保存了多个DOM对象
+    document.getElementsByTagName("标签名")
+//3.根据name的属性值获取元素，返回一个伪数组，保存了多个DOM对象
+    document.getElementsByName("name的属性值")
+//4.根据类样式的名字获取元素，返回一个伪数组，保存了多个DOM对象
+    document.getElementsByClassName("类样式名字")
+//5.根据选择器获取元素，返回一个元素对象
+    document.querySelector("选择器的名字")   //#my,.my 等等
+//6.根据选择器获取元素，返回一个伪数组，保存了多个DOM对象
+    document.querySelectorAll("选择器名字")
+    </script>
+
+</body>
+</html>

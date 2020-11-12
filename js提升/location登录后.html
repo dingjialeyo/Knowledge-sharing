@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #ccc;
+        }
+        div {
+            background-color: #000;
+            height: 200px;
+            width: 200px;
+            line-height: 200px;
+            text-align: center;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+    </div>
+
+
+
+    <script>
+        console.log(location.search);   // 登录前输入的字符串   ?uname=djl
+        // 第一步先去掉 ？  用 substr ('起始位置','截取几个字符')   截取方法
+        var params = location.search.substr(1);  // uname=djl
+        // 第二步利用分隔符 分隔=   来分隔  键 和 值      spilt('=') 并转换为数组
+        var arr = params.split('=');
+        var uname = arr[1]; // 这个就是传过来的值
+        var div = document.querySelector('div');
+        div.innerHTML = '你传过来的值是:' + uname;
+    </script>
+</body>
+</html>

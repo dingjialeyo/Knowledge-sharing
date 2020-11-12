@@ -1,0 +1,2 @@
+{{ dateformat(time, 'yyyy-mm-dd') }}  
+<!-- 2020-03-28 -->

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* div{
+            width: 0;
+            height: 0;
+            border-top: 100px solid red;
+            border-bottom: 100px solid green;
+            border-left: 100px solid yellow;
+            border-right: 100px solid pink;
+        } */
+        .p{
+            /* 设计这种宽高设为0 */
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 100px;
+            /* 顺时针    transparent透明 */ 
+            border-color: transparent transparent transparent red ;
+            /* 照顾低版本兼容 加上一下代码 */
+            font-size: 0;
+            line-height: 0;
+        }
+        div{
+            width: 200px;
+            height: 100px;
+            background-color: #ccc;
+            margin: 100px auto;
+            position: relative;
+            border-radius: 10px;
+        }
+        .pp{
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 20px;
+            /* 顺时针    transparent透明 */ 
+            border-color: transparent transparent #ccc transparent ;
+            /* 照顾低版本兼容 加上一下代码 */
+            font-size: 0;
+            line-height: 0;
+            margin: 0 auto;
+            /* 子绝父相 */
+            position: absolute;
+            left: 50%;
+            /* 因为是三角形的四分之一所以要左移全部宽度 */
+            margin-left: -20px;
+            /* 同理高度也是 */
+            top: -40px;
+        }
+    </style>
+</head>
+<body>
+    <p class="p"></p>
+
+
+    <!-- 实用的三角形例子 -->
+    <div>
+        <p class="pp"></p>
+    </div>
+</body>
+</html>

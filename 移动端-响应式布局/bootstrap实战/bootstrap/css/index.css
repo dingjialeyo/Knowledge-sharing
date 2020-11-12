@@ -1,0 +1,99 @@
+a:hover{
+    text-decoration: none;
+}
+img{
+    display: block;
+    max-width: 100%;
+}
+.navbar-brand{
+    background: url(../img/3-1F923144206.jpg) no-repeat;
+    background-size: 100% 100%;
+    width: 70px;
+    border-radius: 15px;
+    background-position: center center;
+}
+.navbar-brand,
+.nav
+{
+    margin-top: 5px;
+    margin-left: 12px;
+}
+.list .list-group-item{
+    border: 0;
+    border-radius: 15px;
+    margin-bottom: 35px;
+}
+.new-list-item .title{
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 65px;
+    display: block;
+    line-height: 1.5;
+}
+.new-list-item .info{
+    color: #999;
+    margin-top: 10px;
+}
+.new-list-item{
+    border-bottom: 1px solid rgba(0, 0, 0,.2);
+}
+.avatar{
+    display: inline-block;
+}
+.avatar img{
+    display: inline-block;
+    width: 30px;
+
+}
+.side-bar-card{
+    background: rgba(0, 0, 0,.2);
+    border-radius: 25px;
+    margin-top: 20px;
+    /* border-left: 2px solid #999; */
+    padding: 10px 0;
+    color: #444;
+}
+.font{
+    margin-top: 15px;
+    line-height: 1.8;
+    /* text-align: center; */
+}
+.card-title{
+    font-size: 18px;
+    font-weight: bold;
+}
+.card-body{
+    padding: 15px;
+}
+#toggle-checkbox:checked ~ div{
+    display: block  !important;
+    /* transition: 2s; */
+
+}
+#toggle-lable{
+    /* float: right; */
+    display: inline-block;
+    position: absolute;
+    right: 5px;
+    top: 20px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: normal;
+}
+#toggle-lable:hover{
+    color: #999;
+}
+.denglu{
+    font-size: 16px;
+    font-weight: bold;
+}
+.zhuche{
+    font-size: 16px;
+    font-weight: bold;
+}
+.nav li a:hover{
+    background: rgba(0, 0, 0,1.2);
+    /* border-radius: 15px;
+    margin-left: 5px;
+    margin-bottom: 5px; */
+}

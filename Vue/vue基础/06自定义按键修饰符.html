@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 自定义键盘事件 -->
+        <input type="text" @keyup.djl="handle" v-model="msg">
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        // 全局写
+        Vue.config.keyCodes.djl = 32;   // 将键盘值为32 赋给了 djl变量
+        var vm = new Vue ({
+            el : '#app',
+            data : {
+                msg : ''
+            },
+            methods: {
+                handle : function(e) {
+                    // // console.log(e.keyCode)
+                    console.log('32')
+                }
+            },
+        })
+    </script>
+</body>
+</html>

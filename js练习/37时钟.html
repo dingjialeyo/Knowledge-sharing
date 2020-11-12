@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="" alt="" id="img">
+
+
+
+    <script>
+        function my$(id){
+            return document.getElementById(id)
+        }
+
+
+
+        function f1(){
+            // 获取当前时间
+        var date = new Date();
+        // 获取当前小时
+        var hour = date.getHours();
+        // 获取当前秒
+        var second = date.getSeconds();
+        hour = hour<10 ? "0"+hour : hour;
+        second = second<10?"0"+second:second;
+        }
+        f1();
+
+        //  页面加载完毕过一秒后执行所有要使函数先执行一次代码          每一秒获取一次
+        setInterval(f1,1000)
+
+        // 这里需要图片格式为小时_秒的名字的那种图片       暂无
+        my$("img").src="xxx路径/"+hour+"_"+second+".jpg";
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            perspective: 1000px;
+        }
+        .box {
+            width: 200px;height: 200px;
+            margin: 100px auto;
+            position: relative;
+            transition: all 2s ease;
+            /* 控制子元素是否开启三维立体环境   默认是flat不开启    preserve-3d开启*/
+            transform-style: preserve-3d;
+        }
+        .box1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: pink;
+        }
+        div .box2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: purple;
+            transform: rotateX(79deg);
+        }
+        .box:hover {
+            transform: rotateY(100deg) rotateZ(100deg) rotateX(100deg);
+        }
+        .hezi {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 2s;
+            /* 控制子元素是否开启三维立体环境   默认是flat不开启    preserve-3d开启*/
+            transform-style: preserve-3d;
+            margin-left: 200px;
+        }
+        .hezi:hover {
+            transform: rotateY(180deg);
+        }
+        .front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: pink;
+            border-radius: 50%;
+            line-height: 300px;
+            left: 0;
+            top: 0;
+            color: purple;
+            font-size: 30px;
+            text-align: center;
+            z-index: 1;
+
+        }
+        .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            text-align: center;
+            line-height: 300px;
+            font-size: 30px;
+            color: pink;
+            background-color: purple;
+            border-radius: 50%;
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box1"></div>
+        <div class="box2"></div>
+    </div>
+
+    <!-- 案例两面盒子 -->
+    <div class="hezi">
+        <div class="front">
+            夏目友人
+        </div>
+        <div class="back">
+            童乐三三
+        </div>
+    </div>
+</body>
+</html>

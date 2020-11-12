@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+            {{msg}}
+        </div>
+        <button @click="update">更新数据</button>
+        <button @click="destroy">销毁数据</button>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el : '#app',
+            data : {
+                msg : '生命周期'
+            },
+            methods: {
+                update : function () {
+                    this.msg = '更新后的生命周期'
+                },
+                destroy : function () {
+                    // 销毁数据
+                    this.$destroy();
+                }
+            },
+            // 1. 挂载阶段
+            beforeCreate : function() {
+                console.log('beforeCreate');
+            },
+            created : function() {
+                console.log('created')
+            },
+            beforeMount : function() {
+                console.log('beforeMount')
+            },
+            // 这个最重要  当这个触发时代表模板数据已经更新完成   特别是后台调接口时
+            mounted :function () {
+                console.log('mounted')
+            },
+
+            // 2. 更新阶段    数据更新才触发
+            beforeUpdate : function () {
+                console.log('beforeUpdate')
+            },
+            updated : function () {
+                console.log('updated')
+            },
+
+            // 3. 销毁阶段
+            beforeDestroy : function() {
+                console.log('beforeDestroy')
+            },
+            destroyed : function() {
+                console.log('destroyed')
+            },
+        })
+    </script>
+</body>
+</html>

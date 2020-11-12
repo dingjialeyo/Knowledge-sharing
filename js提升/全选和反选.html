@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="checkbox" name="" id="chk">
+    <br>
+    <div class="box">
+        <input type="checkbox" name="" id="">
+        <input type="checkbox" name="" id="">
+        <input type="checkbox" name="" id="">
+        <input type="checkbox" name="" id="">
+    </div>
+
+
+    <script>
+        var chk = document.getElementById('chk');
+        var chks = document.querySelector('.box').getElementsByTagName('input');
+        chk.onclick = function () {
+            for (let i = 0; i < chks.length; i++) {
+                chks[i].checked = this.checked; // 当前全选绑定了所有的复选
+
+            }
+        }
+        // 复选全部都选上的话影响全选按钮
+        for (var i = 0; i < chks.length; i++) {
+            chks[i].onclick = function () {
+                var flag = true;
+                // 每次检查是否都选上
+                for (var i = 0; i < chks.length; i++) {
+                    if (!chks[i].checked) {
+                        flag = false;
+                    }
+                    
+                }
+                chk.checked = flag;
+            }
+        }
+    </script>
+</body>
+
+</html>

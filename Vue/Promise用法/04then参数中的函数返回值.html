@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">获取</button>
+    <script>
+        // 基于原生js的Ajax请求方法
+        function queryData(url) {
+            return new Promise(function (resolve, reject) {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    // 如果不等于4 就不作处理 就不往下执行
+                    if (xhr.readyState != 4) return;
+                    if (xhr.status == 200 && xhr.readyState == 4) {
+                        resolve(xhr.responseText)
+                    } else {
+                        reject('error')
+                    }
+                };
+                xhr.open('get', url);
+                xhr.send(null);
+            })
+        };
+        document.getElementById('btn').onclick = function () {
+            queryData('http://localhost:3000/data2').then((data) => {
+                console.log(data);
+                console.log(this)
+            }, (err) => {
+                console.log(err)
+            })
+        };
+
+
+        // 链式操作
+        queryData('http://localhost:3000/data')
+            .then((data) => {
+                console.log(data);
+                
+                return queryData('http://localhost:3000/data2')
+            })
+            .then((data) => {
+                console.log(data);
+                 // 返回一个Promise对象
+                return new Promise(function(resolve,reject) {
+                    setTimeout(() => {
+                        resolve('我是新的Promise')
+                    }, 1000);
+                })
+            })
+            .then((data) => {
+                console.log(data + 'hahaha')
+                // 返回一个普通值  
+                // 那为什么下一个then会被调用了
+                // 如果你返回了一个普通值那么会产生一个默认的Promise对象给下一个then调用
+                return '返回了一个普通值'
+            })
+            .then((data) => {
+                console.log(data)
+            })
+
+    </script>
+</body>
+
+</html>

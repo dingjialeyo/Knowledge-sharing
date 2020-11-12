@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+
+    <script>
+
+// 函数调用
+    // 1. 普通函数      this 指向 window
+        // function f1() {
+
+        // }
+        // f1();   f1.call();
+    // 2. 对象的方法    this 指向 调用这个方法的所属对象
+            // var obj = {
+            //     sing: function() {
+            //         alert('adc')
+            //     }
+            // }
+            // obj.sing()
+    // 3. 构造函数      this 指向 实例对象
+        // function Fn() {
+        //     this.sing = function () {  
+        //         alert('ann')
+        //     }
+        // }
+        // new Fn().sing();
+    // 4. 绑定事件函数   this 指向 绑定事件对象   
+        // btn.onclick = function() {
+        //     alert('jkl')
+        // }
+    // 5. 定时器函数    this 指向 window
+        // setInterval(function () {  
+        //     alert('huj')
+        // },1000)
+    // 6.立即执行函数   this 指向 window
+        (function(){
+            alert('123')
+        }())
+    </script>
+</body>
+</html>

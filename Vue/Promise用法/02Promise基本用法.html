@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        console.log(typeof Promise)  // function 
+        console.dir(Promise)  // 详细的方法和属性
+
+        // resolve成功时的处理   reject异常时候的处理   这两个参数也是函数
+        var p = new Promise(function (resolve, reject) {
+            // 这里用于实现异步任务
+            setTimeout(() => {
+                var flag = false;
+                if (flag) {
+                    // 正常情况
+                    resolve('success')
+                }
+                else {
+                    // 异常情况
+                    reject('error')
+                }
+            },100);
+        });
+        // 接收结果   then(两个函数)
+        p.then(function (data) {
+            console.log(data)
+        },function (info) {
+            console.log(info)
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #div{
+        height: 300px;
+        width: 300px;
+        background-color:red;
+    }
+    .div{
+        display:none;
+    }
+    </style>
+</head>
+<body>
+    <input type="button" value="隐藏" id="btn">
+    <div id="div">
+    </div>
+    <script>
+    function  my$(id) {
+        return document.getElementById(id)
+    }
+    // my$('btn').onclick = function () {
+    //     //  三元表达式方法
+    //         // my$('div').style.display =="none" ?  my$('div').style.display = "block" :  my$('div').style.display = "none"
+
+    //     //if  语句方法
+    //     if(this.value == '隐藏'){
+    //         my$('div').style.display = "none"
+    //         this.value = "显示"
+    //     }
+    //     else if(this.value == "显示"){
+    //         my$('div').style.display = "block"
+    //         this.value = "隐藏"
+    //     }
+    // }
+
+
+
+    //添加    1.样式可以连写    2.用chass类添加；样式多的话优先添加类用第二种方法
+     // 1.my$('btn').style = "backgroundColor : red;width:150px"
+
+     // 2.my$('btn').className = "div"
+
+    //通过添加类样式使div显示和隐藏
+        var btn = my$('btn')
+        var div = my$('div')
+        btn.onclick = function () {
+            // div.className = "div"
+            if(div.className != 'div'){
+                div.className = 'div'
+                btn.value = '显示'
+            }
+            else{
+                div.className = '';
+                btn.value = '隐藏'
+            }
+        }
+    </script>
+
+</body>
+</html>

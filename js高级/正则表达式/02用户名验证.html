@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .right {
+            color: green;
+        }
+        .wrong {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" name="" id="user"><span>请输入用户名</span>
+
+
+    <script>
+        var rg = /^[0-9a-zA-Z-_]{6,16}$/;
+        var user = document.querySelector('#user');
+        user.onblur = function() {
+            if (rg.test(this.value)) {
+                this.className = 'right'
+            }
+            else {
+                this.className = 'wrong'
+            }
+        }
+    </script>
+</body>
+</html>

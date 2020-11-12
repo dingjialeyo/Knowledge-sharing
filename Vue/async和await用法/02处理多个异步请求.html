@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        // async关键词用于函数上(async函数的返回值是Promise实例对象)
+        // await 后面要跟Promise实例对象
+        axios.defaults.baseURL = 'http://localhost:3000/'
+        async function querydata() {
+            const info = await axios.get('data2');
+            // 将第一个获取到的值 作为参数 给第二个请求
+            const ret = await axios.get('info?info=' + info.data)
+            return ret
+        }
+        querydata()
+            .then((data) => {
+                console.log(data.data)
+            })
+    </script>
+</body>
+
+</html>

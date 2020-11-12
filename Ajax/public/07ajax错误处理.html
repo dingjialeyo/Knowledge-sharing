@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">发送ajax错误请求</button>
+    <script>
+        var btn = document.getElementById('btn');
+        btn.onclick = function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('get', 'http://localhost:3000/error');
+            xhr.send();
+            xhr.onload = function() {
+                console.log(xhr.responseText)
+                // xhr.status 获取http状态码
+                console.log(xhr.status) // 400
+                // 这里可以编辑各个http状态码的任务
+                if (xhr.status == 400) {
+                    alert('请求错误！')
+                }
+            };
+            // 当网络中断时会触发onerror事件
+            xhr.onerror = function() {
+                alert('网络出现问题！');
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            /* 给父级添加flex属性 */
+            /* 默认的主轴x轴  行 row   */
+            /* flex-direction: column;  从上到下排列    y轴 当你设置为y轴是y轴就变成了主轴*/
+            /* flex中默认的子元素是不换行的 如果装不下会缩小子元素*/
+            flex-wrap: wrap;    /*换行*/
+            align-content: space-between;  /* 因为我们有了换行，侧轴上控制子元素的对齐方式用  align-content   这个是针对多行元素单行时无效   主用这个*/
+            display: flex;
+            width: 800px;
+            height: 400px;
+            background-color: pink;
+            /* flex-direction: column; */
+            justify-content: space-between;   /* 设置主轴上的子元素排列方式     space-around平分   space-between先贴两边 再平分剩余空间*/
+            /*设置侧轴上的子元素排列方式  align-items: center;    这个是针对单行元素*/
+
+            /* flex-flow: row wrap;     连用方法  设置主轴和是否换行*/
+        }
+        div span {
+            width: 150px;
+            height: 100px;
+            background-color: purple;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- flex布局父项常见属性 -->
+    <div>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>3</span>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+    </div>
+</body>
+</html>

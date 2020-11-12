@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+    // 解构赋值
+
+        // 数组解构  按照对应位置。对变量赋值。可以实现解构
+        let [a,b,c,d] = [1,2,3];
+        console.log(a)  // 1
+        console.log(b)  // 2
+        console.log(c)  // 3
+        console.log(d)   // undefined
+
+        // 对象解构      必须取对应的属性名 得到的是属性值 才可以进行解构
+        let obj = {name : 'djl', age :19};
+        let {name, age} = obj;
+        console.log(name);  // djl  
+        console.log(age)    // 19
+
+        // 另一种解构方法     使用别名
+        let {name: myname, age: myage} = obj;
+        console.log(myname)      // djl
+        console.log(myage)       // 19
+    </script>
+</body>
+</html>

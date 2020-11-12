@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="btn">点击获取ajax数据</button>
+    <script>
+        
+        // 1.创建ajax对象
+        var xhr = new XMLHttpRequest();
+        // 2.告诉ajax发送请求的地址和请求方法  第一个参数是请求方法  第二个参数是请求地址
+        xhr.open('get','http://localhost:3000/responseDate');
+        // 3.发送请求
+        xhr.send();
+        // 4.获取服务器端响应给客户端的数据
+        xhr.onload = function() {
+            // xhr.responseText   返回的数据
+            var res = JSON.parse(xhr.responseText)
+            console.log(res)
+            console.log(typeof res)  // Object
+            // 返回的是字符串类型 需要JSON.parse() 进行转换
+            
+            // 通过事件来响应这些数据
+            var btn = document.querySelector('.btn');
+            var str = '<h1>'+res.name+'</h1><h2>'+res.age+'</h2>'
+            btn.onclick = function () {  
+                document.body.innerHTML = str
+            }
+        }
+    </script>
+</body>
+</html>

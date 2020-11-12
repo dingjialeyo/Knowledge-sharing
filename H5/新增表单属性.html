@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 属性选择器用法   中括号跟属性名 */
+        /* button[disabled] 选择的是即是button又是disabled*/
+        /* input[text] */
+        button[disabled]{
+            cursor: default;
+        }
+        /* 第二种 */
+        input[type="text"] {
+            color: red;
+        }
+        /* 第三种 以icon开头^的所有*/
+        div[class^="icon"]{
+            color: red;
+        }
+        /* 以icon结尾$的所有 */
+        div[class$="icon"]{
+            color: red;
+        }
+        /* 只要包含icon的所有 */
+        div[class*="icon"]{
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <ul>
+            <li>邮箱:<input type="email">
+            </li>
+            <li>
+                搜索框:<input type="search" name="" id="">
+            </li>
+            <li>
+                电话号码:
+                <input type="tel">
+                <input type="submit" value="提交">
+            </li>
+        </ul>
+        <!-- 必填属性 -->
+        <input type="text" required="required"> 
+        <!-- 上传文件属性  multiple="multiple"多选属性  --> 
+        上传文件<input type="file" name="" id="" multiple="multiple">
+    </form>
+    <!-- 属性选择器例子 -->
+    <button></button>
+    <button disabled="disabled"> 点击</button>
+    <button></button>
+
+
+
+    <div class="icon1">1</div>
+    <div class="icon2">2</div>
+    <div class="icon3">3</div>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{msg}}</div>
+        <!-- 将msg字符串以空格转换为数组再调用数组的反转方法在通过join拼接 -->
+        <div>{{msg.split('').reverse().join('')}}</div>
+        <!-- 为什么要使用计算属性？ -->
+        <!-- 表达式的计算逻辑可能比较复杂，使用计算属性可以使模板内容更加简洁 -->
+        <div>{{reverse}}</div>
+        <div>{{reverse}}</div>
+        <div>{{reverseFn()}}</div>
+        <div>{{reverseFn()}}</div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el : '#app',
+            data: {
+                msg: 'hello',
+                num : 100
+            },
+            methods: {
+                reverseFn : function () {
+                    console.log('methods');  // 方法这儿调用两次 就会打印两次   
+                    return this.msg.split('').reverse().join('');
+                }
+            },
+            // 计算属性
+            computed: {
+                reverse : function() {
+                    console.log('computed')   // 调用了两次 但是只打印了一次   因为 缓存   第二次调用会访问第一次调用计算的结果
+                    var total = 0;
+                    for (let i=0; i <= this.num; i++) {
+                        total += i;
+                    };
+                    return total    // 比如说这个累加例子    num是依赖  一直是没有变化的 所以每次计算的值都是被缓存了的   提高了一些性能
+                }
+            },
+        })
+        // 方法和计算属性的区别 :   计算属性通过 依赖(msg这个被操作的变量 如果变量发生变化了 计算属性才会重新调用 没有发生变化那么再次调用同一个方法是不会执行的)进行缓存机制   方法没有缓存
+    </script>
+</body>
+
+</html>

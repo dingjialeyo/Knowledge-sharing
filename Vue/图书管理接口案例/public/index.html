@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grid {
+            margin: auto;
+            width: 500px;
+            text-align: center;
+        }
+
+        .grid table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .grid th,
+        td {
+            padding: 10;
+            border: 1px solid #ccc;
+            height: 35px;
+            line-height: 35px;
+        }
+
+        .grid th {
+            background-color: pink;
+        }
+
+        .grid .total {
+            height: 30px;
+            line-height: 30px;
+            background-color: pink;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="grid">
+            <div>
+                <h1>图书管理</h1>
+                <div class="book">
+                    <div>
+                        <label for="id">
+                            编号:
+                        </label>
+                        <input type="text" id="id" v-model="id" :disabled="flag" v-focus disabled="disabled">
+                        <label for="name">
+                            名称:
+                        </label>
+                        <input type="text" id="name" v-model="name">
+                        <button @click="add" :disabled="submitFlag">提交</button>
+                    </div>
+                </div>
+            </div>
+            <div class="total">
+                <span>图书总数:</span>
+                <span>{{total}}</span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>名称</th>
+                        <th>时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr :key="item.id" v-for="item in books">
+                        <td>
+                            {{item.id}}
+                        </td>
+                        <td>
+                            {{item.name}}
+                        </td>
+                        <td>
+                            {{item.date | formatDateTime(item.date)}}
+                        </td>
+                        <td>
+                            <a href="" @click.prevent="update(item.id)">修改</a>
+                            <span>|</span>
+                            <a href="" @click.prevent="del(item.id)">删除</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        axios.defaults.baseURL = 'http://localhost:3000/';
+        // 时间过滤器应用场景
+        Vue.filter("formatDateTime", function formatDateTime(value) {
+            var date = new Date(value);
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            if (month < 10) {
+                month = "0" + month;
+            }
+            if (day < 10) {
+                day = "0" + day;
+            }
+            return year + "-" + month + "-" + day + " " + hours + ":" + minutes;
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                flag: false,
+                id: '',
+                submitFlag : false,
+                name: '',
+                books: []
+            },
+            methods: {
+                add: async function () {
+                    if (this.flag) {
+                        // 修改
+                        var ret = await axios.put('books/' + this.id,
+                        {
+                            name : this.name,
+                        });
+                        if (ret.data.status == 200) {
+                            // 修改成功！
+                            this.queryData();
+                        }
+                        this.flag = false;
+                        this.id = "";
+                        this.name = "";
+                    } else {
+                        // 添加图书
+                        var ret = await axios.post('books',{
+                            name : this.name
+                        });
+                        if (ret.status == 200) {
+                            // 重新加载列表
+                            this.queryData();
+                            this.id = "";
+                            this.name = "";
+                        }else {
+                            console.log(ret)
+                            alert('添加失败');
+                            
+                        }
+                    };
+
+                    this.flag = false;
+                },
+                update: async function (id) {
+                    // flag 用于区分编辑和添加操作
+                    this.flag = true;
+                    var ret = await axios.get('books/' + id);
+                    this.id = ret.data.id;
+                    this.name = ret.data.name;
+                },
+                del: async function (id) {
+                    var ret = await axios.delete('books/' + id);
+                    if(ret.data.status == 200) {
+                        // 删除成功！
+                        this.queryData();
+                    }
+                },
+                // 调用后台接口获取    图书数据
+                queryData : async function () {
+                    var ret = await axios.get('books');
+                    this.books = ret.data;
+                }
+            },
+            // 局部指令使用方法   自定义属性的使用场景
+            directives : {
+                    focus : {
+                        inserted : function(el) {
+                            el.focus()
+                        }
+                    }
+            },
+            // 计算属性应用场景
+            computed: {
+                total :function () {
+                    return this.books.length;
+                }
+            },
+            // 侦听器的应用场景
+            watch: {
+                name : async function (val) {
+                    var ret = await axios.get('/books/book/' + this.name);
+                    console.log(ret.data.status);
+                    if(ret.data.status == 1) {
+                        this.submitFlag = true;
+                    }
+                    else {
+                        this.submitFlag = false;
+                    }
+                }
+                
+            },
+            // 生命周期应用场景
+            mounted : function () {
+                // 该生命周期钩子函数被触发时，模板已经可以使用了
+                // 一般此时用于后台数据，然后把数据填充到模板中来
+                // 例: 这个数据来自后台
+                // axios.get('/books').then((data) => {
+                //     console.log(data.data);
+                //     // 赋值给Vue中的books
+                //     this.books = data.data;
+                // })
+                this.queryData();
+                
+            },
+        })
+    </script>
+</body>
+
+</html>

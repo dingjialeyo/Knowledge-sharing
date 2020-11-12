@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        // call方法      ES6之前我们是没有extends继承的，但是可以通过构造函数+原型对象模拟实现继承  称为组合继承
+        function f1() {
+            console.log('hahaha')
+            console.log(this) // 指向window
+        }
+        var Obj = {
+            name: 'djl'
+        }
+        // 1. 可以调用函数
+        f1.call();
+        // 2. 可以改变函数this的指向
+        f1.call(Obj); // 原本函数指向的是window   现在指向的是Obj这个对象    第一个参数是this指向   后面的参数就是一些实参 
+
+
+
+        // 借助父构造函数继承属性
+        // function Father(name,age) {  
+        //     this.name = name;
+        //     this.age = age
+        // }
+
+        // function Son(name,age) {
+        //     // 改变父构造函数的this指向        继承
+        //     Father.call(this,name,age)             // 这里面的this指向的是子构造函数的实例对象
+        // }
+        // var son = new Son('djl', 19)
+        // console.log(son)
+
+        // 借助父构造函数继承方法
+        function Father(name, age) {
+            this.name = name;
+            this.age = age
+        }
+        Father.prototype.sing = function () {  
+            console.log('sing')
+        }
+        // 过程: Son的原型对象指向了 Father实例对象 -----Father实例对象中的__proto__ 指向了Father的原型对象     即可继承Father原型对象中的方法
+        Son.prototype = new Father()        // 让子构造函数的原型对象指向了父构造函数的实例对象       实例对象中的__proto__可以访问构造函数中的方法
+        // Son.prototype指向了父构造函数的原型对象    那么Son.prototype.constructor 指向的肯定也是父构造函数 所以我们需要手动指回原来的子构造函数
+        Son.prototype.constructor = Son;
+        function Son(name, age) {
+            // 改变父构造函数的this指向        继承
+            Father.call(this, name, age) // 这里面的this指向的是子构造函数的实例对象
+        }
+        var son = new Son('djl', 19)
+        console.log(son)
+        console.log(Son.prototype.constructor)
+    </script>
+</body>
+
+</html>

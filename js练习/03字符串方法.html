@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <script>
+        
+//   方法：1.length   求长度
+//         2.chatAt   输入对应的index索引得出对应字符串值
+//         3.String.fromCharCode     Ascll码对应值
+//         4.concat(字符串1，字符串2,.....)       拼接构成一个字符串
+//         5.indexOf("要的字符串"，索引几开始找，可以不写默认0)，返回数字   如果是没有的字符串对应输出-1
+//         6.replace    字符串替换
+//         7.slice      字符串提取
+//         8.splice      拆分字符串可以将一个字符串拆分成多个字符串；
+
+
+
+
+        //1. var str = "abcde";
+            // for(var i=0;i<str.length;i++){
+            //     console.log(str[i])
+            // }
+        
+        // 2.var str = "sdhgiasgfiuagfiahF"
+        // var result = str.charAt(1);
+        // console.log(result);
+
+        // 3.var str = String.fromCharCode(97)
+        // console.log(str)
+
+        // 4.var str = "djl"
+        // console.log(str.concat("xxxx","xxx"))
+
+        // 5.var str = "abcderzdfsafa";
+        // var result = str.indexOf("m",11);
+        //         console.log(result)
+
+        // 6.var str = "拉拉拉拉和啦啦啦and哟哟哟"
+        // if(str.indexOf("哟哟哟") == -1){
+        //     console.log("不存在");
+        // }
+        // else{
+        //     str = str.replace("哟哟哟","辣辣辣");
+        // }
+        // console.log(str)
+
+        // 7.var str = "今天出大太阳了，好开心！"
+        // str = str.slice(0,2);
+        // console.log(str)
+
+        // var str = "丁嘉乐,在未来,来噶,西安,关系,徐明义";
+        // // 以,分割  并转换为数组
+        // var result = str.split(",");
+        // console.log(result)
+
+///////案例   one
+        // var str = "按时打卡十八分胜多负少大部分都是"
+        // var key = "打卡";
+        // var index = str.indexOf(key);
+        // // 从索引第index个开始      输出2位
+        // str = str.substr(index,2);
+        // console.log(str);
+
+////////案例   找到这个字符串中所有的 o 出现的位置
+
+            // var str = "sos lol pop ios qoq llo";
+            // var index = 0;  //开始的位置
+            // var key = "o"
+            // while((index=str.indexOf(key,index))!=-1){    //从index=0开始找，每次循环加1，如果是-1的情况下说明已经找到了。
+            //     console.log(index);
+            //     index+=key.length;  //找到一个后直接加key的长度后开始找；
+            // }
+            // str = str.indexOf("o")
+            // console.log(str)
+
+////////案例   找到这个字符串中每一个字符出现了多少次
+                var str = "whatareyournongshaleAAAA";
+                str = str.toLocaleLowerCase();
+                // console.log(str)
+                var obj = {};
+                for(var i=0;i<str.length;i++){
+                    var key = str[i];
+                    if(obj[key]){
+                        obj[key]++;
+                    }
+                    else{
+                        obj[key]=1
+                    }
+                }
+                for(var key in obj){   //遍历这个字符串
+                    console.log(key+"这个字母出现了"+obj[key]+"次")
+                }
+        </script>  
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- //阻止超链接的默认跳转: return  false -->
+    <!-- <a href="http://www.baidu.com" onclick = "alert('aiya');return false">百度</a> -->
+
+
+
+    <!-- 第二种方法 -->
+    <a href="http://www.baidu.com" onclick = "return f1()" id="a">百度</a>
+    <script>
+
+        function f1() {
+            alert("aiya");
+            return false
+        }
+        // f1()//调用返回的是false  但是阻止超链接跳转需要return 所以要再加上return
+
+
+        //或者给超链接一个id也可以阻止超链接跳转
+        document.getElementById('a').onclick = function () {
+            alert("aiyamaya!!!")
+            return false
+        }
+    </script>
+</body>
+</html>

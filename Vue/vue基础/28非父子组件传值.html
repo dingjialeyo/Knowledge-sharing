@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <bro-one></bro-one>
+        <bro-two></bro-two>
+        <button @click="handle">销毁兄弟传值</button>
+    </div>
+
+    <script src="./vue.js"></script>
+
+    <script>
+
+// 兄弟组件间的值传递
+
+        // 提供事件中心
+        var hub = new Vue();
+
+        Vue.component('bro-one',{
+            data : function (){
+                return {
+                    num : 0
+                }
+            },
+            template : `
+                <div>
+                    <div>Bro-One:{{num}}</div>
+                    <div><button @click="handle">点击</button></div>
+                </div>
+            `,
+            methods : {
+                handle : function () {
+                    // 触发兄弟的事件
+                    hub.$emit('two-event',1);
+                }
+            },
+            // 这个钩子函数   触发是等整个模板加载完后 执行
+            mounted :function () {
+                // 监听事件
+                hub.$on('one-event', (val) => { // 用this指向上下文
+                    this.num += val
+                })
+            }
+        });
+        Vue.component('bro-two',{
+            data : function (){
+                return {
+                    num : 0
+                }
+            },
+            template : `
+                <div>
+                    <div>Bro-Two:{{num}}</div>
+                    <div><button @click="handle">点击</button></div>
+                </div>
+            `,
+            methods : {
+                handle : function () {
+                    hub.$emit('one-event',5);
+                }
+            },
+            mounted :function () {
+                // 监听事件
+                hub.$on('two-event', (val) => { // 用this指向上下文
+                    this.num += val
+                    console.log(val)
+                })
+            }
+        });
+
+
+        var vm = new Vue({
+            el : '#app',
+            data : {
+                
+            },
+            methods : {
+                handle : function () {
+                    hub.$off('one-event')   // 对应名称
+                    hub.$off('two-event')   // 对应名称
+                }
+            }
+        })
+    </script>
+</body>
+</html>

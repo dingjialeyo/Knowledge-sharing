@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="score">
+        <!-- v-if 条件分支语句 -->
+        <div v-if="score > 90">优秀</div>
+        <div v-else-if="score > 70">良好</div>
+        <div v-else-if="score > 60">及格</div>
+        <div v-else-if="score > 0">较差</div>
+        <div v-else>暂无</div>
+        <!-- v-show 布尔值判断显示 -->
+        <div v-show="flag">show</div>
+        <button @click="toggle">切换</button>
+
+        <!-- v-if 和 v-show的区别 -->
+        <!-- 1. v-if是控制元素是否渲染到页面 -->
+        <!-- 2. v-show控制元素是否显示(已经渲染在页面中只是隐藏与显示) -->
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue ({
+            el : '#app',
+            data : {
+                score : '',
+                flag : false
+            },
+            methods: {
+                toggle: function () {
+                    this.flag = !this.flag;
+                }
+            },
+        })
+    </script>
+</body>
+</html>

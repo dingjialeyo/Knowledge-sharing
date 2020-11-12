@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // Object.key方法 获取对象的属性名  返回一个属性名组成的数组  用处类似于for in 循环
+        var obj = {
+            name: 'djl',
+            age: 18,
+            sex: '男',
+            price: 3999
+        }
+        var k = Object.keys(obj);
+        console.log(k);
+        // for(var k in Obj) {
+        //     console.log(Obj[k])
+        // }
+
+
+        // 以前的新增属性的方法
+        // Obj.loud = 88;
+// 现在 Object.defineProperties方法  定义新属性 或 修改操作三个参数    第一个参数为目标对象 第二个参数为目标属性 第三个参数为说明并且以对象形式书写 
+        Object.defineProperty(obj, 'pname', {  // 这个 {} 中有 几个属性 ---------截屏
+            value: 'zwl',
+            enumerable: false   // 如果为false 则这个属性是不会被遍历出来的  且默认就是false
+        });
+        console.log(obj); // 即添加了pname属性
+    </script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body,
+        ul,
+        li,
+        img{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .all {
+            width: 520px;
+            height: 350px;
+            /* padding: 5px; */
+            position: relative;
+            border: 1px solid #ccc;
+            margin: 100px auto 0;
+        }
+        #imgs li img {
+            width: 520px;
+            height: 350px;
+        }
+        .ad ul {
+            width: 3000px;
+        }
+        .ad li {
+            display: inline-block;
+        }
+        #focus {
+            display: none;
+            position: absolute;
+            top: 50%;
+            margin-top: -10px;
+        }
+        #left{
+            background: rgba(0, 0, 0, .4);
+            padding: 10px;
+            left: 100px;
+            cursor: pointer;
+        }
+        #right {
+            background: rgba(0, 0, 0, .4);
+            padding: 10px;
+            right: 0 !important;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="all" id="box">
+        <!-- 相框 -->
+        <div class="ad">
+            <ul id="imgs">
+                <li><img src="./轮播图img/毛细3.png" alt=""></li>
+                <li><img src="./轮播图img/毛细4.png" alt=""></li>
+                <li><img src="./轮播图img/毛细5.png" alt=""></li>
+                <li><img src="./轮播图img/毛细6.png" alt=""></li>
+                <li><img src="./轮播图img/毛细7.png" alt=""></li>
+            </ul>
+        </div>
+
+        <div id="focus">
+            <span id="left">&lt;</span>
+            <span id="right">&gt;</span>
+        </div>
+    </div>
+
+
+
+    <script>
+        function my$(id){
+            return document.getElementById(id)
+        }
+
+
+        //获取父级盒子
+        var box = my$("box");
+        //获取相框
+        var ad = box.children[0];
+        //获取相框的宽度
+        var imgwidth = ad.offsetWidth;//520
+        //获取ul
+        var ul = ad.children[0];
+        //获取焦点
+        var focus = my$("focus")
+
+        //显示和隐藏
+        box.onmouseover = function (){
+            focus.style.display = "block"
+        }
+        box.onmouseout = function (){
+            focus.style.display = "none"
+        }
+
+        //点击左边事件
+        index = 0;
+        var left = my$("left")
+        left.onclick = function (){
+            //里面的数字是图片-1所以可以用变量表示  这里是ul里的li里的img的长度-1
+            if(index>0){
+            index--;
+            animate(ul,-index*imgwidth)
+            }
+            else{
+                return;
+            }
+        }
+        //点击右边事件
+        var right = my$("right")
+        right.onclick = function (){
+            //里面的数字是图片-1所以可以用变量表示  这里是ul里的li里的img的长度-1
+            if(index<ul.children.length-1){
+            index++;
+            animate(ul,-index*imgwidth)
+            }
+            else{
+                return;
+            }
+        }
+
+
+
+
+
+        //封装动画函数    element元素     target移动到哪个目标      
+        function animate(element,target){
+            //先清理定时器
+            clearInterval(element.time);
+            element.time = setInterval(function(){
+                //获取当前元素的位置      如果样式的代码是在style标签中设置，外面是获取不到的 ；  当时如果是在style属性中设置的，是可以获取到的
+                var now = element.offsetLeft;   //数字类型,没有px  now是当前位置
+                //每次移动多少像素
+                var step = 22;
+                step = now<target?step:-step; //判断当前位置和目标位置谁大，是走正数还是负数
+                //每次移动后的位置
+                now+=step;
+                //设置目标位置
+                if(Math.abs(target-now)>Math.abs(step)){
+                    element.style.marginLeft = now+"px"
+                }
+                else{
+                    clearInterval(element.time);  //清除计时器
+                    element.style.marginLeft=target+"px"
+                }
+            },20)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <!-- 即可脚本(script标签)开启严格模式   IE10以上才识别    下面的js代码必须按照严格模式执行 -->
+    <script>
+        'use strict';         
+    </script>
+    <script>
+        (function () {  
+            'use strict'; 
+        })()
+    </script>
+    <!-- 为某个函数单独开启严格模式 -->
+    <script>
+        function f1() {  
+            'use strict';            // 仅f1函数开启了严格模式
+        }
+        function f2() {
+
+        }
+    </script>
+</body>
+</html>

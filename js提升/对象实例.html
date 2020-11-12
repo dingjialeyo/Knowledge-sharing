@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+
+    <script>
+
+        var mr = new Object();
+        mr.name = '名人';
+        mr.eat = function (eat) {
+            console.log('正在吃'+eat)
+        }
+        console.log(mr.name);
+        mr.eat('香蕉');
+
+
+// 构造函数  Hero 泛指一大类  类似于 Java 语言里面的 类Class
+        function Hero(name,type,blood,attack) {
+            this.name = name;
+            this.type = type;
+            this.blood = blood;
+            this.attack = attack;
+            this.skill = function (skill) {
+                console.log(skill)
+            }
+        }
+        // 下面属于对象实例化
+        var rou = new Hero('廉颇','力量型',500,'近战');
+        console.log(rou.name);
+        rou.skill('大地崩坏');
+        var cui = new Hero('后裔','敏捷型',300,'远攻');
+        console.log(cui.name);
+        rou.skill('后裔射日');
+
+
+        // new关键字的执行过程
+        // 1. new 构造函数可以在内存中创建一个空的对象
+        // 2. this 就会指向刚才创建的空对象
+        // 3. 执行构造函数里面的代码 给这个空对象添加属性和方法
+        // 4. 返回这个对象 (所以构造函数里面不需要return)
+    // 遍历对象 for (变量 in 对象)
+        var ddObj = {
+            name : '哈撒给',
+            sex : '男',
+            age : 18,
+            skill : function () {
+                console.log("面对疾风吧！")
+            }
+        }
+        for (var k in ddObj) {
+            console.log(k)   // k 变量 输出 得到的是 属性名
+            console.log(ddObj[k])  // ddObj[k] 得到的是 属性值
+        }
+    </script>
+</body>
+</html>

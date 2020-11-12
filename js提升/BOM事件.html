@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 500px;
+            height: 500px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+
+    <script>
+
+        // BOM浏览器事件 window 
+        // resize  页面窗口发生变化时触发    经常用这个事件完成响应式布局   window.innerWidth当前屏幕宽度
+        window.addEventListener('resize', function () {
+            console.log(window.innerWidth)
+            if (window.innerWidth <= 800) {
+                var div = document.querySelector('div');
+            div.style.width = '200px';
+            div.style.height = '200px';
+            div.style.backgroundColor = 'purple';
+            }
+        })
+
+        // setTimeout(调用函数 , 毫秒数)   一次性
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- 全局组件使用方法 -->
+        <djl></djl>
+        <djl></djl>
+        <djl></djl>
+        <djl></djl>
+        <!-- 局部组件 -->
+        <djl-a></djl-a>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+
+        // 全局组件使用方法
+        // 第一个参数是组件名称   第二个参数是对象
+        Vue.component('djl',{
+            data : function (){
+                return {
+                    count : 0
+                }
+            },
+            template : '<button @click="clk">{{count}}</button>',  // 如果内容较多 可以通过模板字符串来换行
+            // template : `<div>
+            //                 <p></p>
+            //                 <span></span>
+            //             </div>`,
+            methods: {
+                clk : function () {
+                    this.count++;
+                }
+            },
+        });
+        // 对象可以在这定义就行
+        var hello = {
+            data : function (){
+                return {
+                    msg : 'hello',
+                }
+            },
+            template : `
+                <div>
+                    <h2>{{msg}}</h2>
+                </div>
+            `
+        }
+        var vm = new Vue({
+            el: '#app',
+            data: {
+            },
+            // 局部组件只能在对应的操作范围使用
+            components : {
+            //  指定名称   操作对象
+                'djl-a' : hello
+            }
+        })
+    </script>
+</body>
+
+</html>

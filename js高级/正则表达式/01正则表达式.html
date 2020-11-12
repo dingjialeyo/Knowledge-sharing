@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+        // 什么是正则表达式？ 是用于匹配字符串中字符组合的模式  在js中 正则表达式也是对象   
+
+        // 1. 利用 RegExp对象来创建 正则表达式
+        var regexp = new RegExp(/123/);    // 要求输入123才行
+        // 2. 利用字面量创建 正则表达式   推荐
+        var rg = /123/;
+        
+        // test方法 检测 字符串 是否 符合正则表达式规范           返回布尔值
+        console.log(rg.test(123));       // true
+        console.log(rg.test('abc'));     // false
+
+    // 1. 边界符    ^以什么开头    $以什么结尾            正则表达式不需要加引号 不管是数字型还是字符串类型
+        //  /123/ 也是是只要包含123  用test方法返回的都是true
+        // var rg = /123/;       
+        // console.log(rg.test(123));       // true
+        // console.log(rg.test(1243));       // true
+        // console.log(rg.test(111123));       // true
+        // // /^132/ 以123开头的 用test方法返回的才是true
+        // var rg = /^123/
+        // console.log(rg.test(123));       // true
+        // console.log(rg.test(1234));       // true
+        // console.log(rg.test(2123));       // false
+        // // /^132$/ 必须是123  用test方法返回的才是true
+        // var rg = /^123$/    
+        // console.log(rg.test(123));       // true
+        // console.log(rg.test(1234));       // false
+        // console.log(rg.test(2123));       // false
+
+    // 2. 字符类 : [] 表示有一系列字符可供选择，只要·匹配其中一个就可以了
+        var rs = /[abc]/     // 只要包含abc中的其中一个即可
+        console.log(rg.test('andy'))     // true
+        console.log(rg.test('red'))      // false
+        var rgss = /^[abc]$/;        // 只能选择 a b c 中的一个   检测才返回true
+        var rgss = /^[a-z]$/;        // 只能选择 a 到 z 26个字母中的一个区分大小写   检测才返回true
+        // 字符组合
+        var rgss = /^[a-zA-Z]$/;        // 只能选择 a 到 z 26个字母中的一个不区分大小写   检测才返回true
+        var rgss = /^[a-zA-Z0-9]$/;        // 只能选择 任意字母和0-9数字 中的一个   检测才返回true
+        // 这是用户名的正则表达式 不完整没有设置次数
+        var user = /^[a-z0-9A-Z_-]$/;   // 只能包含 0-9 a-z A-Z - 和 _ 这些
+        console.log(user.test('_'))
+        //
+        var rg1 = /^[^a-z0-9A-Z_-]$/      // 在[] 中使用 ^ 说明取反   不能使用这里面的字符
+
+    // 3.量词符        设定出现次数
+    /*
+    1. *      重复零次或多次
+    2. +      重复一次或多次
+    3. ?      重复零次或一次
+    4. {n}    重复n次               重点
+    5. {n,}   重复n次或更多次       重点
+    6. {n,m}  重复n到m次            重点
+    */
+        // 简单理解就是让下面这个a重复多少次
+        // var rg2 = /^a$/;
+
+        // * 相对于 >=0    可以出现零次或多次   检测返回都是true
+        var rg3 = /^a*$/;
+        // + 相对于 >=1    可以出现一次或多次   检测返回都是true
+        var rg3 = /^a+$/;
+        // ? 相对于 1 || 0  意思是a有没有出现一次或零次  出现检测返回都是true         否则false
+        var rg3 = /^a?$/;
+        // {n}     连续重复n次且只有这n次   检测返回都是true
+        var rg3 = /^a{3}$/;
+        console.log(rg3.test(''))   // flase
+        console.log(rg3.test('aaa'))      // true
+        console.log(rg3.test('aaaa'))       // false
+        console.log(rg3.test('aaabbc'))       // false
+        // {n,}     大于等于重复n次   检测返回都是true
+        var rg3 = /^a{3,}$/;
+        console.log(rg3.test(''))   // flase
+        console.log(rg3.test('aaa'))      // true
+        console.log(rg3.test('aaaa'))       // true
+        console.log(rg3.test('aaabbc'))       // false
+        // {n,m}     大于等于n次 并且 小于m次   检测返回都是true
+        var rg3 = /^a{3,16}$/;
+
+        // 容易错误
+        var rg4 = /^abc{3}$/;            // 他没有加[] 只会让c重复三次
+        var rg4 = /^(abc){3}$/;            // 让abc重复三次  ()优先级
+
+
+        // 这是用户名的正则表达式     完整
+        var users = /^[a-z0-9A-Z_-]{6,18}$/;   // 只能包含 0-9 a-z A-Z - 和 _ 这些    必须输出6 - 18 次 这样的有效字符
+        console.log(users.test('djl176014'))    // true
+    
+    // 预定义类         及上面的常见的简写
+        /*
+        1. \d          匹配一个数字字符。等价于[0-9]。
+        2. \D          匹配一个非数字字符。等价于[^0-9]
+        3. \w          匹配包括下划线的任何单词字符。等价于“[A-Za-z0-9_]”
+        4. \W          匹配任何非单词字符。等价于“[^A-Za-z0-9_]”
+        5. \s          匹配任何空白字符，包括空格、制表符、换页符等等。等价于[ \f\n\r\t\v]
+        6. \S          匹配任何非空白字符。等价于[^ \f\n\r\t\v]
+        */
+    </script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>ToDoList—最简单的待办事项列表</title>
+    <meta name="description" content="ToDoList无须注册即可使用，数据存储在用户浏览器的html5本地数据库里，是最简单最安全的待办事项列表应用！" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            background: #CDCDCD;
+        }
+
+        header {
+            height: 50px;
+            background: #333;
+            background: rgba(47, 47, 47, 0.98);
+        }
+
+        section {
+            margin: 0 auto;
+        }
+
+        label {
+            float: left;
+            width: 100px;
+            line-height: 50px;
+            color: #DDD;
+            font-size: 24px;
+            cursor: pointer;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        header input {
+            float: right;
+            width: 60%;
+            height: 24px;
+            margin-top: 12px;
+            text-indent: 10px;
+            border-radius: 5px;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.24), 0 1px 6px rgba(0, 0, 0, 0.45) inset;
+            border: none
+        }
+
+        input:focus {
+            outline-width: 0
+        }
+
+        h2 {
+            position: relative;
+        }
+
+        span {
+            position: absolute;
+            top: 2px;
+            right: 5px;
+            display: inline-block;
+            padding: 0 5px;
+            height: 20px;
+            border-radius: 20px;
+            background: #E6E6FA;
+            line-height: 22px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        ol,
+        ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        li input {
+            position: absolute;
+            top: 2px;
+            left: 10px;
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        li p input {
+            top: 3px;
+            left: 40px;
+            width: 70%;
+            height: 20px;
+            line-height: 14px;
+            text-indent: 5px;
+            font-size: 14px;
+        }
+
+        li {
+            height: 32px;
+            line-height: 32px;
+            background: #fff;
+            position: relative;
+            margin-bottom: 10px;
+            padding: 0 45px;
+            border-radius: 3px;
+            border-left: 5px solid #629A9C;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+        }
+
+        ol li {
+            cursor: move;
+        }
+
+        ul li {
+            border-left: 5px solid #999;
+            opacity: 0.5;
+        }
+
+        li a {
+            position: absolute;
+            top: 2px;
+            right: 5px;
+            display: inline-block;
+            width: 14px;
+            height: 12px;
+            border-radius: 14px;
+            border: 6px double #FFF;
+            background: #CCC;
+            line-height: 14px;
+            text-align: center;
+            color: #FFF;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        footer {
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        footer a {
+            color: #666;
+            text-decoration: none;
+            color: #999;
+        }
+
+        @media screen and (max-device-width: 620px) {
+            section {
+                width: 96%;
+                padding: 0 2%;
+            }
+        }
+
+        @media screen and (min-width: 620px) {
+            section {
+                width: 600px;
+                padding: 0 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <section>
+            <form action="javascript:postaction()" id="form">
+                <label for="title">ToDoList</label>
+                <input type="text" id="title" name="title" placeholder="添加ToDo" required="required"
+                    autocomplete="off" />
+            </form>
+        </section>
+    </header>
+    <section>
+        <h2 onclick="save()">正在进行 <span id="todocount"></span></h2>
+        <ol id="todolist" class="demo-box">
+        </ol>
+        <h2>已经完成 <span id="donecount"></span></h2>
+        <ul id="donelist">
+        </ul>
+    </section>
+    <footer>
+        Copyright &copy; 2014 todolist.cn <a href="javascript:clear();">clear</a>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script>
+        // 前提
+        // var todolist = [{      // 随便创建一个数组对象
+        //         title: '今天啥也没干',
+        //         done: false
+        //     },
+        //     {
+        //         title: '今天吃了米粉',
+        //         done: false
+        //     }
+        // ]
+        // // localStorage.setItem('todo',todolist);  // 以对象的形式存储的    但是我们要字符串形式的格式   JSON.stringify()   将JSON数据对象转换为字符串
+        // // 1. 本地存储里面的只能存储字符串的数据格式
+        // localStorage.setItem('todo',JSON.stringify(todolist));
+        // var data = localStorage.getItem('todo');
+        // // console.log(typeof data)   // string
+
+        // // 获取的本地存储数据的时候 我们需要把里面的字符串格式转换为 对象格式   JSON.parse()   将字符串转换为JSON数据对象
+        // data = JSON.parse(data);
+        // console.log(data[0].title);    // 这样才能显示出想要的数据
+
+        //  输入框中按下空格时候的操作  空格 32 
+        $(function () {
+            load();
+            $('#title').on('keydown', function (e) {
+                // console.log(e.keyCode)
+                if (e.keyCode == 13) {
+                    if ($(this).val() === "") {
+                        alert("请输入有效的内容")
+                    }
+                    else {
+                        // 先读取本地存储的数据   用 调用函数的方法 getData
+                        var local = getData();
+                        // console.log(local)    // []
+                        // 把local数组进行更新  把最新的数据 追加到 local数组    local.push({})    
+                        local.push({
+                            title: $(this).val(),
+                            done: false
+                        });
+                        // 把这个存储到本地存储里面    用 调用函数的方法  setData   存放时转换为字符串    获取是转换为 对象格式
+                        setData(local);
+                        // 将本地存储的数据 渲染到页面
+                        load(); // 但是在打开时也要加载这个函数 所以也要放到外部
+                        // 当你输入完成后 将输入框清空
+                        $(this).val("");
+                    }
+                }
+            });
+            // 读取本地存储的数据
+            function getData() {
+                var data = localStorage.getItem('todolist');
+                // 判断有没有数据
+                if (data !== null) { // 有数据
+                    // 本地存储的数据是字符串格式  我们获取需要转换为 对象格式
+                    return JSON.parse(data);
+                } else {
+                    return []; // 没有的话就返回数组对象   用数组对象来存储
+                }
+            };
+            // 将输入框的内容传给 本地存储
+            function setData(data) {
+                localStorage.setItem("todolist", JSON.stringify(data)) // 存放时转换为字符串    获取是转换为 对象格式
+            };
+            // 渲染加载数据
+            function load() {
+                var todoCount = 0; // 未完成个数
+                var doneCount = 0; // 完成个数            当遍历数组时，如果数据done为false todoCount++; 否则为 doneCount++
+                var data = getData(); // 将本地存储的数据拿过来
+                // 先清空内容 在渲染 不然会重复渲染
+                $("ol").empty() // 删除ol 中的所有的内容
+                $("ul").empty() // 删除ul 中的所有的内容
+                // 遍历这个数据 
+                $.each(data, function (i, n) { // i是数组索引   n是数据
+                    if (n.done) {
+                        $("ul").prepend("<li><input type='checkbox' checked='checked'> <p>" + n.title +
+                            "</p> <a href='javascript:;' index=" + i + " ></a></li>");
+                        doneCount++;
+                    }
+                    // console.log(n)   数据
+                    else {
+                        // 然后追加到ol中
+                        $("ol").prepend("<li><input type='checkbox'> <p>" + n.title +
+                            "</p> <a href='javascript:;' index=" + i + " ></a></li>"
+                        ); // 将数据n的title内容赋给p 
+                        todoCount++;
+                    }
+                });
+                $("#todocount").text(todoCount);
+                $("#donecount").text(doneCount);
+            };
+            // 删除操作   事件委托
+            $("ol").on('click', 'a', function () {
+                // 先获取本地存储
+                var data = getData();
+                // 修改数据
+                var index = $(this).attr('index');
+                // console.log(data[index])         splice(从哪个位置开始删除 , 删除几个)
+                data.splice(index, 1);
+                // console.log(data)    已经成功可以删除对应的数据
+                // 保存到本地存储
+                setData(data);
+                // 重新渲染页面
+                load();
+            });
+            $("ul").on('click', 'a', function () {
+                // 先获取本地存储
+                var data = getData();
+                // 修改数据
+                var index = $(this).attr('index');
+                // console.log(data[index])         splice(从哪个位置开始删除 , 删除几个)
+                data.splice(index, 1);
+                // console.log(data)    已经成功可以删除对应的数据
+                // 保存到本地存储
+                setData(data);
+                // 重新渲染页面
+                load();
+            });
+
+            // 未完成 和 完成  checked操作
+            $("ol,ul").on('click', 'input', function () {
+                // 先获取本地存储
+                var data = getData();
+                // 修改数据
+                var index = $(this).siblings('a').attr('index'); // 可以借助兄弟 a 的index 来获取 当前的checkbox
+                // console.log(index)
+                data[index].done = $(this).prop("checked"); // 标签的固有属性prop获取      自定义属性attr获取
+                // console.log(data)
+                // 保存到本地存储
+                setData(data);
+                // 重新渲染页面
+                load();
+            })
+        })
+    </script>
+</body>
+
+</html>

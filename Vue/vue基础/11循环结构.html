@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <!-- for in 循环一样 -->
+            <li v-for="k in item">{{k}}</li>
+            <!-- 加上索引的使用 -->
+            <li v-for="(k,index) in fruits">{{k + '--------' + index}}</li>
+            <!-- 复杂点的类型循环 -->
+            <li v-for="k in fruitsObj">
+                <span>
+                    {{k.name + '--------' + k.price}}
+                </span>
+            </li>
+            <!-- key 区分不同元素 主要是提高性能-->
+            <li :key="k.id" v-for="k in fruitsObj">
+                <span>
+                    {{k.name + '--------' + k.price + '-------' + k.id}}
+                </span>
+            </li>
+        </ul>
+        <!-- v-for遍历对象 和原生js for in 遍历对象差不多-->
+        <!-- (value, key, index)   value值   key键   index索引 -->
+        <!-- <div v-for="(value, key, index) in obj">{{key + '----' + value + '------' + index}}</div> -->
+        <!-- v-if 和 v-for 结合使用 -->
+        <div v-if="value == 19" v-for="(value, key, index) in obj">{{key + '----' + value + '------' + index}}</div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                item: [1, 2, 3, 4, 5, 6],
+                fruits: ['apple', 'banana', 'orange'],
+                fruitsObj: [{
+                        id : 1,
+                        name: '苹果',
+                        price: 20,
+                    },
+                    {
+                        id : 2,
+                        name: '栗子',
+                        price: 2,
+                    }, {
+                        id : 3,
+                        name: '香蕉',
+                        price: 5,
+                    }, {
+                        id : 4,
+                        name: '西瓜',
+                        price: 50,
+                    }
+                ],
+                obj : {
+                    name : 'djl',
+                    age : 19,
+                    money : 100
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

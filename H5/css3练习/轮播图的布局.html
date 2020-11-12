@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    .box{
+        width: 570px;
+        height: 640px;
+        background-color: pink;
+        position: relative;
+        margin: 0 auto;
+        margin-top: 50px;
+    }
+    .button_left{
+        left: 0;
+        /* 设置圆弧       border-radius: 左上角 右上角 右下角 左下角     基本所有都是顺时针*/
+        border-top-right-radius: 25px;
+        border-bottom-right-radius: 25px;
+    }
+    .button_right{
+        right: 0;
+        border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
+    }
+    .button_right,
+    .button_left{
+        top: 260px;
+        width: 60px;
+        height: 120px;
+        background: rgba(0, 0, 0, .2);
+        cursor: pointer;
+    }
+    .ul,
+    .button_left,
+    .button_right{
+        position: absolute;
+    }
+    .ul{
+        width: 120px;
+        height: 38px;
+        left:50%;
+        margin-left: -60px;
+        bottom: 30px;
+        border-radius: 25px;
+        background:rgba(0, 0, 0, .4);
+    }
+    .ul li{
+        list-style: none;
+        /* display: inline-block; */
+        float: left;
+        margin: 8.5px;
+        width: 22px;
+        height: 22px;
+        background-color: #fff;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .ul li:hover{
+        background-color: red;
+    }
+    .none{
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <div class="box" id="box">
+        <img src="../页游模拟/img/knight.png" alt="" id="img">
+        <div class="button_left none"></div>
+        <div class="button_right none"></div>
+        <ul class="ul">
+            <li id="lione"></li>
+            <li id="litwo"></li>
+            <li id="lithree"></li>
+        </ul>
+    </div>
+
+    <script>
+        function my$(id){
+            return document.getElementById(id)
+        }
+        my$("lione").onmouseover = function () {
+            my$("img").src = "../页游模拟/img/knight.png"
+        }
+        my$("litwo").onmouseover = function () {
+            my$("img").src = "../页游模拟/img/magic.png"
+        }
+        my$("lithree").onmouseover = function () {
+            my$("img").src = "../页游模拟/img/warrior.png"
+        }
+
+
+        var x = document.getElementsByClassName("none")
+        my$("box").onmouseover = function (){
+            for(var i=0;i<x.length;i++)
+            {
+                x[i].style.display = "block"
+            }
+        }
+        my$("box").onmouseout = function (){
+            for(var i=0;i<x.length;i++)
+            {
+                x[i].style.display = ""
+            }
+        }
+    </script>
+</body>
+</html>

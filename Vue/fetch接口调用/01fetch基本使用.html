@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        fetch('http://localhost:3000/data').then((data) => {
+                // 要通过data.text() 方法获取 返回一个Promise对象 才能获取到值
+                return data.text();
+            })
+            .then((data) => {
+                console.log(data);
+            })
+
+        // 传统方式传递参数
+        // fetch('http://localhost:3000/data4?id=djl', {
+        //         method: 'get'
+        //     }).then((data) => {
+        //         // 要通过data.text() 方法获取 返回一个Promise对象 才能获取到值
+        //         return data.text();
+        //     })
+        //     .then((data) => {
+        //         console.log(data);
+        //     })
+
+        // Restful形式URL传递参数 GET
+        // fetch('http://localhost:3000/data5/djl', {
+        //         method: 'get'
+        //     }).then((data) => {
+        //         // 要通过data.text() 方法获取 返回一个Promise对象 才能获取到值
+        //         return data.text();
+        //     })
+        //     .then((data) => {
+        //         console.log(data);
+        //     })
+
+        // Restful形式URL传递参数 Delete
+        // fetch('http://localhost:3000/data6/djl', {
+        //         method: 'delete'
+        //     }).then((data) => {
+        //         // 要通过data.text() 方法获取 返回一个Promise对象 才能获取到值
+        //         return data.text();
+        //     })
+        //     .then((data) => {
+        //         console.log(data);
+        //     })
+
+        // post请求   普通字符串格式
+        // fetch('http://localhost:3000/data6', {
+        //         method: 'post',
+        //         body: 'uname=djl&pwd=djl176014',
+        //         headers: {
+        //             'Content-Type': 'application/x-www-form-urlencoded'
+        //         }
+        //     }).then((data) => {
+        //         // 要通过data.text() 方法获取 返回一个Promise对象 才能获取到值
+        //         return data.text();
+        //     })
+        //     .then((data) => {
+        //         console.log(data);
+        //     })
+        // post请求   Json格式
+        fetch('http://localhost:3000/data7', {
+                    method: 'post',
+                    body : JSON.stringify({
+                        uname : 'zwl',
+                        age : 20
+                    }),
+                    headers : {
+                        'Content-Type' : 'application/json'
+                    }
+                }).then((data) => {
+                    // 要通过data.text() 方法获取 返回一个Promise对象 才能获取到值
+                    return data.text();
+                })
+                .then((data) => {
+                    console.log(data);
+                })
+                .catch((data) => {
+                    console.log(data)
+                })
+
+        //  Restful形式URL传递参数 put
+        fetch('http://localhost:3000/data8/xxx', {
+                method: 'put',
+                body: JSON.stringify({
+                    uname: 'zwl',
+                    age: 20
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then((data) => {
+                // 要通过data.text() 方法获取 返回一个Promise对象 才能获取到值
+                return data.text();
+            })
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((data) => {
+                console.log(data)
+            })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="弹框" id="btn">
+    <input type="button" value="取消" id="btn2">
+    <div class="div">
+        <span id="">2</span>
+        <ul id="ul">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <p></p>
+    </div>
+    <script>
+        function my$(id){
+            return document.getElementById(id)
+        }
+//获取元素:
+        //获取当前父级节点
+        console.log(my$("ul").parentNode);   //div
+        //获取当前父级元素
+        console.log(my$("ul").parentElement);//div
+        //获取当前子级节点
+        console.log(my$("ul").childNodes);
+        //获取当前子级元素
+        console.log(my$("ul").children);
+        //获取当前节点的第一个子级节点
+        console.log(my$("ul").firstChild);
+        //获取当前节点的第一个子级元素
+        console.log(my$("ul").firstElementChild);
+        //获取当前点节点的最后一个子级节点
+        console.log(my$("ul").lastChild)
+        //获取当前节点的最后一个子级元素
+        console.log(my$("ul").lastElementChild)
+        //获取当前节点的前一个兄弟节点
+        console.log(my$("ul").previousSibling)
+        //获取当前节点的前一个兄弟元素
+        console.log(my$("ul").previousElementSibling)
+        //获取当前节点的下一个兄弟节点
+        console.log(my$("ul").nextSibling)
+        //获取当前节点的下一个兄弟元素
+        console.log(my$("ul").nextElementSibling)
+
+//事件的三种方式:
+        //1.对象.on事件名称=事件处理函数     如果是多个相同的事件注册这种方式，最后一个执行，前面被覆盖
+        /*2.对象.addEventListener("没有on的事件名字",事件处理函数，false);     *谷歌火狐支持，IE8不支持
+        例子:my$("btn").addEventListener("click",function(){},false)*/
+        /*3.对象.attachEvent("有on的事件名字",事件处理函数)                    *谷歌火狐不支持，IE8支持 
+        例子:my$("btn").addEventListener("click",function(){})*/
+
+    //写绑定事件兼容代码
+        function addEventListener(element,type,fn){    //element 对象       type事件名字     fn 函数
+            if(element.addEventListener){
+                element.addEventListener(type,fn,false);
+            }
+            else if(element.attachEvent){
+                element.attachEvent("on"+type,fn);
+            }
+            else{
+                element["on"+type] = fn;
+            }
+        }
+
+    //解除绑定事件       用什么方式绑定事件就应该用什么事件解绑事件
+        // 1. my$("btn").onclick = null
+        /* 2. 对象.addEventListener("没有on的事件名称",命名函数,false) --->绑定事件
+              对象.removeEventListener("没有on的事件名称",函数名字,false) ------>解绑事件 */
+        /*3.
+            对象.attachEvent("on事件名称",命名函数);---------->绑定事件
+            对象.detachEvent("on事件名称",函数名字);---------->解绑事件
+        */
+    //写解绑事件的兼容代码
+    function removeEventListener(element,type,fnName){    //element 对象       type事件名字     fnName 命名函数
+            if(element.removeEventListener){
+                element.removeEventListener(type,fnName,false);
+            }
+            else if(element.detachEvent){
+                element.detachEvent("on"+type,fnName);
+            }
+            else{
+                element["on"+type] = null;
+            }
+        };
+
+        function f1(){
+                alert("hahhaa")
+            }
+            //添加绑定         ********以后写代码绑定事件用这种兼容代码
+            addEventListener(my$("btn"),"click",f1);
+            //解绑         点击btn2取消btn的点击事件
+            my$("btn2").onclick = function(){
+                removeEventListener(my$("btn1"),"click",f1);
+            }
+    </script>
+</body>
+</html>

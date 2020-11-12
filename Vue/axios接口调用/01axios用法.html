@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        // 如果传来的是json格式 也会自动 转换
+        axios.get('http:localhost:3000/geshi').then((result) => {
+            console.log(result.data)  // 后面的data才是要的数据是固定写法
+        })
+    </script>
+</body>
+</html>

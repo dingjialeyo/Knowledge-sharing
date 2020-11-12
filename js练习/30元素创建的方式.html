@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            height: 300px;
+            width: 300px;
+            border: 1px dashed pink;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="点击" id="btn">
+    <div id="div"></div>
+    <script>
+        //元素创建---------》提高用户体验
+        //元素创建的三种方法：
+    /*  1.document.write("标签及内容")
+        2.对象.innerHTML"标签及内容"
+        3.document.createElement("标签")
+        */
+        // function my$(id){
+        //     return document.getElementById(id)
+        // }
+        // my$("btn").onclick = function(){
+        //     // document.write("<p>你好啊</p>")  缺陷是页面加载完，虽然会创建元素但是会将除创建元素以外的所有的干掉。  但是它能嵌套外部代码
+        //     // my$("divv").innerHTML = "<h1>年华哦</h1>"
+            
+        //     my$("div").innerHTML = "<h1 id='id'>你好啊</h1>"
+        //     my$("id").onmouseover =function(){
+        //         this.style.color = "red"
+        //     }
+        //     my$("id").onmouseout =function(){
+        //         this.style.color = ""
+        //     }
+            
+        // }
+
+
+//第三种方法     创建的一个对象
+        function my$(id){
+            return document.getElementById(id)
+        }
+        // my$("btn").onclick = function () {
+        //     //创建元素
+        //     var pObj = document.createElement("p")
+        //     pObj.innerHTML = "你好" 
+        //     //把创建好的元素追加到父级元素中       追加孩子appendChild但是再次点击会再次追加元素   replacechild替换元素      insertBefore将元素插入到子元素前面       removechilld删除子元素
+        //     my$("div").appendChild(pObj)
+        // }
+        var kungFu = ["a","b","c","d","e","f"];
+        my$("btn").onclick = function (){
+            //创建ul元素，将ul元素直接加到父级元素中
+            var ulObj = document.createElement("ul")
+            my$("div").appendChild(ulObj);
+            //动态创建li追加到ul里面
+            for(var i=0;i<kungFu.length;i++){
+                var liObj = document.createElement("li")
+                //存放数组内容
+                liObj.innerHTML = kungFu[i];
+                //追加到父级元素中
+                ulObj.appendChild(liObj)
+                //为li添加事件
+                // liObj.onmouseover = function(){       //如果是循环的事件推荐用命名函数节省空间,不是循环用匿名函数
+                //     this.style.backgroundColor = "red"
+                // }
+                // liObj.onmouseout = function(){
+                //     this.style.backgroundColor = ""
+                // }
+                liObj.onmouseover = onmouseOver;
+                liObj.onmouseout = onmouseOut;
+            }
+        }
+        function onmouseOver(){
+            this.style.backgroundColor = "red"
+        }
+        function onmouseOut(){
+            this.style.backgroundColor = ""
+        }
+    </script>
+</body>
+</html>

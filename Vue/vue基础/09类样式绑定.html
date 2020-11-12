@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .css {
+            width: 500px;
+            height: 550px;
+            border: 1px solid #ccc;
+        }
+        .color {
+            background-color: pink;
+        }
+        .add {
+            color: red;
+        }
+        .base {
+            background-color: purple;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 样式处理 -->
+        <!-- {css : isCss} 第一个为类名  第二个为布尔值   true就显示  false隐藏   且可以添加多个-->
+        <div v-bind:class="{css : isCss, color : isColor}">对象样式</div>
+        <button @click="toggle">点击切换</button>
+        <!-- 数组样式处理 -->
+        <div v-bind:class='[oneClass,twoClass]'>数组样式</div>
+        <button @click="toggleArr">切换样式</button>
+
+
+        <!-- 1. 对象绑定 和 数组绑定可以结合使用 -->
+        <div v-bind:class='[oneClass,twoClass, {add : isRed}]'>混合样式</div>
+
+        <!-- 2. class绑定的值可以简化操作 -->
+        <div v-bind:class='cssArry'>混合样式之数组简化操作</div>
+        <div v-bind:class='cssObj'>混合样式之对象简化操作</div>
+
+        <!-- 3. 默认的class如何处理  继续操作即可默认的会保留 -->
+        <div v-bind:class='cssObj' class="base">混合样式之默认样式处理</div>
+
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue ({
+            el : '#app',
+            data : {
+                isCss : true,
+                isColor : false,
+                oneClass: 'css',
+                twoClass : 'color',
+                isRed : true,
+                cssArry : ['css','color'], // 填写类名
+                cssObj : {
+                    css : true,
+                    add : true
+                } 
+            },
+            methods: {
+                toggle : function () {
+                    // if (this.isCss == true) {
+                    //     this.isCss =false
+                    // }
+                    // else {
+                    //     this.isCss = true
+                    // }
+                    this.isCss = !this.isCss;
+                    this.isColor = !this.isColor;
+                },
+                toggleArr : function () {
+                    if (this.twoClass == 'color') {
+                        this.twoClass = ''
+                    }
+                    else {
+                        this.twoClass = 'color'
+                    }
+                }
+            },
+        });
+        /*
+        样式绑定相关语法细节
+        1. 对象绑定 和 数组绑定可以结合使用
+        2. class绑定的值可以简化操作
+        3. 默认的class如何处理
+        */
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <div>{{pmsg}}</div>
+        <!-- 加了属性绑定  :pnum="12"   值类型为number -->
+        <!-- 没有加属性绑定      pnum="12"   值类型为string -->
+        <menu-items :pstr="pstr" :pnum="pnum" :pboo="pboo" :pary="pary" :pobj="pobj"> 
+
+        </menu-items>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+
+
+        Vue.component('menu-items',{
+            props : ['pstr','pnum','pboo','pary','pobj'],  // 接收父组件的属性
+            template : `
+            <div>
+                <div>{{pstr}}</div>
+                <div>{{pnum > 10 ? "yes" : " no"}}</div>
+                <div>{{pboo ? "true" : "false"}}</div>
+                <ul>
+                    <li :key="index" v-for="(item,index) in pary">{{item}}</li>
+                </ul>
+                <div>
+                    <span>{{pobj.name}}</span>
+                    <span>{{pobj.age}}</span>
+                    <span>{{pobj.sex}}</span>
+                </div>
+            </div>
+            `
+        });
+        var vm = new Vue({
+            el : '#app',
+            data : {
+                pmsg : '父组件的属性内容',
+                pstr : 'hello',
+                pnum : 12,
+                pboo : true,
+                pary : ['djl','zwl','xa','xmy'],
+                pobj : {
+                    name : 'djl',
+                    age : 18,
+                    sex : '男'
+                }
+            },
+            
+        })
+    </script>
+</body>
+
+</html>

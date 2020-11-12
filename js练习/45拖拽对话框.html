@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .logo-header {
+            width: 100%;
+            text-align: center;
+            height: 30px;
+            font-size: 24px;
+            line-height: 30px;
+        }
+
+        ul,
+        li,
+        ol,
+        dl,
+        dt,
+        dd,
+        div,
+        p,
+        span,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        a {
+            padding: 0;
+            margin: 0;
+        }
+
+        .login {
+            width: 512px;
+            position: absolute;
+            border: 1px solid #ebebeb;
+            left: 50%;
+            right: 50%;
+            background: #fff;
+            box-shadow: 0px 0px 20px #ddd;
+            z-index: 9999;
+            ;
+            display: none;
+        }
+
+        .login-title {
+            width: 100%;
+            margin: 10px 0 0 0;
+            text-align: center;
+            line-height: 40px;
+            font-size: 18px;
+            position: relative;
+            /* 拖拽图标 */
+            cursor: move;
+            user-select: none;
+            -moz-user-select: none;
+            /*火狐*/
+            -webkit-user-select: none;
+            /*webkit浏览器*/
+        }
+
+        .login-input-content {
+            margin-top: 20px;
+        }
+
+        .login-button {
+            width: 50%;
+            margin: 30px auto 0px auto;
+            line-height: 40px;
+            font-size: 14px;
+            border: #ebebeb 1px solid;
+            text-align: center;
+        }
+
+        .login-bg {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #000000;
+            /* filter: alpha(opacity=30); */
+            opacity: 0.3;
+            display: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000000;
+        }
+
+        .login-button a {
+            display: block;
+        }
+
+        .login-input {
+            overflow: hidden;
+            margin: 0 0 20px 0;
+        }
+
+        .login-input label {
+            float: left;
+            width: 90px;
+            padding-right: 10px;
+            text-align: center;
+            line-height: 35px;
+            height: 35px;
+            font-size: 14px;
+        }
+
+        .login-title span {
+            position: absolute;
+            font-size: 12px;
+            right: -20px;
+            top: -30px;
+            background-color: #fff;
+            border: 1px solid #ebebeb;
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <a href="http://www.baidu.com" id="ak">点我</a> -->
+    <div class="login-header"><a href="javascript:void(0);" id="link">弹出登录框</a></div>
+    <div id="login" class="login">
+        <div id="title" class="login-title">
+            登录会员<span><a id="closeBtn" href="javascript:void(0);" class="close-login">关闭</a></span>
+        </div>
+        <div class="login-input-content">
+            <div class="login-input">
+                <label for="">用户名:</label>
+                <input type="text" placeholder="请输入用户名" name="info[username]" id="username" class="list-input">
+            </div>
+            <div class="login-input">
+                <label for="">用户名:</label>
+                <input type="text" placeholder="请输入密码" name="info[username]" id="username" class="list-input">
+            </div>
+        </div>
+        <div class="login-button" id="loginBtn"></div>
+    </div>
+    <!--登录框-->
+    <div class="login-bg" id="bg"></div>
+    <!--遮挡层-->
+
+
+
+
+
+
+
+
+    <script>
+        function my$(id) {
+            return document.getElementById(id)
+        }
+
+
+        // my$("ak").onclick = function(e) {
+        //     alert("hahab")
+        //     //阻止超链接跳转两种方法    还有一种用到事件参数e     另一种<a href="javascript:void(0);"></a>标签中代表这个链接不作跳转使用;
+        //     // return false;
+        //     e.preventDefault();
+        //     //阻止事件冒泡两种方法
+        //     // window.event.cancelBubble=true;
+        //     // e.stopPropagation();
+        // }
+
+
+        //点击超链接弹出登录框，点击close部分关闭
+        my$("link").onclick = function (e) {
+            my$("login").style.display = "block";
+            my$("bg").style.display = "block"
+            e.stopPropagation(); //阻止事件冒泡
+        }
+        my$("closeBtn").onclick = function () {
+            my$("login").style.display = "none";
+            my$("bg").style.display = "none"
+        }
+
+        // 按下鼠标   移动鼠标  移动登录框
+        // my$("title").onmousedown = function(e){
+        //     //获取可视区域的横坐标e.client减去此时登录框距离左边的offsetLsft ===  登录框内部鼠标的的坐标login_l
+        //     var login_l = e.clientX - my$("login").offsetLeft;
+        //     var login_t = e.clientY - my$("login").offsetTop;
+        //     //鼠标移动   是在整个屏幕上移动
+        //     document.onmousemove = function (e){
+        //         //移动后新的可视区域横坐标
+        //         var left = e.clientX-login_l;
+        //         var top = e.clientY-login_t;
+        //         my$("login").style.left = left +"px";
+        //         my$("login").style.top = top +"px";
+        //     }
+        // }
+        // my$("title").onmouseup = function(){
+        //     document.onmousemove = null;
+        // }
+
+
+
+
+        my$('title').addEventListener('mousedown', function (e) {
+            var x = e.pageX - my$('login').offsetLeft;
+            var y = e.pageY - my$('login').offsetTop;
+            document.addEventListener('mousemove', move);
+
+            function move(e) {
+                var left = e.pageX - x;
+                var top = e.pageY - y;
+                my$('login').style.left = left + 'px';
+                my$('login').style.top = top + 'px';
+            }
+            document.addEventListener('mouseup', function () {
+                document.removeEventListener('mousemove', move)
+            })
+        })
+    </script>
+</body>
+
+</html>

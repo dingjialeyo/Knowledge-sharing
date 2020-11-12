@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            text-decoration: none;
+            color: #fff;
+        }
+        .nav li{
+            list-style: none;
+            float: left;
+            margin: 0 15px;
+        }
+        body {
+            /* repeat-x    横向平铺 */
+            background: url(https://res.wx.qq.com/a/wx_fed/weixin_portal/res/static/img/3S9sFMD.jpg) repeat-x;
+
+        }
+        .nav{
+            padding-top: 20px;
+            /* display: inline-block; */
+        }
+        .nav a{
+            display: inline-block;
+            height: 33px;
+            background: url(../js练习/轮播图img/hua.png) no-repeat;
+            padding-left: 15px;
+        }
+        .nav a span{
+            display: inline-block;
+            height: 33px;
+            background: url(../js练习/轮播图img/dong.png) no-repeat;
+            padding-right: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <ul>
+            <li>
+                <!-- 滑动门由a标签和span标签构成 -->
+                <a href="#">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <!-- 滑动门由a标签和span标签构成 -->
+                <a href="#">
+                    <span>相关内容</span>
+                </a>
+            </li>
+            <li>
+                <!-- 滑动门由a标签和span标签构成 -->
+                <a href="#">
+                    <span>帮助</span>
+                </a>
+            </li>
+            <li>
+                <!-- 滑动门由a标签和span标签构成 -->
+                <a href="#">
+                    <span>关于我们</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

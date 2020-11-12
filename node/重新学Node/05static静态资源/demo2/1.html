@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				margin: 0px;
+			}
+
+			a {
+				text-decoration: none;
+			}
+
+			.one {
+				width: 1519.2px;
+				height: 115px;
+				background-color: #0C7ED9;
+			}
+
+			.one img {
+				width: 246px;
+				float: left;
+				margin-left: 170px;
+				margin-top: 5px;
+				height: 105px;
+			}
+
+			#a {
+				float: left;
+				width: 305px;
+				height: 78px;
+				/* background-color: yellow; */
+				margin-top: 11px;
+				margin-left: 624px;
+			}
+
+			#a p {
+				color: #a8c7ed;
+				font: 13px "microsoft yahei";
+				cursor: pointer;
+			}
+
+			#aa {
+				float: left;
+				margin-top: -5px;
+			}
+
+			.two {
+				height: 56px;
+				width: 1519.2px;
+				float: left;
+				/* background-color: yellow; */
+			}
+
+			#dropdown {
+				/* float: left; */
+				position: absolute;
+				/* top: 50px; */
+				left: 165px;
+				display: inline-block;
+			}
+
+			#dropbtn {
+				background-color: white;
+				color: #333333;
+				/* padding: 16px; */
+				height: 56px;
+				width: 133.6px;
+				font: 16px "microsoft yahei";
+				cursor: pointer;
+				border: none;
+				/* color: black; */
+			}
+
+			#dropbtn:hover {
+				color: orange;
+			}
+
+			#dropbtn img {
+				/* 				float: left;
+				margin-left: 110px; */
+				width: 12px;
+				height: 8px;
+				position: absolute;
+				top: 25px;
+				left: 103px;
+			}
+
+			#dropdown-content {
+				display: none;
+				position: absolute;
+				/* left: 165px; */
+				min-width: 133px;
+				height: 220px;
+				/* border: 1px solid #0b45a9;s*/
+				/*宽度*/
+			}
+
+			#dropdown-content a {
+				color: black;
+				/* padding: 12px 16px; */
+				display: block;
+				border: 1PX solid #DDDDDD;
+				border-top: 0;
+				border-left: 0;
+				border-right: 0;
+			}
+
+			/* 在鼠标移上去后显示下拉菜单 */
+			#dropdown:hover #dropdown-content {
+				display: block;
+				background-color: white;
+
+			}
+
+			#dropdown:hover #dropbtn {
+				/* background-color: #0b45a9; */
+			}
+
+			#aaa {
+				width: 133px;
+				height: 36px;
+				background-color: #f6f6f6;
+				font: 14px "microsoft yahei";
+				text-align: center;
+				line-height: 36px;
+			}
+
+			#aaa:hover {
+				color: orange;
+				cursor: pointer;
+			}
+
+			#aaaa {
+				float: left;
+				border: none;
+				height: 56px;
+				width: 133.6px;
+				font: 16px "microsoft yahei";
+				background-color: white;
+				margin-left: 285px;
+			}
+
+			#aaaa:hover {
+				color: orange;
+				cursor: pointer;
+			}
+
+			#dropdown-two {
+				/* float: left; */
+				position: absolute;
+				/* top: 50px; */
+				left: 425px;
+				display: inline-block;
+			}
+
+			#dropbtn-two {
+				background-color: white;
+				color: #333333;
+				/* padding: 16px; */
+				height: 56px;
+				width: 133.6px;
+				font: 16px "microsoft yahei";
+				cursor: pointer;
+				border: none;
+				/* color: black; */
+			}
+
+			#dropbtn-two:hover {
+				color: orange;
+			}
+
+			#dropbtn-two img {
+				/* 				float: left;
+							margin-left: 110px; */
+				width: 12px;
+				height: 8px;
+				position: absolute;
+				top: 25px;
+				left: 103px;
+			}
+
+			#dropdown-content-two {
+				display: none;
+				position: absolute;
+				/* left: 165px; */
+				min-width: 133px;
+				height: 20px;
+				/* border: 1px solid #0b45a9;s*/
+				/*宽度*/
+			}
+
+			#dropdown-content-two a {
+				color: black;
+				/* padding: 12px 16px; */
+				display: block;
+				border: 1PX solid #DDDDDD;
+				border-top: 0;
+				border-left: 0;
+				border-right: 0;
+			}
+
+			/* 在鼠标移上去后显示下拉菜单 */
+			#dropdown-two:hover #dropdown-content-two {
+				display: block;
+				background-color: white;
+
+			}
+
+			#dropdown-twoo {
+				/* float: left; */
+				position: absolute;
+				/* top: 50px; */
+				left: 555px;
+				display: inline-block;
+			}
+
+			#dropbtn-twoo {
+				background-color: white;
+				color: #333333;
+				/* padding: 16px; */
+				height: 56px;
+				width: 133.6px;
+				font: 16px "microsoft yahei";
+				cursor: pointer;
+				border: none;
+				/* color: black; */
+			}
+
+			#dropbtn-twoo:hover {
+				color: orange;
+			}
+
+			#dropbtn-twoo img {
+				/* 				float: left;
+							margin-left: 110px; */
+				width: 12px;
+				height: 8px;
+				position: absolute;
+				top: 25px;
+				left: 103px;
+			}
+
+			#dropdown-content-twoo {
+				display: none;
+				position: absolute;
+				/* left: 165px; */
+				width: 133px;
+				height: 20px;
+				/* border: 1px solid #0b45a9;s*/
+				/*宽度*/
+			}
+
+			#dropdown-content-twoo a {
+				color: black;
+				/* padding: 12px 16px; */
+				display: block;
+				position: absolute;
+				border: 1PX solid #DDDDDD;
+				border-top: 0;
+				border-left: 0;
+				border-right: 0;
+			}
+
+			/* 在鼠标移上去后显示下拉菜单 */
+			#dropdown-twoo:hover #dropdown-content-twoo {
+				display: block;
+				background-color: white;
+
+			}
+
+			#dropdown-twooo {
+				/* float: left; */
+				position: absolute;
+				/* top: 50px; */
+				left: 958px;
+				display: inline-block;
+			}
+
+			#dropbtn-twooo {
+				background-color: white;
+				color: #333333;
+				/* padding: 16px; */
+				height: 56px;
+				width: 133.6px;
+				font: 16px "microsoft yahei";
+				cursor: pointer;
+				border: none;
+				/* color: black; */
+			}
+
+			#dropbtn-twooo:hover {
+				color: orange;
+			}
+
+			#dropbtn-twooo img {
+				/* 				float: left;
+							margin-left: 110px; */
+				width: 12px;
+				height: 8px;
+				position: absolute;
+				top: 25px;
+				left: 103px;
+			}
+
+			#dropdown-content-twooo {
+				display: none;
+				position: absolute;
+				/* left: 165px; */
+				width: 133px;
+				height: 20px;
+				/* border: 1px solid #0b45a9;s*/
+				/*宽度*/
+			}
+
+			#dropdown-content-twooo a {
+				color: black;
+				/* padding: 12px 16px; */
+				display: block;
+				position: absolute;
+				border: 1PX solid #DDDDDD;
+				border-top: 0;
+				border-left: 0;
+				border-right: 0;
+			}
+
+			/* 在鼠标移上去后显示下拉菜单 */
+			#dropdown-twooo:hover #dropdown-content-twooo {
+				display: block;
+				background-color: white;
+
+			}
+
+			#aaaaa {
+				float: left;
+				border: none;
+				height: 56px;
+				width: 133.6px;
+				font: 16px "microsoft yahei";
+				background-color: white;
+				margin-left: 395px;
+			}
+
+			#aaaaa:hover {
+				color: orange;
+				cursor: pointer;
+			}
+
+			#dropdown-twoooo {
+				/* float: left; */
+				position: absolute;
+				/* top: 50px; */
+				left: 688px;
+				display: inline-block;
+			}
+
+			#dropbtn-twoooo {
+				background-color: white;
+				color: #333333;
+				/* padding: 16px; */
+				height: 56px;
+				width: 133.6px;
+				font: 16px "microsoft yahei";
+				cursor: pointer;
+				border: none;
+				/* color: black; */
+			}
+
+			#dropbtn-twoooo:hover {
+				color: orange;
+			}
+
+			#dropbtn-twoooo img {
+				/* 				float: left;
+							margin-left: 110px; */
+				width: 12px;
+				height: 8px;
+				position: absolute;
+				top: 25px;
+				left: 103px;
+			}
+
+			#dropdown-content-twoooo {
+				display: none;
+				position: absolute;
+				/* left: 165px; */
+				width: 133px;
+				height: 220px;
+				/* border: 1px solid #0b45a9;s*/
+				/*宽度*/
+			}
+
+			#dropdown-content-twoooo a {
+				color: black;
+				/* padding: 12px 16px; */
+				display: block;
+				position: absolute;
+				border: 1PX solid #DDDDDD;
+				border-top: 0;
+				border-left: 0;
+				border-right: 0;
+			}
+
+			/* 在鼠标移上去后显示下拉菜单 */
+			#dropdown-twoooo:hover #dropdown-content-twoooo {
+				display: block;
+				background-color: white;
+
+			}
+
+			#aaaaaa {
+				float: left;
+				border: none;
+				height: 56px;
+				width: 133.6px;
+				font: 16px "microsoft yahei";
+				background-color: white;
+				margin-left: 139px;
+			}
+
+			#aaaaaa:hover {
+				color: orange;
+				cursor: pointer;
+			}
+
+			#dropdown-twooooo {
+				/* float: left; */
+				position: absolute;
+				/* top: 50px; */
+				left: 1231px;
+				display: inline-block;
+			}
+
+			#dropbtn-twooooo {
+				background-color: white;
+				color: #333333;
+				/* padding: 16px; */
+				height: 56px;
+				width: 133.6px;
+				font: 16px "microsoft yahei";
+				cursor: pointer;
+				border: none;
+				/* color: black; */
+			}
+
+			#dropbtn-twooooo:hover {
+				color: orange;
+			}
+
+			#dropbtn-twooooo img {
+				/* 				float: left;
+							margin-left: 110px; */
+				width: 12px;
+				height: 8px;
+				position: absolute;
+				top: 25px;
+				left: 103px;
+			}
+
+			#dropdown-content-twooooo {
+				display: none;
+				position: absolute;
+				/* left: 165px; */
+				width: 165px;
+				height: 20px;
+				/* border: 1px solid #0b45a9;s*/
+				/*宽度*/
+			}
+
+			#dropdown-content-twooooo a {
+				color: black;
+				padding: 2px 16px;
+				display: block;
+				position: absolute;
+				border: 1PX solid #DDDDDD;
+				border-top: 0;
+				border-left: 0;
+				border-right: 0;
+			}
+
+			/* 在鼠标移上去后显示下拉菜单 */
+			#dropdown-twooooo:hover #dropdown-content-twooooo {
+				display: block;
+				background-color: white;
+
+			}
+
+			.threee {
+				float: left;
+				background-color: #ececec;
+				width: 1519.2px;
+			}
+
+			.three {
+				width: 1366px;
+				height: 450px;
+				/* background-color: #ececec; */
+				background-image: url(cdb689f0-d591-428c-bbeb-9ea283515468.jpg);
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				float: left;
+				margin-left: 78px;
+			}
+
+			#b {
+				float: left;
+				width: 416px;
+				margin-top: 360px;
+				height: 68px;
+				background-color: #000000;
+				opacity: 0.65;
+			}
+
+			#b p {
+				font: 24px "microsoft yahei";
+				color: white;
+				line-height: 25px;
+			}
+
+			.four {
+				float: left;
+				/* background-color: yellow; */
+				width: 1519.2px;
+				height: 66px;
+			}
+
+			#c {
+				float: left;
+				width: 220px;
+				height: 32px;
+				margin-left: 120px;
+				cursor: default;
+				margin-top: 3px;
+			}
+
+			#c p {
+				font: 24px "microsoft yahei";
+				color: #0C7ED9;
+				font-weight: bold;
+				cursor: default;
+				/* float: left; */
+			}
+
+			#c span {
+				font: 13px "microsoft yahei";
+				font-weight: bold;
+				cursor: default;
+			}
+
+			#cc {
+				float: left;
+				width: 44px;
+				height: 19px;
+				margin-left: 975px;
+				margin-top: 36px;
+				cursor: default;
+				background-color: #0C7ED9;
+
+			}
+
+			#cc p {
+				color: white;
+				float: left;
+				margin-top: -1px;
+				margin-left: 5px;
+				cursor: default;
+				font: 14px "microsoft yahei";
+			}
+
+			.five {
+				float: left;
+				height: 256px;
+				width: 1519.2px;
+				margin-left: 160px;
+				/* background-color: yellow; */
+			}
+
+			#d {
+				width: 384px;
+				height: 256px;
+				background-image: url(9909df20-6b89-46a0-bfe9-6b7a926db76d.png);
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				float: left;
+			}
+
+			#dd {
+				float: left;
+				width: 384px;
+				margin-top: 217px;
+				height: 40px;
+				display: block;
+				background-color: #000000;
+				opacity: 0.65;
+			}
+
+			#dd p {
+				float: left;
+				color: white;
+				font: 15px "microsoft yahei";
+				font-weight: bolder;
+				margin-top: 10px;
+				cursor: pointer;
+			}
+
+			#ddd {
+				width: 384px;
+				height: 256px;
+				background-image: url(273526b9-7c1a-4d64-9b35-000028e8c8be.jpg);
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				float: left;
+				margin-left: 25px;
+			}
+
+			#dddd {
+				float: left;
+				width: 384px;
+				margin-top: 217px;
+				height: 40px;
+				display: block;
+				background-color: #000000;
+				opacity: 0.65;
+			}
+
+			#dddd p {
+				float: left;
+				color: white;
+				font: 15px "microsoft yahei";
+				font-weight: bolder;
+				margin-top: 10px;
+				cursor: pointer;
+			}
+
+			#ddddd {
+				width: 384px;
+				height: 256px;
+				background-image: url(b3f0d9d2-c79d-4f04-98c8-e317675fc9ef.jpg);
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				float: left;
+				margin-left: 25px;
+			}
+
+			#dddddd {
+				float: left;
+				width: 384px;
+				margin-top: 217px;
+				height: 40px;
+				display: block;
+				background-color: #000000;
+				opacity: 0.65;
+			}
+
+			#dddddd p {
+				float: left;
+				color: white;
+				font: 15px "microsoft yahei";
+				font-weight: bolder;
+				margin-top: 10px;
+				cursor: pointer;
+			}
+
+			.six {
+				float: left;
+				height: 286px;
+				width: 1203px;
+				margin-left: 160px;
+				margin-top: 10px;
+				background: #ebebeb;
+			}
+
+			#e {
+				float: left;
+				height: 286px;
+				width: 580px;
+				/* background-color: yellow; */
+			}
+
+			#e p {
+				font: 15px "microsoft yahei";
+				cursor: pointer;
+				color: black;
+			}
+
+			#ee {
+				color: #999999;
+			}
+
+			#e p:hover {
+				color: #0C7ED9;
+			}
+
+			#eee {
+				float: left;
+				height: 286px;
+				width: 580px;
+				/* background-color: #0C7ED9; */
+				margin-left: 43px;
+			}
+
+			#eee p {
+				font: 15px "microsoft yahei";
+				cursor: pointer;
+				color: black;
+			}
+
+			#eee p:hover {
+				color: #0C7ED9;
+			}
+
+			.kongbai {
+				float: left;
+				width: 1519.2px;
+				cursor: default;
+				height: 40px;
+				/* background-color: yellow; */
+			}
+
+			.seven {
+				float: left;
+				width: 1519.2px;
+				height: 316px;
+				background: #ebebeb;
+				cursor: default;
+			}
+
+			#f {
+				float: left;
+				width: 384px;
+				height: 256px;
+				/* background-color: yellow; */
+				margin-left: 160px;
+				cursor: pointer;
+				margin-top: 33px;
+			}
+
+			#ff {
+				float: left;
+				width: 384px;
+				height: 256px;
+				/* background-color: yellow; */
+				margin-left: 20px;
+				margin-top: 33px;
+				background-image: url(ea2c1e11-5b40-425a-b1b6-62a70d528080.jpg);
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				cursor: pointer;
+
+			}
+
+			#fff {
+				float: left;
+				width: 384px;
+				height: 45px;
+				background-color: #000000;
+				margin-top: 212px;
+				opacity: 0.75;
+			}
+
+			#fff p {
+				font: 15px "microsoft yahei";
+				color: white;
+				font-weight: bolder;
+				margin-top: 12px;
+			}
+
+			#ffff {
+				float: left;
+				width: 384px;
+				height: 256px;
+				/* background-color: yellow; */
+				margin-left: 28px;
+				margin-top: 33px;
+				background-image: url(9dde8219-1306-458c-b555-d1f75399e019.jpg);
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				cursor: pointer;
+			}
+
+			#fffff {
+				float: left;
+				width: 384px;
+				height: 45px;
+				background-color: #000000;
+				margin-top: 212px;
+				opacity: 0.75;
+			}
+
+			#fffff p {
+				font: 15px "microsoft yahei";
+				color: white;
+				font-weight: bolder;
+				margin-top: 12px;
+			}
+
+			.ne ul {
+				width: 9999px;
+				list-style: none;
+				float: left;
+				margin-top: 0px;
+				margin-left: -39px;
+			}
+
+			.ne img {
+				position: absolute;
+				width: 384px;
+				height: 256px;
+				/* left: :;x; */
+			}
+
+			#fffffff {
+				float: left;
+				width: 385px;
+				height: 45px;
+				background-color: #000000;
+				margin-left: 0px;
+				margin-top: 196px;
+				opacity: 0.75;
+			}
+
+			#fffffff p {
+				font: 18px "microsoft yahei";
+				color: white;
+				/* font-weight: bolder; */
+				margin-top: 10px;
+			}
+
+			.eight {
+				float: left;
+				width: 1200px;
+				margin-left: 162px;
+				height: 440px;
+				/* background-color: #DDDDDD; */
+				cursor: default;
+			}
+
+			.kongbaii {
+				float: left;
+				width: 1519.2px;
+				cursor: default;
+				height: 70px;
+				/* background-color: yellow; */
+			}
+
+			#j {
+				float: left;
+				width: 384px;
+				height: 430px;
+				/* background-color: #DDDDDD; */
+			}
+
+			#jj {
+				float: left;
+				width: 384px;
+				height: 57px;
+				/* background-color: yellow; */
+				/* font: 16px "microsoft yahei"; */
+				border: 3PX solid #0C7ED9;
+				border-top: 0;
+				border-left: 0;
+				border-right: 0;
+			}
+
+			#jj p {
+				font: 24px "microsoft yahei";
+				color: #0C7ED9;
+				font-weight: bold;
+				float: left;
+				margin-top: 0px;
+				/* line-height: 1px; */
+			}
+
+			#jj font {
+				font: 13px "microsoft yahei";
+				float: left;
+				margin-top: 15px;
+				/* font-weight: bold; */
+				margin-left: -95px;
+			}
+
+			#jj span {
+				width: 43.3px;
+				height: 19.2px;
+				background-color: #0C7ED9;
+				color: white;
+			}
+
+			#jjj {
+				float: left;
+				margin-top: 22px;
+				width: 384px;
+				height: 79.4px;
+				/* background-color: yellow; */
+			}
+
+			#jjjj {
+				float: left;
+				width: 69.1px;
+				height: 36px;
+				background-color: #DDDDDD;
+				border: 1PX solid #cccccc;
+				border-top: 0;
+				border-left: 0;
+				border-right: 0;
+			}
+
+			#jjjj p {
+				float: left;
+				margin-left: 27px;
+				margin-top: 0px;
+				color: #739ecc;
+				font-family: Tahoma, Geneva, sans-serif;
+				font-size: 30px;
+				font-weight: bold;
+				/* cursor: default; */
+			}
+
+			#jjjj img {
+				float: left;
+				margin-left: 11px;
+				width: 11px;
+			}
+
+			#jjjjj {
+				float: left;
+				margin-left: -69px;
+				margin-top: 37px;
+				height: 23.4px;
+				width: 69.1px;
+				background-color: #DDDDDD;
+			}
+
+			#jjjjj p {
+				float: left;
+				font-family: Tahoma, Geneva, sans-serif;
+				font-size: 14px;
+				font-weight: bold;
+				margin-left: 22px;
+				margin-top: 2px;
+				color: #666666;
+			}
+
+			#ziti {
+				font: 14px "microsoft yahei";
+				color: #333333;
+				letter-spacing: 0.1em;
+				line-height: 25px;
+				overflow: auto;
+				text-indent: 1em;
+			}
+
+			#ziti:hover {
+				color: #0C7ED9;
+				cursor: pointer;
+			}
+
+			#k {
+				float: left;
+				width: 384px;
+				margin-left: 25px;
+				height: 430px;
+				/* background-color: #DDDDDD; */
+			}
+
+			#kk {
+				float: left;
+				width: 384px;
+				height: 57px;
+				/* background-color: yellow; */
+				/* font: 16px "microsoft yahei"; */
+				border: 3PX solid #0C7ED9;
+				border-top: 0;
+				border-left: 0;
+				border-right: 0;
+			}
+
+			#kk p {
+				font: 24px "microsoft yahei";
+				color: #0C7ED9;
+				font-weight: bold;
+				float: left;
+				margin-top: 0px;
+				/* line-height: 1px; */
+			}
+
+			#kk font {
+				font: 13px "microsoft yahei";
+				float: left;
+				margin-top: 15px;
+				letter-spacing: 0.1em;
+				/* font-weight: bold; */
+				margin-left: -142px;
+			}
+
+			#kk span {
+				width: 43.3px;
+				height: 19.2px;
+				background-color: #0C7ED9;
+				color: white;
+			}
+
+			#kkk {
+				float: left;
+				margin-top: 22px;
+				width: 384px;
+				height: 79.4px;
+				/* background-color: yellow; */
+			}
+
+			#kkkk {
+				float: left;
+				width: 69.1px;
+				height: 36px;
+				background-color: #DDDDDD;
+				border: 1PX solid #cccccc;
+				border-top: 0;
+				border-left: 0;
+				border-right: 0;
+			}
+
+			#kkkk p {
+				float: left;
+				margin-left: 27px;
+				margin-top: 0px;
+				color: #739ecc;
+				font-family: Tahoma, Geneva, sans-serif;
+				font-size: 30px;
+				font-weight: bold;
+				/* cursor: default; */
+			}
+
+			#kkkk img {
+				float: left;
+				margin-left: 11px;
+				width: 11px;
+			}
+
+			#kkkkk {
+				float: left;
+				margin-left: -69px;
+				margin-top: 37px;
+				height: 23.4px;
+				width: 69.1px;
+				background-color: #DDDDDD;
+			}
+
+			#kkkkk p {
+				float: left;
+				font-family: Tahoma, Geneva, sans-serif;
+				font-size: 14px;
+				font-weight: bold;
+				margin-left: 22px;
+				margin-top: 2px;
+				color: #666666;
+			}
+
+			#l {
+				float: left;
+				width: 384px;
+				margin-left: 23px;
+				height: 430px;
+				/* background-color: #DDDDDD; */
+			}
+
+			#ll {
+				float: left;
+				width: 384px;
+				height: 57px;
+				/* background-color: yellow; */
+				/* font: 16px "microsoft yahei"; */
+				border: 3PX solid #0C7ED9;
+				border-top: 0;
+				border-left: 0;
+				border-right: 0;
+			}
+
+			#ll p {
+				font: 24px "microsoft yahei";
+				color: #0C7ED9;
+				font-weight: bold;
+				float: left;
+				margin-top: 0px;
+				/* line-height: 1px; */
+			}
+
+			#ll font {
+				font: 13px "microsoft yahei";
+				float: left;
+				margin-top: 15px;
+				/* font-weight: bold; */
+				margin-left: -95px;
+			}
+
+			#ll span {
+				width: 43.3px;
+				height: 19.2px;
+				background-color: #0C7ED9;
+				color: white;
+			}
+
+			#lll {
+				font: 14px "microsoft yahei";
+				color: #333333;
+				/* color: yellow; */
+				/* letter-spacing: 0.1em; */
+				float: left;
+				/* line-height:5px; */
+			}
+
+			#lll:hover {
+				color: #0C7ED9;
+				cursor: pointer;
+			}
+
+			.nine {
+				float: left;
+				width: 1519.2px;
+				height: 796.26px;
+				background-color: #EBEBEB;
+				margin-top: 110px;
+			}
+
+			#p {
+				float: left;
+				margin-left: 162px;
+				margin-top: 40px;
+				width: 792px;
+				height: 448px;
+				background-image: url(e6e41ff5-392c-4520-a552-4baed86d7f02.jpg);
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+			}
+
+			#p img {
+				width: 70px;
+				float: left;
+				margin-left: 360px;
+				margin-top: 200px;
+				height: 70px;
+				cursor: pointer;
+			}
+
+			#pp {
+				width: 792px;
+				height: 85px;
+				float: left;
+				margin-top: 178px;
+				background-color: #D8D9D3;
+			}
+
+			#pp p {
+				color: #414141;
+				font: 22px "microsoft yahei";
+				font-weight: bold;
+				float: left;
+				margin-left: 27px;
+				margin-top: 15px;
+			}
+
+			#pp p:hover {
+				color: #0C7ED9;
+				cursor: pointer;
+			}
+
+			#o {
+				float: left;
+				width: 384px;
+				height: 351.66px;
+				/* background-color: #D8D9D3; */
+				margin-left: 26px;
+				margin-top: 40px;
+
+			}
+
+			#q {
+				float: left;
+				background-color: #D8D9D3;
+				width: 792px;
+				height: 164px;
+				margin-top: 100px;
+				margin-left: 163px;
+			}
+
+			#r {
+				float: left;
+				width: 384px;
+				height: 345.6px;
+				background-image: url(xnhy.jpg);
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				margin-left: 26px;
+				margin-top: -70px;
+			}
+
+			.ten {
+				float: left;
+				width: 1519.2px;
+				margin-left: 164px;
+				height: 148px;
+				background-color: white;
+			}
+
+			.ten img {
+				float: left;
+				cursor: pointer;
+				/* margin-left: 164px; */
+				padding: 31px;
+			}
+
+			#rr {
+				width: 96px;
+				float: left;
+				margin-top: 8px;
+			}
+
+			.oneone {
+				float: left;
+				width: 1519.2px;
+				height: 306.2px;
+				background-color: #EBEBEB;
+			}
+
+			.oneone img {
+				float: left;
+				width: 1180px;
+				margin-left: 200px;
+				height: 260px;
+				margin-top: 20px;
+				cursor: pointer;
+			}
+
+			.onetwo {
+				float: left;
+				height: 158px;
+				width: 1519.2px;
+				background-color: #666666;
+			}
+
+			.onetwo p {
+				color: white;
+				font: 14px "microsoft yahei";
+			}
+
+			.onetwo span {
+				color: #e9ef09;
+				cursor: pointer;
+			}
+
+			.onetwo span:hover {
+				text-decoration: underline;
+			}
+
+			#m {
+				float: left;
+				margin-top: 22px;
+				margin-left: 175px;
+			}
+
+			#mm {
+				float: left;
+				margin-left: 175px;
+				margin-top: -8px;
+			}
+
+			#mmm {
+				float: left;
+				margin-left: 175px;
+				margin-top: -8px;
+				color: #b1b1b1;
+			}
+
+			#mmmm {
+				color: #b1b1b1;
+			}
+			#z{
+				float: left;
+				margin-left: -370px;
+				margin-top: 15px;
+				color: #b1b1b1;
+			}
+			.onetwo img{
+				float: left;
+				margin-top: -8px;
+				margin-left: 809px;
+				cursor: pointer;
+			}
+			.sousuo {
+				background: url('./sousuo.png') no-repeat;
+				background-size: 22px;
+				color: #fff;
+				background-position: right;
+				border: 1px solid #fff;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div class="one">
+			<img src="logo.png">
+			<div id="a">
+				<input class="sousuo" type="text" style="height: 30px; border-radius: 50px; margin-left: 200px; " value="  请输入内容">
+			</div>
+		</div>
+		<div class="two">
+			<div id="dropdown">
+				<button id="dropbtn">学校概况 &nbsp; &nbsp;&nbsp;&nbsp;<img src="xialajiantou.png"> </button>
+				<div id="dropdown-content">
+					<a id="aaa">学校简介</a>
+					<a id="aaa">学校沿革</a>
+					<a id="aaa">学校标识</a>
+					<a id="aaa">学校章程</a>
+					<a id="aaa">学校领导</a>
+					<a id="aaa">校史钩沉</a>
+				</div>
+			</div>
+			<button id="aaaa">机构设置</button>
+			<div id="dropdown-two">
+				<button id="dropbtn-two">人才培养 &nbsp; &nbsp;&nbsp;&nbsp;<img src="xialajiantou.png"> </button>
+				<div id="dropdown-content-two">
+					<a id="aaa">师资队伍</a>
+					<a id="aaa">本科生教育</a>
+					<a id="aaa">研究生教育</a>
+					<a id="aaa">留学生教育</a>
+					<a id="aaa">继续教育</a>
+					<a id="aaa">精品课程</a>
+					<a id="aaa">教学在线</a>
+
+				</div>
+			</div>
+			<div id="dropdown-twoo">
+				<button id="dropbtn-twoo">科学研究 &nbsp; &nbsp;&nbsp;&nbsp;<img src="xialajiantou.png"> </button>
+				<div id="dropdown-content-twoo">
+					<a id="aaa">研究机构</a>
+				</div>
+			</div>
+			<div id="dropdown-twooo">
+				<button id="dropbtn-twooo">校园生活 &nbsp; &nbsp;&nbsp;&nbsp;<img src="xialajiantou.png"> </button>
+				<div id="dropdown-content-twooo">
+					<a id="aaa">校园风光</a>
+					<!-- <a id="aaa">研究机构</a> -->
+				</div>
+			</div>
+			<button id="aaaaa">图书馆</button>
+			<div id="dropdown-twoooo">
+				<button id="dropbtn-twoooo">招生就业 &nbsp; &nbsp;&nbsp;&nbsp;<img src="xialajiantou.png"> </button>
+				<div id="dropdown-content-twoooo">
+					<a id="aaa">本科生招生</a>
+					<a id="aaa">研究生招生</a>
+				</div>
+			</div>
+			<button id="aaaaaa">人才招聘</button>
+			<div id="dropdown-twooooo">
+				<button id="dropbtn-twooooo">交流合作 &nbsp; &nbsp;&nbsp;&nbsp;<img src="xialajiantou.png"> </button>
+				<div id="dropdown-content-twooooo">
+					<a id="aaa">出访事务</a>
+				</div>
+			</div>
+		</div>
+		<div class="threee">
+			<div class="three">
+				<div id="b" align="center">
+					<p>古石生辉：&nbsp;&nbsp;老校训石 </p>
+				</div>
+			</div>
+		</div>
+		<div class="four">
+			<div id="c">
+				<p>校园新闻 <span>
+						News
+					</span> </p>
+			</div>
+			<div id="cc">
+				<p>more</p>
+			</div>
+		</div>
+		<div class="five">
+			<div id="d">
+				<div id="dd">
+					<p> &nbsp; 从“毒涉村”到中国传统村落的蝶变 &nbsp;&nbsp;华南理工大。。。</p>
+				</div>
+			</div>
+			<div id="ddd">
+				<div id="dddd">
+					<p> &nbsp; 学校帮扶阳江建设应用型本科院校 &nbsp;&nbsp;首批帮扶队成。。。</p>
+				</div>
+			</div>
+			<div id="ddddd">
+				<div id="dddddd">
+					<p> &nbsp; &nbsp;始于足球 &nbsp;&nbsp;不止步足球 &nbsp;&nbsp;2019世界名校足球赛圆满...</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="kongbai">
+		</div>
+
+		<div class="ten">
+			<img src="7da0d948-a763-4909-a354-f69b51ad25ff.png">
+			<img src="4e46c443-3448-43c5-a883-582e52cb639f.png">
+			<img src="838f428a-cffd-423a-8c75-2ed4eb558f55.png">
+			<img src="734eee14-efd8-40f0-b8c4-4d0a4554994a.png">
+			<img src="ef30c72c-3652-4b45-ba01-5f08594fad4b.png">
+			<img src="fd63a7a0-2587-4c8c-b86a-363f2fd40596.png">
+			<img src="bf4aaed5-0145-4280-ac33-a6a4cf8a7ae5.png">
+			<img src="S8((LA@X%5B1WK(H4FA5%5D(9PC.png" id="rr">
+			<img src="5d9cb5d2-ce72-49bd-aa71-340b78f12c39.png">
+		</div>
+
+		<div class="onetwo">
+			<p id="m">相关链接：&nbsp;&nbsp;<span>
+					中国人民共和国教育部 &nbsp;
+				</span> <span>
+					广东省人民政府
+				</span>&nbsp;&nbsp; <span>
+					广东市人民政府
+				</span> &nbsp;&nbsp;&nbsp; 招生咨询：020-87110737 <span>
+					&nbsp;&nbsp;&nbsp;网上查号
+				</span> </p>
+			<p id="mm">五山校区地址：广州市天河区五山路381号 邮编：510641 大学城校区地址：广州市番禺区广州大学城 邮编：510006 广州国际校区地址：广州市番禺区兴业大道东777号 邮编：511442</p>
+			<p id="mmm">网站设计制作、管理：<span id="mmmm">
+
+					党委宣传部 </span> &nbsp;&nbsp;<span id="mmmm"> 信息网络工程研究中心</span></p>
+			<p id="z">2016 © 华南理工大学 版权所有 粤ICP备05084312号-1</p>
+			<img src="blue.png" >
+		</div>
+	</body>
+</html>

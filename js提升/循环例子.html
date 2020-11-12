@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        //判断用户是否一致   循环
+        // var t = 1
+        // while (t) {
+        //     var obj = prompt("用户名:");
+        // if (obj == "admin") {
+        //     var pwd = prompt("密码:");
+        //     if (pwd == "123456") {
+        //         alert("登录成功!!!")
+        //         t=0;
+        //     }
+        //     else {
+        //         var pwd = prompt("密码:");
+        //     }
+        // }
+        // else {
+        //     var obj = prompt("用户名:");
+        // }
+        // }
+        // 使用for循环打印99乘法表
+        // var sum = "";
+        // for (let i=1;i<=9;i++) {
+        //     for (let j=1;j<=i;j++) {
+        //         sum += i +"*"+ j + "=" + i*j + "\t";
+        //     }
+        //     sum+="\n"
+        // }
+        // console.log(sum);
+
+        // 简易ATM机
+        var sum = 100;
+        var result = prompt("请输入一下操作: \n 1.存钱 \n 2.取钱 \n 3.显示余额 \n 4.退出");
+        while (result <= 4) {
+            if (result == 1) {
+                var cun = prompt("请输入存入的余额");
+                sum += parseFloat(cun);
+                var result = prompt("请输入一下操作: \n 1.存钱 \n 2.取钱 \n 3.显示余额 \n 4.退出");
+            }
+            if (result == 2) {
+                var qu = prompt("请输入取出的余额");
+                if (qu > sum) {
+                    alert("余额不足！")
+                    var result = prompt("请输入一下操作: \n 1.存钱 \n 2.取钱 \n 3.显示余额 \n 4.退出");
+                } else {
+                    sum -= parseFloat(qu);
+                    var result = prompt("请输入一下操作: \n 1.存钱 \n 2.取钱 \n 3.显示余额 \n 4.退出");
+                }
+            }
+            if (result == 3) {
+                alert("显示余额为:" + sum);
+                var result = prompt("请输入一下操作: \n 1.存钱 \n 2.取钱 \n 3.显示余额 \n 4.退出");
+            }
+            if (result == 4) {
+                alert ("退出成功！！！")
+                result = 5;
+            }
+        }
+    </script>
+</body>
+
+</html>

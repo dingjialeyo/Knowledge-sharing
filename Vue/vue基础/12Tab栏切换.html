@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app {
+            position: relative;
+        }
+
+        #app ul {
+            list-style: none;
+        }
+
+        #app ul li {
+            float: left;
+            padding: 10px;
+        }
+
+        #app div {
+            position: absolute;
+            width: 250px;
+            height: 300px;
+            border: 1px solid #ccc;
+            left: 50px;
+            top: 40px;
+            display: none;
+        }
+
+        .current {
+            background-color: pink;
+        }
+
+        #app .block {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <!-- 声明式编程 -->
+            <li @click="getIndex(index)" :class='currentIndex==index?"current":"" ' :key="item.id" v-for="(item, index) in arr" >{{item.title}}</li>
+        </ul>
+        <div :class='currentIndex==index?"block":"" ' :key="item.id" v-for="(item, index) in arr">{{item.content}}</div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                currentIndex: 0, // 当前选项卡的索引
+                arr: [{
+                    id: 1,
+                    title: '第一栏',
+                    content: '第一栏内容'
+                },{
+                    id: 2,
+                    title: '第二栏',
+                    content: '第二栏内容'
+                },{
+                    id: 3,
+                    title: '第三栏',
+                    content: '第三栏内容'
+                }]
+            },
+            methods: {
+                // 将循环的index传递过来
+                getIndex : function (index) {
+                    // 实现切换
+                    this.currentIndex = index;
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

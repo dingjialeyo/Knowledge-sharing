@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #000;
+        }
+        .current {
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    </div>
+
+    <!-- 事件委派 -->
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+    </ul>
+    
+    <!-- 动态生成 -->
+    <ol>
+
+    </ol>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script>
+    
+// 单个事件注册
+        // $("div").click( function () {
+        //     $(this).css('background','pink');
+        // });
+        // $("div").mouseenter( function () {
+        //    $(this).css('background','purple');
+        // })
+
+// 多个事件注册  
+        // on  以对象的方式来写  以后用这种事件    
+        // $('div').on({
+        //     mouseenter: function() {
+        //         $(this).css('background','pink');
+        //     },
+        //     click: function() {
+        //         $(this).css('background','purple');
+        //     }
+        // })
+
+        $("div").on("mouseenter mouseleave", function () {  
+            $(this).toggleClass('current');   // 切换类
+        })
+
+        // on 可以实现事件委派(事件交给父元素冒泡给所有的子元素)
+        $('ul').on('click','li', function() {  ///  给ul事件 触发的是ul 中的 li
+            // alert('123')
+            $(this).css('color','red');
+        });
+
+        // on 可以动态创建元素 并 绑定事件
+        var li = $("<li>动态创建的元素</li>");
+        $('ol').append(li);
+        $('ol').on('click','li', function () {
+            $(this).css('color','red')
+        })
+
+
+        // one 事件  只能触发事件一次
+        $('xxx').one('click', function() {
+            // alert('123')
+        });
+
+
+        // trigger()  自动触发事件
+
+
+        // 事件处理对象
+        $('xxx').on('click', function(e) {
+            // alert('123')
+            e.stopPropagation();  // 阻止事件冒泡
+        });
+    </script>
+</body>
+</html>

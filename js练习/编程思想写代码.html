@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="弹框" id="btn">
+    <div id="dv">
+
+    </div>
+
+
+    <script>
+        // function ChangeStyle(btnId,dvId,color){
+        //     this.btnObj = document.getElementById(btnId),
+        //     this.dvObj = document.getElementById(dvId),
+        //     this.color = color;
+        // }
+        // //用数据共享的方法来
+        // ChangeStyle.prototype.abc = function(){
+        //     var ts = this;   //
+        //     this.btnObj.onclick = function(){
+        //         //这里面的this调用不进去,要外部引入。
+        //         ts.dvObj.style.backgroundColor = ts.color;
+        //     }
+        // }
+        // var cs = new ChangeStyle("btn","dv","red");
+        // cs.abc();
+        function my$(id){
+            return document.getElementById(id)
+        }
+
+        //创建对象的构造函数
+        function ChangeStyle(btnObj,dvObj,json){
+            this.btnObj = btnObj,
+            this.dvObj = dvObj,
+            this.json = json 
+        };
+        ChangeStyle.prototype.abs = function(){
+            var ts = this;
+            this.btnObj.onclick = function(){
+                for(var key in ts.json){
+                    ts.dvObj.style[key] = ts.json[key];
+                }
+            }
+        };
+        var json1 = {
+            "backgroundColor" : "red",
+            "width" : "400px",
+            "height" : "200px"
+        }
+        //实例化对象
+        var cs = new ChangeStyle(my$("btn"),my$("dv"),json1);
+        cs.abs();
+    </script>
+</body>
+</html>

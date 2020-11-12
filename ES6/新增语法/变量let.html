@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+    // ES6新增的用于声明变量的关键字
+        // 1. let声明的变量只在所处于的块级{}中有效
+        // 2. let声明的变量可以防止循环i变量变成全局变量
+        // 3. let声明的变量没有变量提升必须先声明后使用
+        // 4. let声明的变量具有暂时性死区特性
+
+        // 举例
+        // if (true) {
+        //     let a = 10;
+        // }
+        // console.log(a)    // a is not defined
+        // if(true) {
+        //     let b = 10;
+        //     if (true) {
+        //         let c = 10;
+        //     }
+        //     console.log(C)  // c is not defined       必须在自己所属的{}块级作用域才有效
+        // };
+
+        /* ------------- 防止循环i变量变成全局变量 -------------- */
+        // var
+        // for (var i = 0; i < 2; i++) {
+
+        // }
+        // console.log(i) // 2 能够访问i变量     通常来说应该使i变量访问不到才行
+        // // let
+        // for (let m = 0; m < 2; m++) {
+
+        // }
+        // console.log(m)    // m is not defined   
+
+    // let声明的变量没有变量提升必须先声明后使用
+        // var 
+        console.log(num);
+        var num = 10;
+        // let
+        console.log(sum);       // sum is not defined
+        let sum = 10;
+    
+    // let声明的变量具有暂时性死区特性
+        var n = 10;
+        if (true) {
+            console.log(n)  // n is not defined   当这个块级作用域已经有let绑定 将不会被外界访问
+            let n = 1;
+            console.log(n)  // 1
+        }
+    </script> 
+</body>
+
+</html>

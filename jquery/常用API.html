@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <ul class="nav">
+        <li>第一
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </li>
+        <li>第二
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </li>
+        <li>第三
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </li>
+    </ul>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('.nav').css('list-style','none');
+            $('.nav>li').css('float','left').css('border','1px solid #ccc').css('marginLeft','30px');
+            $('.nav>li').children('ul').css('display','none').css('padding','0px').css('listStyle','none')
+            $('.nav>li').mouseenter(function () {
+                $(this).children('ul').show();
+            })
+            $('.nav>li').mouseleave(function () {
+                $(this).children('ul').hide();
+            })
+        })
+    </script>
+</body>
+</html>

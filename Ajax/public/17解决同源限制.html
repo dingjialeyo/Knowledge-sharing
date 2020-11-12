@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">点击发送请求</button>
+    <!-- <script>
+        // 这个函数写在script标签的前面
+        // 在服务器端调用函数 反映到客户端  data就是传递过来的数据
+        // function fn(data) {
+        //     console.log(data) // {name: "djl", age: 19, sex: "男"}
+        // }   优化后不需要在这调用移动到了success中
+    </script> -->
+    <!-- 访问另一个服务器端的端口 -->
+    <!-- 静态的直接的发送请求 -->
+    <!-- <script src="http://localhost:3001/tongyuan"></script> -->
+
+    <!-- 动态的发送请求 -->
+    <script>
+        var btn = document.getElementById('btn');
+        btn.onclick = function () {
+            // 调用即可
+            jsonp({
+                // 请求地址
+                url : 'http://localhost:3001/tongyuan',
+                // 添加多个请求参数值
+                data : {
+                    name : 'djl',
+                    age : 19
+                },
+                // 成功时的返回函数
+                success : function (data) {  // 获取另一个服务器的数据
+                    console.log('ok')
+                    console.log(data)
+                }
+            })
+        }
+        // jsonp 函数封装
+        function jsonp (jsonpObj) {
+            // 创建script标签
+            var script = document.createElement('script');
+            // 将函数变成全局变量   且函数名必须为动态不相同的 不然会有覆盖
+            // jsonp01234516544...       replace('.','') 将点替换为无 就是将点去掉
+            var fnName = 'jsonp' + Math.random().toString().replace('.','') 
+            // 点后面不能跟变量 所以用[]
+            window[fnName] = jsonpObj.success;
+            // 设置src属性   通过请求参数将函数名传递到服务器端
+            // 将请求参数拼接为字符串
+            var params = '';
+            for (var k in jsonpObj.data){
+                params += '&' + k + '=' + jsonpObj.data[k];
+            };
+            console.log(params)
+            script.src = jsonpObj.url + '?callback=' + fnName + params;
+            // 将script追加到页面中
+            document.body.appendChild(script);
+            // 当script加载完后删掉该标签
+            script.onload = function () {
+                document.body.removeChild(script)
+            }
+        }
+    </script>
+</body>
+
+</html>

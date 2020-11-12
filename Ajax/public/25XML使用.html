@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">发送请求</button>
+    <div id="container">
+
+    </div>
+
+
+    <!-- 这个知识了解即可 -->
+    <script>
+        var btn = document.getElementById('btn');
+        var box = document.getElementById('container');
+
+        btn.onclick = function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open('get', '/xml');
+            xhr.send();
+            xhr.onload = function () {
+                // 当返回的数据是XML格式的时候  xhr.responseXML
+                // console.log(xhr.responseXML);
+                var xmlDocument = xhr.responseXML;
+                // xmlDocument 这个文档和html文档的DOM操作一样
+                // 获取title标签里面的内容
+                var title = xmlDocument.getElementsByTagName('title')[0].innerHTML;
+                console.log(title);  // 消息标题
+                var content = xmlDocument.getElementsByTagName('content')[0].innerHTML
+                console.log(content) // 消息内容
+
+                // 将xml数据渲染到页面
+                var h1 = document.createElement('h1');
+                box.appendChild(h1)
+                h1.innerHTML = title;
+            }
+        }
+    </script>
+</body>
+</html>

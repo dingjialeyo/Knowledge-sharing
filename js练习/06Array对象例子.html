@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <script>
+        //显示数组
+        // var arr = ["a","b","c","d"];
+        // var Ary = Array.from(arr);
+        // console.log(Ary);
+
+        //拼接数组
+        // var arr1 = [1,2,3,4];
+        // var arr2 = [5,6,7,8];
+        // var arr = arr1.concat(arr2);
+        // console.log(arr);
+
+        //测试数组元素是否通过函数判定   起到筛选作用
+        // var arr = [1,2,3,4,5,6]
+        // var abc = arr.every(function(a,){
+        //     //函数有三个参数，第一个参数是元素的值，第二个参数是索引的值，第三个参数是调用了谁就显示谁这里调用arr，显示所有数组
+        //     return a>2;   //仅调用了第一个参数a，说明所有元素值都要大与3，返回布尔值
+        // })
+        // console.log(abc)
+        // if(abc == 1){
+        //     console.log("不错")
+        // }
+        // else{
+        //     console.log("nonono")
+        // }
+
+        //一个数组元素通过测试判断，通过判断的元素被选出    可以代替循环遍历
+        // var arr = [1,2,3,4,5,6,7,8,9];
+        // var obj = arr.filter(function(ele,index,array){    //三个参数同上
+        //     return ele>3
+        // })
+        // console.log(obj);
+
+        //追加数组元素   加到最后     unshift 最加到一个元素
+        // var arr= [1,2,3,4];
+        // arr.push(5);
+        // console.log(arr);
+
+        //删除数组元素    删除最后一个         shift删除第一个
+        // var arr= [1,2,3,4];
+        // arr.pop();
+        // console.log(arr);
+
+        //数组遍历方法
+        // var arr = [1,2,3,4,5,6]
+        // arr = arr .forEach(function(ele,index){     //参数同上
+        //     console.log(ele+"------------------"+index)
+        // })
+
+        //找数组元素的索引    没有找到等于-1
+        // var arr = [1,2,3,4,5,6,7]
+        // arr = arr.indexOf(8);
+        // console.log(arr);
+
+        //join方法    改变间隔元素，最后一个除外
+        // var arr = ["a","b","c","d","e"]
+        // arr = arr.join("你好！")
+        // console.log(arr)
+
+        //数组的运算 -----开根号sqrt,开平方pow
+        // var arr = [1,4,9,25]
+        // arr = arr.map(Math.sqrt);
+        // console.log(arr)
+
+        //数组元素的反转
+        // var arr = [1,2,3,4,5,6,7,8,9]
+        // arr = arr.reverse();
+        // console.log(arr)
+
+        //数组元素的排序   不稳定添加一个固定的函数使其稳定。
+        // var arr = [5,666,110,54,100,2,0]
+        // arr = arr.sort(function(a,b){    ///a----arr[j],    b-----arr[j+1]
+        //     if(a>b){
+        //         return 1;
+        //     }
+        //     if(a==b){
+        //         return 0 ;
+        //     }
+        //     if(a<b){
+        //         return -1;
+        //     }
+        // })
+        // console.log(arr)
+
+        //通过索引截取数组元素    但不包含最后一个
+        // var arr = [1,2,3,4,5,6]
+        // arr = arr.slice(0,2);
+        // console.log(arr)
+        
+        //
+        </script>
+    </body>
+</html>

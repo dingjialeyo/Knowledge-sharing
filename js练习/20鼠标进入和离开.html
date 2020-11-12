@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #img{
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <!-- <ul>
+        <li>读好书巴萨版都是</li>
+        <li>读好书巴萨版都是</li>
+        <li>读好书巴萨版都是</li>
+        <li>读好书巴萨版都是</li>
+        <li>读好书巴萨版都是</li>
+        <li>读好书巴萨版都是</li>
+        <li>读好书巴萨版都是</li>
+        <li>读好书巴萨版都是</li>
+    </ul>
+    <script>
+    //鼠标进入和离开两个事件    进入事件onmouseover      离开事件onmouseout
+
+    function my$(id){
+        return document.getElementById(id)
+    }
+
+    var li = document.getElementsByTagName("li")
+    for(var i=0;i<li.length;i++){
+        //进入事件
+        li[i].onmouseover = function(){
+            this.style.backgroundColor = "red"
+        }
+        //离开事件
+        li[i].onmouseout = function(){
+            this.style.backgroundColor = ""   //空字符代表恢复到默认
+        }
+    }
+    </script> -->
+
+
+
+    <div id="div"><img src="../页游模拟/img/knight_two.png" alt=""></div>
+    <img src="../页游模拟/img/knight.png" alt="" id="img">
+
+    <script>
+    function my$(id){
+        return document.getElementById(id)
+    }
+    //鼠标进入事件
+    my$("div").onmouseover = function(){
+        // this.style.cursor = "pointer"
+        my$("img").style.display == "none" ? my$("img").style.display = "block" : my$("img").style.display = "none"
+    }
+    </script>
+</body>
+</html>

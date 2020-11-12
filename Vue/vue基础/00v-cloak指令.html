@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+        <div id="app" v-cloak>
+            {{msg}}
+        </div>
+
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data : {
+                msg : 'hello'
+            }
+        })
+        /*
+        1. v-cloak指令用法    解决闪动问题 没什么业务能力
+            1. 提供样式
+            [v-cloak]{
+                display: none;
+            }
+            2. 在指定的标签中插入v-cloak指令
+            背后原理: 先通过样式隐藏内容，然后在内存中进行值的替换
+        */
+    </script>
+</body>
+</html>

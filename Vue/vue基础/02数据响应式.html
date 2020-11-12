@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div v-once>{{msg}}</div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue ({
+            el : '#app',
+            data : {
+                msg : 'hello'
+            }
+        })
+
+        // v-once 只编译一次   编译后不再具有响应式功能   将修改不了值
+        // 应用场景 : 如果显示后的信息不需要修改可以使用v-once    可以提高性能
+        /* 响应式功能例如
+            vm.msg------> hello
+            vm.msg=123----->123     会有响应式编译
+        */
+    </script>
+</body>
+</html>

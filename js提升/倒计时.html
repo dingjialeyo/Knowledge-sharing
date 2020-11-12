@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+        }
+        div span {
+            float: left;
+            width: 50px;
+            height: 50px;
+            background-color: #000;
+            display: block;
+            margin-left: 10px;
+            line-height: 50px;
+            color: #fff;
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span class="hour">1</span>
+        <span class="minute">2</span>
+        <span class="second">3</span>
+    </div>
+
+
+    <script>
+// 分析: 首先要知道目标时间 和 当前时间    倒计时就是 目标时间 - 当前时间 但是我们不能用时分秒来运算 用毫秒数来做，目标毫秒数 - 当前毫秒数 = 倒计时毫秒数
+// 然后将毫秒数 转换为时分秒
+/* 公式：
+        var day = parseInt(总秒数/60/60/24);   计算天数
+        var hour = parseInt(总秒数/60/60%24);  计算小时
+        var minute = parseInt(总秒数/60%60);   计算分钟
+        var second = parseInt(总秒数%60);      计算秒数
+*/  
+    // 倒计时案例
+        // function countDown(time) {
+        //     var nowTime = +new Date(); // 当前毫秒数
+        //     var targetTime = +new Date(time); // 目标毫秒数 用户输入的目标倒计时
+        //     var lastTime = (targetTime - nowTime) / 1000; // 倒计时毫秒数 将毫秒转换为秒数
+        //     var day = parseInt(lastTime/60/60/24);
+        //     var hour = parseInt(lastTime/60/60%24);
+        //     var minute = parseInt(lastTime/60%60);
+        //     var second = parseInt(lastTime%60);
+        //     hour = hour < 10 ? '0' + hour : hour;
+        //     minute = minute < 10 ? '0' + minute : minute;
+        //     second = second < 10 ? '0' + second : second;
+        //     return '倒计时' + day + '天' + hour + '时' + minute + '分' + second + '秒';
+        // }
+        // setInterval(function(){
+        //     console.log(countDown('2020-3-10 15:45:30'))
+        // },1000);
+
+
+        // 切合实际 
+        var hours = document.querySelector('.hour');
+        var minutes = document.querySelector('.minute');
+        var seconds = document.querySelector('.second');
+        var targetTime = +new Date('2020-5-4 15:33:00'); // 目标毫秒数 用户输入的目标倒计时
+        // 用计时器调用   但是这个会等一秒后执行  所以先执行一次这个函数
+        countDown();
+        var timer = setInterval (countDown,1000);
+        function countDown() {
+            var nowTime = +new Date(); // 当前毫秒数
+            var lastTime = (targetTime - nowTime) / 1000; // 倒计时毫秒数 将毫秒转换为秒数
+            var hour = parseInt(lastTime/60/60%24);
+            var minute = parseInt(lastTime/60%60);
+            var second = parseInt(lastTime%60);
+            hour = hour < 10 ? '0' + hour : hour;
+            hours.innerHTML = hour;
+            minute = minute < 10 ? '0' + minute : minute;
+            minutes.innerHTML = minute;
+            second = second < 10 ? '0' + second : second;
+            seconds.innerHTML = second;
+            if (lastTime <= 0) {
+                clearInterval(timer);
+                alert('oooooo')
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="2000" height="1000"></canvas>
+
+
+    <script>
+        var canvas = document.querySelector('#canvas');
+        // if (canvas == null) {
+        //     return false;
+        // }
+        var context = canvas.getContext('2d');
+        context.fillStyle = '#fff'; // 颜色
+        context.fillRect(0, 20, 2000, 1000); // 绘制坐标大小
+        // context.fillStyle = 'pink';
+        // context.strokeStyle = 'purple'; // 边框颜色
+        // context.lineWidth = 1; // 边框大小
+        // context.fillRect(50, 50, 100, 100); // pink 颜色对应的位置
+        // context.strokeRect(50, 50, 100, 100) // 边框位置
+
+
+        // // 先开路 后闭路
+        // context.fillStyle = "red"; //圆的颜色
+        // context.beginPath(); // 开
+        // context.arc(180, 58, 20, 0,20, false);
+        // context.closePath(); // 闭
+        // context.fill();
+        for (var i = 0; i < 10; i++) {
+            context.translate(50,5);
+            context.scale(0.95,0.95);
+            context.rotate(Math.PI / 10);
+            context.fillRect(0,0,50,50);
+            context.fillStyle = 'pink';
+        }
+    </script>
+</body>
+
+</html>

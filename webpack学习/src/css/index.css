@@ -1,0 +1,13 @@
+li {
+    list-style: none;
+}
+::placeholder {
+    color: red;
+}
+#box {
+    width: 100px;
+    height: 100px;
+    background-color: pink;
+    background: url(../images/2.jpg) no-repeat;
+    background-size: 100% 100%;
+}

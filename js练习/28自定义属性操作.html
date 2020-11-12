@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    ul{
+        list-style: none;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <ul id="ul">
+        <li score="80">丁嘉乐</li>
+        <li score="70">张文亮</li>
+        <li score="60">李冠安</li>
+        <li score="50">徐澳</li>
+        <li score="40">徐明义</li>
+    </ul>
+
+    <script>
+        function my$(id){
+            return document.getElementById(id)
+        }
+        var li = my$("ul").children;
+        //获取自定义属性
+        for(var i=0;i<li.length;i++){
+            li[i].onclick = function (){
+                //获取自定义的属性score
+                var x = this.getAttribute("score")
+                console.log(x)
+            }
+        }
+
+        //设置自定义属性
+        for(var i=0;i<li.length;i++){
+            li[i].setAttribute("age",i*10)   //设置自定义属性有两个参数一个是属性名字，一个属性值
+            li[i].onclick = function(){
+                alert(this.getAttribute("age"))
+            }
+        }
+        //移除自定义/类样式属性
+        // my$("xxx").removeAttribute("xxxx")
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="button" value="修改" id="btn">
+    <input type="radio" name="sex" id="man" value="1">男
+    <input type="radio" name="sex" id="" value="2">女
+    <input type="radio" name="sex" id="" value="3">人妖
+
+    <script>
+    function my$(id) {
+        return document.getElementById(id)
+    }
+    
+    //规律：在表单标签中，如果属性和值比如：checked = "checked"，那么在写js时，DOM操作时，用true类型就可以了。
+    my$('btn').onclick = function () {
+        my$('man').checked = true;
+    }
+
+
+
+    //多选同上 一样的方法
+
+    </script>
+    <!-- readonly只读属性，，disabled禁用属性 -->
+    <textarea name="" id="" cols="30" rows="10" readonly disabled>
+        撒都不记得巴松爱上男单
+    </textarea>
+</body>
+</html>

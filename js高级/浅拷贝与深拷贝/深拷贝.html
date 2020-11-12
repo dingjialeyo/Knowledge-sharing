@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+        // 浅拷贝只是拷贝一层，更深层次对象级别的只会拷贝其引用(地址)
+        // 深拷贝拷贝多层， 每一级别的数据都会拷贝
+        var obj = {
+            id: 1,
+            name: 'djl',
+            msg: {     // 这是更深层次的级别对象  既然是个对象会重新开辟空间  如果使用深拷贝将会重新复制一份开辟新的空间， o 和 obj 的msg对象互不干扰
+                age : 19,
+                sex : '男'
+            }
+        };
+        // 把obj对象拷贝给o对象
+        o = {
+
+        };
+    // 1.用函数递归完成深拷贝
+        // 先封装函数
+        function deepCopy (target,current) {
+            for(var k in current) {
+                // 要判断属性值是哪种数据类型
+                var item = current[k];
+                // 1. 是否为数组
+                if (item instanceof Array) {   // 判断属性值是否为数组类型
+                    target[k] = [];      // 说明这个属性名为数组类型才行
+                    deepCopy(target[k],item);
+                }
+                // 2. 是否为对象
+                else if (item instanceof Object) {  // 判断属性值是否为对象类型
+                    target[k] = {};
+                    deepCopy(target[k],item);
+                }
+                // 3. 否则为简单数据类型
+                else {
+                    target[k] = item;
+                }
+            }
+        };
+        deepCopy(o,obj);
+        console.log(o) // 这时你修改msg的属性值 也不会改变 obj的msg
+    </script>
+</body>
+</html>

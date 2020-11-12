@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            display: flex;
+            width: 60%;
+            height: 150px;
+            background-color: pink;
+            margin: 0 auto;
+            
+        }
+        div span:nth-child(1) {
+            background-color: red;
+            width: 100px;
+            height: 150px;
+        }
+        div span:nth-child(2) {
+            background-color: yellow;
+            flex: 1;      /*左右两侧已经固定了中间部分自定义    flex: 1;独占了这部分*/
+        }
+        div span:nth-child(3) {
+            background-color: blue;
+            width: 100px;
+            height: 150px;
+        }
+
+
+        /* 如果你想直接分三等分 */
+        header {
+            display: flex;
+            width: 60%;
+            height: 150px;
+            background-color: pink;
+            margin: 100px auto;
+        }
+        header p {
+            flex: 1;
+            background-color: purple;
+            margin-left: 5px;
+        }
+        /*如果你想某一个子元素多占点空间*/
+        header p:nth-child(2) {
+            flex: 2;
+            order: -1;   /*数值越小排列顺序越靠前*/
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+    </div>
+    <header>
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+    </header>
+</body>
+</html>

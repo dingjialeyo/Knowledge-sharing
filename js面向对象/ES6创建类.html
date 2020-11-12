@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+
+    <script>
+        // 1.创建一个类 class   star类             ES6 新增
+        class Star{
+            // 构造函数
+            constructor (uname,age,sex,x,y) {
+                this.name = uname;
+                this.age = age;
+                this.sex = sex;
+                this.x = x;
+                this.y = y;
+            }
+            skill (skill) {
+                console.log(this.name+'会唱歌'+this.age+'岁'+'我还会'+skill)
+            }
+            sum () {
+                console.log(this.x+this.y)
+            }
+        }
+
+        // 类的继承
+        class Perple extends Star{
+
+        }
+
+
+        // 2. 利用类创建对象 new   实例化
+        var ldh = new Star('刘德华',18,'男');
+        var zxy = new Star('张学友',25,'男');
+        console.log(ldh.name)
+        console.log(zxy.age)
+        zxy.skill('迪斯科');
+
+        var djl = new Perple('丁嘉乐',19,'男',20,30);
+        djl.skill('打联盟');
+        djl.sum();
+    </script>
+</body>
+</html>

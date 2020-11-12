@@ -1,0 +1,10 @@
+<!-- 添加骨架    继承骨架 extend -->
+{{ extend './common/5.layout.art' }}
+<!-- 填充 -->
+{{block 'content'}}
+    <p>{{ msg }}</p>
+{{/block}}
+
+{{block 'link'}}
+    <link rel="stylesheet" href="1.css" type="text/css">
+{{/block}}

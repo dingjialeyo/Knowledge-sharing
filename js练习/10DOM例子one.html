@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+    <!-- <input type="button" id="btn" value="弹框">
+        <img src="" alt="" id="img">
+
+
+        <p id="p">你好</p>
+
+        <script>
+            var x = document.getElementById('btn');
+            x.onclick = function(){
+                document.getElementById('img').src = 'https://i0.hdslb.com/bfs/sycp/creative_img/202002/f7cf6a0502404df88324198bd29add31.jpg'
+                document.getElementById('img').style.width = '800px'
+                document.getElementById('img').style.height = '200px'
+            }
+
+
+            var p = document.getElementById('p');
+            x.onclick = function(){
+                p.innerHTML = '我不好!'
+            }
+        </script> -->
+
+
+    <!-- <input type="button" value="弹框" id="btn">
+        <a href="" id="a">点我</a>
+
+
+        <script>
+        var x = document.getElementById('btn');
+        var y = document.getElementById('a');
+        x.onclick = function () {
+            y.href = 'http://www.baidu.com'
+            y.innerHTML = 'baidu'
+        }
+        </script> -->
+
+
+
+    <input type="button" value="弹框" id="btn">
+    <p>nihaoa</p>
+    <p>nihaoa</p>
+    <p>nihaoa</p>
+    <p>nihaoa</p>
+    <p>nihaoa</p>
+    <p>nihaoa</p>
+
+    <script>
+        var x = document.getElementById('btn');
+        var p = document.getElementsByTagName("p")   //涉及到数组毕竟有多个p标签
+        x.onclick = function () {
+            for(var i=0;i<p.length;i++){
+                p[i].innerHTML = 'llllllllasdlasldaslda'
+            }
+        }
+    </script>
+</body>
+
+</html>

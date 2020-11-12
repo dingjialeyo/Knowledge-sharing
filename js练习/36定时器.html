@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            height: 200px;
+            width: 200px;
+        }
+        /* div{
+            position: absolute;
+            top: 200px;
+        } */
+
+        div{
+            height: 600px;
+            width: 600px;
+            border: 2px solid #ccc;
+            background-color: #000;
+            position: relative;
+        }
+        span{
+            font-size: 30px;
+            color: yellow;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <!-- <input type="button" value="摇" id="btn">
+    <input type="button" value="停止" id="stop">
+    <div id="dv">
+        <img src="./轮播图img/毛细3.png" alt="">
+        <img src="./轮播图img/毛细4.png" alt="">
+    </div> -->
+
+
+
+    <input type="button" value="摇" id="btn">
+    <div id="dv"></div>
+
+
+    <script>
+        /*
+        BOM中有两个计时器
+        定时器:setInterval(fn,time);   两个参数一个函数，一个时间---毫秒
+        清理定时器:clearInterval()     一个数字类型的参数是要清理的定时器的id的值       id的值就是定时器的返回值
+        例子:
+        var timer = setInterval(fn,time);
+        clearInterval(timer);
+
+
+        另一个定时器        一次性的定时器
+        setTimeout(函数,时间)          就算是一次性的，也要清理掉
+        */
+        
+        function my$(id){
+            return document.getElementById(id)
+        }
+        //点击摇起来
+        // my$("btn").onclick = function(){
+
+        //     timer = setInterval(function(){
+        //         //随机数100个  
+        //     var x = parseInt(Math.random()*100+1);
+        //     var y = parseInt(Math.random()*100+1);
+        //     my$("dv").style.marginLeft = x+"px";
+        //     my$("dv").style.marginTop = y+"px"
+        //     },10)
+        // }
+
+        // // 清理
+        // var timer = "";
+        // my$("stop").onclick = function(){
+        //     clearInterval(timer)
+        // }
+
+
+        // 星星跳动
+            my$("btn").onclick = function () {
+                function f1() {
+                    my$("dv").innerHTML = "<span>★</span>"
+                    var x = parseInt(Math.random()*600+1);
+                    var y = parseInt(Math.random()*600+1);
+                    my$("dv").firstElementChild.style.left = y+"px"
+                    my$("dv").firstElementChild.style.top = x+"px"         
+                }
+                setInterval(f1,1)
+            }
+    </script>   
+</body>
+</html>

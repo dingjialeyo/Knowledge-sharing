@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="msg">
+        <div>
+            <!-- 过滤器语法 -->
+            {{msg | firstBig}}
+        </div>
+        <div>
+            <!-- 多重过滤 将第一次过滤的结果作为第二次过滤的数据 -->
+            {{msg | firstBig | lower}}
+        </div>
+        <!-- 属性也可以过滤 -->
+        <div :hi="msg | firstBig">属性值过滤</div>
+        <!-- 时间格式化 -->
+        <div>{{date | haodate('yyyy-mm-dd')}}</div>
+    </div>
+
+
+    <script src="./vue.js"></script>
+    <script>
+        // 过滤器   第一个参数为过滤器名称  第二个参数为一个函数 函数中的参数为你要过滤的数据
+        // Vue.filter('firstBig', function (val) {
+        //     // val.charAt(0).toUpperCase()   输入的值的第一个字母大写    val.slice(1) 从第二个字母开始截取
+        //     return val.charAt(0).toUpperCase() + val.slice(1);
+        // });
+        Vue.filter('lower', function (val) {
+            return val.charAt(0).toLowerCase() + val.slice(1);
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '',
+                date : new Date()
+            },
+            // 局部过滤器
+            filters : {
+                firstBig: function (val) {
+                    // val.charAt(0).toUpperCase()   输入的值的第一个字母大写    val.slice(1) 从第二个字母开始截取
+                    return val.charAt(0).toUpperCase() + val.slice(1);
+                },
+                // 过滤器携带参数   就是过滤器的名称携带的这个参数arg
+                // 一个简陋的时间格式化
+                haodate : function (val,arg) {
+                    if (arg == 'yyyy-mm-dd') {
+                        var newDate = '';
+                        // val.getFullMonth() 是0到11 所以加1
+                        newDate += val.getFullYear() + '-' + (val.getMonth()+1) + '-' + val.getDate();
+                    }
+                    return newDate;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 会将这里的内容传入给插槽   如果在子组件中没有设置插槽 父组件填写的内容将无效-->
+        <test>
+            <h1 slot="header">我是header具名插槽</h1>
+            <h1 slot="header">我是header具名插槽</h1>
+            <p>我是普通插槽</p>
+            <p>我是普通插槽</p>
+            <p slot="footer">我是footer具名插槽</p>
+            <p slot="footer">我是footer具名插槽</p>
+            <!-- 这是一个临时的标签可以放多个具名插槽 -->
+            <template slot="last">
+                <h2>我是最后</h2>
+                <p>template是临时的</p>
+            </template>
+        </test>
+    </div>
+
+    <script src="./vue.js"></script>
+
+    <script>
+
+        Vue.component('test',{
+            template : `
+                <div>
+                    <slot name="header"></slot>
+                    <slot>父组件没有内容就用我这个默认</slot>
+                    <slot name="footer"></slot>
+                    <slot name="last"></slot>
+                </div>
+            `
+        })
+
+        var vm = new Vue({
+            el : '#app',
+            data : {
+                
+            },
+            
+        })
+    </script>
+</body>
+</html>

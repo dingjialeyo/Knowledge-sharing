@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" placeholder="请输入..." onfocus="on_focue()" id="set" onblur="on_blur()" />
+</body>
+
+<script>
+    //鼠标焦点事件     得到焦点---onfocus     
+    var text = document.getElementById("set")
+    function on_focue(){
+        if(text.placeholder == "请输入..."){
+            text.placeholder = ""
+        }
+    }
+    //失去焦点---onblur
+    function on_blur(){
+        text.placeholder = "请输入..."
+    }
+</script>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+        // 闭包应用  计算打车费用
+        // 打车起步价start为12元(3公里内)， 之后每多一公里 收5元 总价格为total
+        // 如果拥堵的话，需要在总价格基础上加 10 元
+        var car = (function () {
+            var start = 13;
+            var total = 0;
+            return {        // 返回函数   所以可以用变量接收
+            // 不拥堵的情况
+                noyd: function (n) {        // n为几公里
+                    if(n <= 3) {
+                        total = start;
+                    }
+                    else {
+                        total = start + (n - 3) * 5;
+                    }
+                    return total;
+                },
+            // 拥堵的情况
+                yd: function (flag) {
+                    return flag ? total + 10 : total;
+                }
+            }
+        })();
+        // 正常
+        console.log(car.noyd(5))       // 23
+        // 拥堵
+        console.log(car.yd(true))       // 33
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        // get
+        // 普通 传递参数
+        // axios.get('http:localhost:3000/axios?id=djl').then((result) => {
+        //     console.log(result.data)  // 后面的data才是要的数据是固定写法
+        // })
+        // Restful风格传递参数
+        axios.get('http:localhost:3000/axios2/zwl').then((result) => {
+            console.log(result.data)  // 后面的data才是要的数据是固定写法
+        })
+
+        // axios专门提供的params提供的传递参数
+        axios.get('http:localhost:3000/axios3',{
+            params : {
+                id : 2
+            }
+        }).then((result) => {
+            console.log(result.data)  // 后面的data才是要的数据是固定写法
+        })
+
+        // delete
+        axios.delete('http:localhost:3000/axios4',{
+            params : {
+                id : 555
+            }
+        }).then((result) => {
+            console.log(result.data)  // 后面的data才是要的数据是固定写法
+        })
+    </script>
+</body>
+</html>

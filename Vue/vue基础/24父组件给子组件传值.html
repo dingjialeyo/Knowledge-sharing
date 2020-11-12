@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <div>{{pmsg}}</div>
+        <menu-items :menu-title="title" > 
+
+        </menu-items>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+
+        // 父组件给子组件传值
+
+        Vue.component('menu-items',{
+            props : ['menuTitle'],  // 接收父组件的属性
+            template : '<div>{{menuTitle}}<third-com sonTitle="sonTitle">{{}}</third-com></div>'
+        });
+
+        Vue.component('third-com', {
+            props : ['sonTitle'],
+            template : `<div>{{sonTitle}}</div>`
+        })
+        var vm = new Vue({
+            el : '#app',
+            data : {
+                pmsg : '父组件的属性内容',
+                title : '这个父组件的title'
+            },
+            
+        })
+    </script>
+</body>
+
+</html>

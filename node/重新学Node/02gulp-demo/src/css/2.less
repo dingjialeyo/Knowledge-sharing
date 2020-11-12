@@ -1,0 +1,63 @@
+//将common.less导入进来
+// @import "common";
+body {
+    min-width: 320px;
+    width: 15rem;
+    margin: 0 auto;
+    line-height: 1.5;
+    font-family: Arial,Helvetica;
+    background: #f2f2f2;
+}
+@htmlFont: 50;
+.search-content {
+    width: 15rem;
+    // height: 88px;  但是要用rem技术
+    height: 88rem / @htmlFont;
+    background-color: #ffc001;
+    top: 0;
+    left: 0;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    .classifly {
+        width: 44rem / @htmlFont;   //需要的宽度 / html的字体大小
+        height: 72rem / @htmlFont;
+        margin: 11rem / @htmlFont 25rem / @htmlFont 7rem / @htmlFont 24rem / @htmlFont;
+        background: url(https://image3.suning.cn/uimg/cms/img/157199320847433454.png) no-repeat;
+        background-size: 44rem / @htmlFont 72rem / @htmlFont;    //背景也会随着屏幕变化
+    }
+    .search {
+        flex: 1;
+        input {
+            outline: none;
+            width: 100%;
+            height: 66rem / @htmlFont;
+            border-radius: 33rem / @htmlFont;
+            border: 0;
+            background-color: #fff2cc;
+            margin-top: 12rem / @htmlFont;
+            font-size: 25rem / @htmlFont;
+            color: #757575;
+        }
+    }
+    .login {
+        width: 40rem / @htmlFont;
+        height: 60rem / @htmlFont;
+        margin: 10rem / @htmlFont;
+        background: url(https://image3.suning.cn/uimg/cms/img/157199321817918653.png) no-repeat;
+        background-size: 40rem / @htmlFont 60rem / @htmlFont;
+    }
+}
+.banner {
+    // margin-top: 88rem / @htmlFont;
+    width: 750rem / @htmlFont;
+    height: 300rem / @htmlFont;
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+.ad {
+    display: flex;
+}

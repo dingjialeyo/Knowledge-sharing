@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // Promise常用的对象方法
+        // 基于原生js的Ajax请求方法
+        // 1. all方法是指整个异步执行完后返回结果 ---结果将三个Promise对象的值放进了一个数组
+        // 2. race方法是指异步执行过程中有一个完成 就 返回结果 ---结果返回最先返回的结果
+
+
+        function fn1() {
+            return new Promise(resolve => {
+                setTimeout(_ => {
+                    resolve(10);
+                }, 2000);
+            });
+        }
+
+        function fn2() {
+            return Promise.resolve(20);
+        }
+
+        function fn3() {
+            return new Promise(resolve => {
+                setTimeout(_ => {
+                    resolve(30);
+                }, 500);
+            });
+        }
+
+        Promise.all([fn1(), fn2(), fn3()]).then(results => {
+
+            console.log(results); //=>[10, 20, 30]
+        });
+
+        Promise.race([fn1(), fn2(), fn3()]).then(results => {
+
+            console.log(results); // 20
+        });
+    </script>
+</body>
+
+</html>

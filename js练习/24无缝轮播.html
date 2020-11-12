@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body,
+        ul,
+        li,
+        img{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img{
+            vertical-align: top;
+        }
+        .box {
+            width: 520px;
+            height: 350px;
+            /* padding: 5px; */
+            border: 1px solid #ccc;
+            margin: 100px auto 0;
+            overflow: hidden;
+        }
+        .imgs li img {
+            width: 520px;
+            height: 350px;
+        }
+        .box ul {
+            width: 2700px;
+        }
+        .box li {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="box">
+        <ul class="imgs">
+            <li><img src="./轮播图img/毛细3.png" alt=""></li>
+            <li><img src="./轮播图img/毛细4.png" alt=""></li>
+            <li><img src="./轮播图img/毛细5.png" alt=""></li>
+            <li><img src="./轮播图img/毛细6.png" alt=""></li>
+            <li><img src="./轮播图img/毛细3.png" alt=""></li>
+        </ul>
+    </div>
+
+
+    <script>
+        function my$(id){
+            return document.getElementById(id)
+        }
+
+
+        var step = 0;
+        var timer = setInterval(f1,30);
+        function f1() {  
+            step-=5;
+            var ulObj = my$("box").children[0]
+            if(step<-2100){
+                ulObj.style.marginLeft = 0+"px"
+                step = 0;
+            }
+            else{
+                ulObj.style.marginLeft = step+"px";
+            }
+        }
+
+        //鼠标进入停止
+        my$("box").onmouseover = function () {
+            clearInterval(timer)
+        }
+        my$("box").onmouseout = function () {
+            timer = setInterval(f1,30)
+        }
+    </script>
+</body>
+</html>

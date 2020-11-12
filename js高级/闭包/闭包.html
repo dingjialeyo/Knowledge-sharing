@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        // 闭包(closure)   有权访问另一个函数作用域中变量的函数    闭包是一个函数       作用: 延伸了变量作用域的范围
+
+        // function f1() {     // f2这个函数 访问了 f1这个函数作用域中的变量 即产生了 闭包      被访问的这个作用域变量所在的函数即是闭包函数--f1
+        //     var num = 10;
+
+        //     function f2() {
+        //         console.log(num)
+        //     }
+        //     f2();
+        // } 
+        // f1();
+        
+        // 实现函数外部作用域 访问 内部作用域的变量
+        function f3 () {
+            var num = 'aaaaa';
+            // function f4 () {
+            //     console.log(num)
+            // }
+            // return f4;
+            return function f4() {
+                return num          // 这样不仅仅是数字了 可以是其他变量
+            }
+        }
+        var num = f3();
+        // console.log(num) // 这里的num是f4这个函数  所以我们调用即可拿到这个 内部作用域的变量
+        console.log(num());      // aaaaa
+    </script>
+</body>
+
+</html>

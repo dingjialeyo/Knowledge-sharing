@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+
+    <script>
+        // 变量预解析
+        console.log(num);    //undefined   坑1
+        var num = 100;
+        // 这段js代码的预解析过程
+        var num;
+        console.log(num);
+        num = 100;   // 所以为undefined
+
+
+
+        // 函数预解析
+        fn();    // 坑2
+        var fn = function () {
+            console.log("hello");
+        }
+        // 这段js代码的预解析过程
+        var fn;
+        fn();    //所以固然报错
+        var fn = function () {
+            console.log("hello");
+        }
+
+
+
+
+
+        // 我们js引擎执行js 分为两个步骤 ：1.预解析   2.代码执行
+        // (1) 预解析-----》js引擎会把所有var声明 还有 function声明 提升到当前作用域的最前面
+        // (2) 代码执行--------》 从上至下执行代码
+        // 预解析 又分为   1.变量预解析  2.函数预解析
+
+
+
+
+        // 案例 1
+        var num = 100;
+        fn();
+        function fn() {
+            console.log(num);
+            var num = 200;
+        }
+
+        // 相对于执行以下操作   第一 声明 提升到作用域的最前面
+        var num;
+        function fn() {
+            var num;
+            console.log(num); // undefined
+            num = 200;
+        }
+        num = 10;
+        fn();
+
+        // 案例 2
+        var sum = 100;
+        function fnc() {
+            console.log(sum);
+            var sum = 200;
+            console.log(sum);
+        }
+        fnc();
+        // 相对于执行以下操作
+        var sum;
+        function fnc() {
+            var sum;
+            console.log(sum);  // undefined
+            sum = 200;
+            console.log(sum);  // 200
+        }
+        sum = 100;
+        fnc();
+
+
+        // 案例3
+        f1();
+        console.log(c);
+        console.log(b);
+        console.log(a);
+        function f1() {
+            var a = b = c = 9;  // 相对于 var a = 9; b = 9; c = 9;   集体声明应该是 ： var a = 9, b =9, c = 9;
+            console.log(a);
+            console.log(b);
+            console.log(c);
+        }
+
+        //预解析过程
+        function f1() {
+            var a;
+            a = b = c = 9;
+            console.log(a); // 9
+            console.log(b); // 9
+            console.log(c); // 9
+        }
+        f1();
+        console.log(c); // 9
+        console.log(b); // 9
+        console.log(a); // defined 因为bc都是特殊的全局声明 ， 而a是局部声明
+
+
+    </script>
+</body>
+</html>

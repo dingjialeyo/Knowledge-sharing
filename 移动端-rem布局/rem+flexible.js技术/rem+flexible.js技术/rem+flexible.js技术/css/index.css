@@ -1,0 +1,53 @@
+body {
+    min-width: 320px;
+    max-width: 750px !important;
+    /* flexibke.js给我们固定划分10等份 */
+    width: 10rem;
+    margin: 0 auto;
+    line-height: 1.5;
+    font-family: Arial, Helvetica;
+    background: #f2f2f2;
+}
+
+/* 如果我们屏幕超过了 750px 那么我们就按750px 不会让页面超过750px*/
+@media screen and (min-width:750px) {
+    html {
+        font-size: 75px !important;
+    }
+}
+
+/* 这个插件默认的html文字大小为 16px  如何修改   在设置里面搜索cssroot修改*/
+.search-content {
+    width: 10rem;
+    height: 1.173333rem;
+    background-color: #fe3173;
+    position: fixed;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    display: flex;
+}
+
+.classifly {
+    width: .533333rem;
+    height: .8rem;
+    margin: .133333rem .773333rem .133333rem .426667rem;
+    background: url(https://image2.suning.cn/uimg/cms/img/157199320847433454.png) no-repeat;
+    background-size: .533333rem .8rem;
+}
+
+.search {
+    flex: 1;
+    margin-top: .24rem;
+    margin-right: .666667rem;
+    background: url(https://image2.suning.cn/uimg/cms/img/158314263446345667.gif) no-repeat;
+    background-size: 6rem .733333rem;
+}
+
+.login {
+    width: .533333rem;
+    height: .8rem;
+    margin: .133333rem .426667rem 0 .773333rem;
+    background: url(https://image2.suning.cn/uimg/cms/img/157199321817918653.png) no-repeat;
+    background-size: .533333rem .8rem;
+}

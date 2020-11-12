@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            margin: 0 auto;
+            height: 400px;
+            width: 500px;
+            background-color: pink;
+            margin-top: 200px;
+            position: relative;
+        }
+        .box_bd{
+            position: absolute;
+            height: 400px;
+            width: 500px;
+            background: rgba(0, 0, 0, .4) url(../页游模拟/img/gold.png) no-repeat center center;
+            display: none;
+        }
+        .box:hover .box_bd{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <a href="#">
+            <div class="box_bd"></div>
+        </a>
+    </div>
+</body>
+</html>

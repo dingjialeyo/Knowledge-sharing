@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 500px;
+            height: 500px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box">
+
+    </div>
+    <input type="button" value="隐藏" id="btn">
+
+
+    <script>
+        function my$(id) {
+            return document.getElementById(id)
+        }
+        //visibility 可见性     两个常用默认值  hidden隐藏  和  visible可见
+        my$("btn").onclick = function () {
+            if(my$("box").style.visibility == "visible"){
+                my$("box").style.visibility = "hidden"
+                this.value = "显示"
+            }
+            else{
+                my$("box").style.visibility = "visible";
+                this.value = "隐藏"
+            }
+        }
+    </script>
+</body>
+
+</html>

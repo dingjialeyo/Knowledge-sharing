@@ -1,0 +1,23 @@
+// 服务器验证控件
+RequiredFieldValidator控件----》必填验证控件
+CompareValidator控件----》比较两个输入控件	比较输入控件包含的值与指定常量   用于密码和密码确认
+Rangevalidator----》范围验证器
+RegularExpressionValidator----》正则表达式验证控件
+ValidationSummary----》汇总错误信息以对话框形式展现
+
+
+
+// HTTP请求，响应及状态管理      
+Request 请求     得到用户提交的数据
+	方法:QueryString属性    处理URL后面的参数         常用于页面跳转的参数传递
+		1. Request.QueryString["uname"]       获取form表单中的uname值
+		2. Request.QueryString["password"]       获取form表单中的password值
+
+Response属性     用HTMl的格式发送到客户端浏览器
+	方法：1.Redirect         将客户端浏览器重定向到另一个URL上     及跳转页面
+	          2.Write	   把变量值发送到当前页面       输出所有的对象和数据   可嵌入HTML格式
+	          3.End                传递结束时处理的方法
+
+Request 请求 和 Response属性 区别: Request---->得到用户提交的数据       Response------>将服务器数据发送到客户端浏览器
+
+Session存储           在应用程序页面切换时Session对象的变量不会被清除     每个用户都有一个Session对象     具有唯一性

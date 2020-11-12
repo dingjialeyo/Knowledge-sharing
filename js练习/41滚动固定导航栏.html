@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box {
+            height: 180px;
+            background-color: pink;
+            width: 100%;
+        }
+        #box2 {
+            background-color: #000;
+            width: 100%;
+            height: 80px;
+        }
+        #box3 {
+            background-color: #fff;
+            height: 1800px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+    </div>
+    <div id="box2">
+    </div>
+    <div id="box3">
+        
+    </div>
+
+
+
+    <script>
+        function my$(id) {
+            return document.getElementById(id)
+        }
+
+
+        //获取浏览器向上卷曲出去的距离值
+
+        //封装一个可以获取浏览器向上或向左卷曲出去的距离
+        // function getScroll(){
+        //     var Obj = {};
+        //     //为了兼容各个浏览器
+        //     Obj.top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0 ;
+        //     Obj.left = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0 ;
+        //     return Obj;
+        // }
+        //最简化的样式获取封装
+        function getScroll(){
+            return {
+                left : window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+                top : window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+            };
+        }
+        //测试
+        window.onscroll = function() {
+            if(getScroll().top>=my$("box").offsetHeight){
+                my$("box2").style.position = "fixed";
+                my$("box2").style.top = 0;
+                // my$("box2").style.left = 0;
+                my$("box3").style.marginTop = my$("box2").offsetHeight+"px";
+            }
+            else{
+                my$("box2").style.position = "";
+            }
+        }
+    </script>
+</body>
+</html>

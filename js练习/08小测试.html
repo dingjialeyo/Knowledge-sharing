@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <script>
+        //1.间隔"|"
+        // var str = ["刘备","关羽","张飞","诸葛亮","司马懿"];
+        // var strr = str.join("|");
+        // console.log(strr)
+
+        //2.反转
+        // var str = ["a","b","c","d"];
+        // str = str.reverse();
+        // console.log(str)
+
+        //3.数组中将超过1000以上的删除
+        // var str = [500,1200,100,2600,20,600,1000,999];
+        // var strr = str.filter(function(ele){
+        //     return ele<1000;
+        // })
+        // console.log(strr)
+
+        //4.数组中找出a字符的索引
+        // var str = ["a","c","e"];
+        // str = str.indexOf("a");
+        // console.log(str)
+
+        //5.编写一个方法去掉一个数组的重复元素
+        var str = ["a","a","p","l","e"];
+        var Str = [];
+        for(var i=0;i<str.length;i++){
+            if(Str.indexOf(str[i])){
+                Str.push(str[i]);
+            }
+        }
+        console.log(Str)
+
+        //6.数组的冒泡
+        // var arr = [6,88,11,2,4,56,92,424,20,101];
+        // for(var i=0;i<arr.length-1;i++){
+        //     for(var j=0;j<arr.length-1-i;j++){
+        //         if(arr[j]>arr[j+1]){
+        //             var t = arr[j];
+        //             arr[j] = arr[j+1];
+        //             arr[j+1] = t;
+        //         }
+        //     }
+        // }
+        // console.log(arr)
+
+        //用对象调用上面这个方法实现排序功能，和数组sort方法一样    封装一个冒泡方法
+        function MyArray() {
+            this.Mysort = function (arr) {
+                for (var i = 0; i < arr.length - 1; i++) {
+                    for (var j = 0; j < arr.length - 1 - i; j++) {
+                        if (arr[j] > arr[j + 1]) {
+                            var t = arr[j];
+                            arr[j] = arr[j + 1];
+                            arr[j + 1] = t;
+                        }
+                    }
+                }
+            }
+        };
+        var Myarr = new MyArray();
+        arr = [6,88,11,2,4,56,92,424,20,101]
+        Myarr.Mysort(arr);
+        console.log(arr);
+    </script>
+</body>
+
+</html>

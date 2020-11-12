@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 300px;
+            background-color: pink;
+            /* transition: 要过渡的属性  花费的时间  运动曲线  何时开始 */
+            /* 过渡属性写在过渡元素本身上 */
+            /* 如果一个元素想要多个过渡用逗号隔开 */
+            transition: width 2s ease-in-out 1s,height 2s;
+            /* 如果超过两个以上你可以简写 */
+            /* transition: all 2s; */
+        }
+        div:hover {
+            width: 500px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        // 输入ID号返回对应数据
+        var data = [{
+                id: 1,
+                name: '家电',
+                goods: [{
+                        id: 11,
+                        gname: '洗衣机',
+                    },
+                    {
+                        id: 12,
+                        gname: '热水器'
+                    }
+                ]
+            },
+            {
+                id: 2,
+                name: '小米',
+                goods: [{
+                    id: 13,
+                    gname: '小米手机'
+                }]
+            },
+            {
+                id: 3,
+                name: '电脑',
+                goods: [{
+                    id: 14,
+                    gname: '外星人'
+                }]
+            },
+        ];
+
+        // 利用foreach 遍历 数组
+        function getID(data, id) {
+            var o = {};
+            data.forEach(function (value) {
+                // console.log(value)
+                if (value.id == id) {
+                    // console.log(value) // 只能得到外层循环数据 
+                    o = value;
+                    console.log(o);
+                    return value;
+                }
+                // 我们想要得到里层的数据     利用递归函数
+                else if(value.goods && value.goods.length > 0) {
+                    o = getID(value.goods,id);
+                    // console.log(o)
+                }
+            });
+            return o;
+        }
+        // console.log(getID(data, 1))
+        getID(data, 1);
+    </script>
+</body>
+
+</html>

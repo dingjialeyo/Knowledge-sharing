@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a {
+            text-decoration: none;
+            text-align: center;
+        }
+        .left ul {
+            width: 100px;
+            padding: 0;
+            float: left;
+            /* margin: 0; */
+        }
+        .left ul li {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            width: 210px;
+            float: left;
+            height: 210px;
+            overflow: hidden;
+            position: relative;
+            top: 16px;
+        }
+        .box div {
+            display: none;
+        }
+        .box img {
+            width: 100%;
+            height: 100%;
+        }
+        .anmbox {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            position: absolute;
+            top: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <button>5</button>
+    <button>6</button>
+    <button>7</button>
+    <button>8</button>
+
+
+    <!-- 案例tab栏切换 -->
+    <div class="left">
+        <ul>
+            <li><a href="#">衣服一号</a></li>
+            <li><a href="#">衣服二号</a></li>
+            <li><a href="#">衣服三号</a></li>
+            <li><a href="#">衣服四号</a></li>
+            <li><a href="#">衣服五号</a></li>
+        </ul>
+    </div>
+    <div class="box">
+        <div style="display: block;"><a href="#"><img src="../js练习/轮播图img/毛细3.png" alt=""></a></div>
+        <div><a href="#"><img src="../js练习/轮播图img/毛细4.png" alt=""></a></div>
+        <div><a href="#"><img src="../js练习/轮播图img/毛细5.png" alt=""></a></div>
+        <div><a href="#"><img src="../js练习/轮播图img/毛细6.png" alt=""></a></div>
+        <div><a href="#"><img src="../js练习/轮播图img/毛细7.png" alt=""></a></div>
+    </div>
+
+
+    <!-- 动画函数 -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <input type="button" value="动画" class="btn">
+    <div class="anmbox"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script>
+        $(function () {
+            // 1. 隐式迭代 给所有的button绑定点击事件
+            $('button').click(function () {
+                // 2. 给当前点击的变化样式
+                $(this).css('backgroundColor', 'pink');
+                // 3. 把所有的button不变
+                $(this).siblings('button').css('backgroundColor', ''); // $(this).siblings 当前button的其余兄弟
+            });
+
+            // 案例tab切换
+            $('.left').find('li').css({
+                width: "100%",
+                backgroundColor: "black",
+                float: "left",
+                height: "40px",
+                listStyle: "none",
+                textAlign: "center",
+                border: "1px solid #eee"
+            }).find('a').css({
+                color: "#fff",
+                lineHeight: "40px",
+            })
+            $('.left li').mouseenter(function () {
+                var index = $(this).index();
+                // 找到相对应的图片索引
+                $('.box div').eq(index).show(2000);    // .eq(index)找到对应的索引指向的位置 并显示
+                // 让其他图片隐藏
+                $('.box div').eq(index).siblings('div').hide();
+            });
+
+
+
+            // 动画函数
+            $('.btn').click(function () {
+                $('.anmbox').animate({
+                    left:500,
+                    top:400
+                },5000)
+            })
+        })
+    </script>
+</body>
+
+</html>

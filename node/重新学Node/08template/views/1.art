@@ -1,0 +1,19 @@
+<!-- 模板页面 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 原始语法 -->
+    <p><%= name %></p>
+    <p><%- content %></p>
+    <!-- 标准语法 -->
+    {{ name }}
+    {{ age }}
+    {{ age > 10 ? 5 : age }} 
+    <p>{{ content }}</p>
+</body>
+</html>

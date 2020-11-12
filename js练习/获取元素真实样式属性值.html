@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            background-color: pink;
+            height: 150px;
+            width: 200px;
+            left: 100px;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="显示" id="btn">
+    <div id="dv"></div>
+
+    <script>
+        function my$(id) {
+            return document.getElementById(id)
+        }
+
+        my$("btn").onclick = function () {
+            // console.log(my$("dv").offsetLeft)//0   不真实，获取不到--》不脱离文档流的left值
+
+            //谷歌，火狐支持
+            // console.log(window.getComputedStyle(my$("dv"),null).left)    //第一个参数是元素，第二个null   left为100px
+            //IE8支持
+            console.log(my$("dv").currentStyle.left)
+        }
+        //写获取样式属性的兼容
+        function getStyle(ele,attr){
+            if(window.getComputedStyle){
+                return window.getComputedStyle(ele,null)[attr];   //xxx.left  ==  xxx["left"]
+            }
+            else{
+                return ele.currentStyle[attr];
+            }
+        };
+
+
+    </script>
+</body>
+</html>

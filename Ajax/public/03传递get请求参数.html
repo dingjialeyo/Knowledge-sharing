@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p><input type="text" name="name" id="name"></p>
+    <p><input type="text" name="age" id="age"></p>
+    <p><input type="button" id="btn" value="提交"></p>
+
+
+    <script>
+
+        var btn = document.querySelector('#btn');
+        var uname = document.getElementById('name');
+        var age = document.getElementById('age');
+        btn.onclick = function() {
+            var nameValue = uname.value;    // 获取文本框的值
+            var ageValue = age.value;
+            // console.log(nameValue)
+            // console.log(ageValue)
+            // 我们需要手动拼接字符串
+            var params = 'name='+nameValue+'&age='+ageValue;
+            var xhr = new XMLHttpRequest();
+            xhr.open('get','http://localhost:3000/get?'+params);
+            xhr.send();
+            xhr.onload = function () {
+                console.log(xhr.responseText);
+            }
+        }
+    </script>
+</body>
+
+</html>

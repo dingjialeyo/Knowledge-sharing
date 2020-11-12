@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        .container {
+            padding-top: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-inline">
+            <div class="form-group">
+                <select name="" id="province" class="form-control">
+                    
+                </select>
+            </div>
+            <div class="form-group">
+                <select name="" id="city" class="form-control">
+                    <option>请选择城市</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select name="" id="area" class="form-control">
+                    <option >请选择县城</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <script src="./js/template-web.js"></script>
+    <!-- 省模板 -->
+    <script type="text/html" id="provincetpl">
+        <option>请选择省份</option>
+        {{each result}}
+        <option value="{{$value.id}}">{{$value.name}}</option>
+        {{/each}}
+    </script>
+    <!-- 市模块 -->
+    <script type="text/html" id="citytpl">
+        <option>请选择城市</option>
+        {{each result}}
+        <option value="{{$value.id}}">{{$value.name}}</option>
+        {{/each}}
+    </script>
+    <!-- 区模块 -->
+    <script type="text/html" id="areatpl">
+        <option>请选择县城</option>
+        {{each result}}
+        <option value="{{$value.id}}">{{$value.name}}</option>
+        {{/each}}
+    </script>
+    <script>
+        var province = document.getElementById('province');
+        var city = document.getElementById('city');
+        var area = document.getElementById('area')
+        // 发送ajax请求
+        function ajax(ajaxObj) {
+                    // 存储的是默认值    
+                    var defaults = {
+                        type: 'get',
+                        url: '',
+                        data: {},
+                        header: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        success: function () {},
+                        error: function () {},
+                    }
+
+                    // 使用对象方法中的assign方法进行对象覆盖
+                    Object.assign(defaults, ajaxObj) // 对象传了值就覆盖默认值
+
+                    // 创建ajax对象
+                    var xhr = new XMLHttpRequest();
+                    // 拼接请求参数的变量
+                    var params = '';
+                    // 循环用户传递进来的对象格式
+                    for (var attr in defaults.data) {
+                        // 将参数转换为字符串格式
+                        params += attr + '=' + defaults.data[attr] + '&';
+                    }
+                    // 会多出一个&符 所以要进行截取
+                    params = params.substr(0, params.length - 1)
+                    // console.log(params)
+                    // 判断请求方式
+                    if (defaults.type == 'get') {
+                        defaults.url = defaults.url + '?' + params;
+                    }
+                    // 配置ajax对象
+                    xhr.open(defaults.type, defaults.url);
+                    if (defaults.type == 'post') {
+                        var contentType = defaults.header['Content-Type'];
+                        // 设置post请求参数格式      但是用户想输入json格式的话就不行 所以格式也需要换为变量
+                        // 写入响应头数据
+                        xhr.setRequestHeader('Content-Type', contentType);
+                        // post的发送请求
+                        // 进行格式判断
+                        if (contentType == 'application/json') {
+                            xhr.send(JSON.stringify(defaults.data)); // 请求时候都需要转换为字符串格式
+                        } else {
+                            xhr.send(params);
+                        }
+                    } else {
+                        // 发送请求
+                        xhr.send();
+                    };
+                    // 监听onload事件
+                    xhr.onload = function () {
+                        // 获取响应头数据编码格式
+                        // console.log(xhr.getResponseHeader('Content-Type')) // xxxxxxxxx; charset=utf-8
+                        var contentType = xhr.getResponseHeader('Content-Type');
+                        // 获取服务器端返回的数据
+                        var responseText = xhr.responseText;
+                        // 判断响应编码格式是否包含application/json
+                        if (contentType.includes('application/json')) {
+                            // *请求时如果是json对象要转换为json字符串   响应时要将json字符串转换为json对象*
+                            responseText = JSON.parse(responseText); // 将json字符串转换为json对象
+                        }
+                        // 对http状态码status进行判断
+                        if (xhr.status == 200) {
+                            defaults.success(responseText, xhr) // 实参
+                        } else {
+                            defaults.error(responseText, xhr);
+                        }
+                    }
+                }
+        ajax({
+            type: 'get',
+            url: 'http://localhost:3000/province',
+            success: function (data) {
+                console.log(data);
+                var provincehtml = template('provincetpl', {result:data});
+                province.innerHTML = provincehtml
+            }   
+        });
+        // 通过省的value值获取对应的市 数据
+        province.onchange = function() {
+            console.log(this.value)
+            // 先清除县城下拉框数据
+            var areahtml = template('areatpl',{result: []}); // 为空数组
+                    area.innerHTML = areahtml;
+            ajax({
+                url: 'http://localhost:3000/city',
+                data: {
+                    id: this.value
+                },
+                success: function(data) {
+                    console.log(data)
+                    var cityhtml = template('citytpl',{result: data});
+                    city.innerHTML = cityhtml;
+                }
+            })
+        }
+        // 通过市的value 获取 区 的数据
+        city.onchange = function () {
+            console.log(this.value);
+            ajax({
+                url: 'http://localhost:3000/area',
+                data: {
+                    id: this.value
+                },
+                success: function(data) {
+                    console.log(data)
+                    var areahtml = template('areatpl',{result: data});
+                    area.innerHTML = areahtml;
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 移动盒子位置: 定位   盒子外边距  2D转换 */
+        div {
+            width: 500px;
+            height: 500px;
+            background-color: pink;
+            /* translate移动 */
+            /* transform: translate(100px,100px); */
+            /* transform: translateX(300px); */
+            position: relative;
+            /* 旋转 */
+            /* transform: rotate(10deg); */
+        }
+        /* 也可以实现垂直居中 */
+        p {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            transform: translate(-50%,-50%);
+            transition: all 1s;
+            /* 2D转换中心点 每次以中心旋转也可以围绕其他点旋转*/
+            transform-origin: left bottom;    /*围绕左下角旋转*/
+            /* 也可以通过像素来 默认是中心50% 50%*/
+            /* transform-origin: 0 0;    围绕左上角旋转 */
+        }
+        p:hover {
+            transform: rotate(360deg);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p></p>
+    </div>
+</body>
+</html>

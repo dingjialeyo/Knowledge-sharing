@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 实现3D效果需要借助透视来实现  这个透视写在改被透视的父级元素上面 */
+        body {
+            /* 透视越小盒子越大   250px是指人的眼睛距离屏幕距离 */
+            perspective: 300px;
+        }
+        /* .box {
+            background-color: pink;
+            width: 200px;
+            margin: 100px auto;
+            height: 200px;
+            transform:translateZ(0); */
+            /* translateZ  沿着z轴动往外为正   往内为负值 单位一般用px   简写版transform: translate3d(x,y,z);*/
+        /* } */
+        img {
+            width: 300px;
+            height: 300px;
+            display: block;
+            margin: 100px auto;
+            transition: all 1s linear;
+            /* 3D旋转 */
+        }
+        img:hover {
+            /* 正值向后转负值向前转 */
+            /* transform: rotateX(45deg); */
+            /* 从左往右旋转 */
+            /* transform: rotateY(45deg); */
+            /* 简写 */
+            transform: rotate3d(1,0,0,45deg);   /*布尔值判定一样    这个是x轴旋转*/
+            transform: rotate3d(1,1,0,45deg);   /*这个是围绕x轴与y轴的对角线旋转*/
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="box">
+    </div> -->
+    <img src="./img/3D坐标系.png" alt="">
+</body>
+</html>

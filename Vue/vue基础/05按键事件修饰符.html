@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <form action="">
+            <div>
+                用户名: <input type="text" v-model="uname">
+            </div>
+            <div>
+                <!-- .enter修饰符    在输入密码时按回车键执行sumbit函数 -->
+                密码: <input type="password" v-model="pwd" @keyup.enter="sumbit()" >
+            </div>
+            <div>
+                <input type="button" value="提交" @click="sumbit()" >
+            </div>
+            <div>
+                <!-- .delete修饰符    在输入密码时按删除键执行clear函数 -->
+                <input type="text"  @keyup.delete="clear()" >
+            </div>
+            <div>
+                <p>{{uname + '===' + pwd}}</p>
+            </div>
+        </form>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el : '#app',
+            data : {
+                uname : '',
+                pwd : '',
+            },
+            methods: {
+                sumbit : function () {
+                    console.log(this.uname);
+                    console.log(this.pwd);
+                },
+                clear : function () {
+                    this.uname = '',
+                    this.pwd = ''
+                }
+            },
+        })
+    </script>
+</body>
+</html>

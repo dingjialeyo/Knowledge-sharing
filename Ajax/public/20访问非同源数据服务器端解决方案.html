@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点击发送请求</button>
+
+    <script src="./js/ajax.js"></script>
+    
+    <script>
+        var btn = document.getElementById('btn');
+        btn.onclick = function() {
+            // 通过本身客户端访问本身的服务器端，再由本身的服务器端访问另一个服务器端   服务器端的操作就不存在同源限制问题
+            ajax({
+                type: 'get',
+                url : 'http://localhost:3000/server',
+                success : function(data) {
+                    console.log(data)
+                }
+            })
+        }
+    </script>
+</body>
+</html>

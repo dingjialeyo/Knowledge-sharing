@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 会将这里的内容传入给插槽   如果在子组件中没有设置插槽 父组件填写的内容将无效-->
+        <test><button>插槽内容</button></test>
+        <test>有bug</test>
+        <test></test>
+        <test><textarea name="" id="" cols="30" rows="10"></textarea></test>
+    </div>
+
+    <script src="./vue.js"></script>
+
+    <script>
+
+        Vue.component('test',{
+            template : `
+                <div>
+                    <strong>ERROR:</strong>
+                    <slot>父组件没有内容就用我这个默认</slot>
+                </div>
+            `
+        })
+
+        var vm = new Vue({
+            el : '#app',
+            data : {
+                
+            },
+            
+        })
+    </script>
+</body>
+</html>

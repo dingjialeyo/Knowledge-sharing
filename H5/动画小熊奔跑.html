@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #ccc;
+        }
+        .bg .box {
+            position: absolute ;
+            z-index: 999;
+            width: 200px;
+            overflow: hidden;
+            height: 100px;
+            background: url(./img/bear.png) no-repeat;
+            /* 元素可以添加多个动画  用逗号分隔就行 */
+            animation: bear 1s steps(8) infinite,move 5s forwards;
+            margin: 200px 0;
+        }
+        @keyframes bear {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: -1600px 0;
+            }
+        }
+        @keyframes move {
+            0%{
+                left: 0;
+            }
+            100%{
+                left: 50%;
+                /* margin-left: -100px; */
+                transform: translateX(-50%);
+            }
+        }
+        /* @keyframes bg {
+            0% {
+                
+            }
+            100% {
+                transform: translateX(-1000px);
+            }
+        } */
+        .bg{
+            position: relative;
+            background: url(./img/bg-mountain.png) no-repeat;
+            height: 500px;
+            animation: bg 2s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- 关键帧动画 -->
+    <div class="bg">
+        <div class="box">
+        </div>
+    </div>
+</body>
+</html>

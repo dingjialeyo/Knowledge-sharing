@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" name="" id="file">
+
+    <script>
+        var file = document.getElementById('file');
+        file.onchange = function() {
+            // 创建一个空的formdata对象
+            var formdata = new FormData();
+            formdata.append('file',this.files[0]);
+            var xhr = new XMLHttpRequest();
+            xhr.open('post', 'http://localhost:3000/file')
+            xhr.send(formdata);
+            xhr.onload = function() {
+                if (xhr.status == 200) {
+                    console.log(xhr.responseText)
+                }
+            }
+            console.log(this.files[0].name) // 即可获取名称
+        }
+    </script>
+</body>
+</html>

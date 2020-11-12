@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .map {
+            width: 1000px;
+            height: 500px;
+            background: url(https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4266799724,2233669376&fm=26&gp=0.jpg) no-repeat;
+            background-size: 100% 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+        .city {
+            position: absolute;
+            top: 178px;
+            left: 300px;
+        }
+        .dotted {
+            width: 8px;
+            height: 8px;
+            background-color: #09f;
+            border-radius: 50%;
+        }
+        .city div[class^="pulse"] {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            /* 盒子阴影四个属性：  水平   垂直   阴影   颜色 */
+            box-shadow: 0 0 12px #009dfd;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            /* 动画无线循环  infinite */
+            animation: pulse 1.3s linear infinite;
+            cursor: pointer;
+        }
+        @keyframes pulse {
+            0% {}
+            60% {
+                opacity: 1;
+                width: 30px;
+                height: 30px;
+            }
+            100% {
+                opacity: 0;
+                width: 60px;
+                height: 60px;
+            }
+        }
+        /* 用一个延迟效果 使第一个运行0.4秒后 第二个开始然后类推*/
+        .pulse2 {
+            animation-delay: 0.4s !important;
+        }
+        .pulse3 {
+            animation-delay: 0.8s !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="map">
+        <div class="city">
+            <!-- 小点 -->
+            <div class="dotted"></div>
+            <!-- 波纹 -->
+            <div class="pulse1"></div>
+            <div class="pulse2"></div>
+            <div class="pulse3"></div>
+        </div>
+    </div>
+</body>
+</html>

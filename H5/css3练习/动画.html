@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0 auto;
+            background: #abcdef;
+        }
+
+        .box {
+            width: 700px;
+            height: 700px;
+            margin: 0 auto;
+            background: url(../页游模拟/img/magic.png) center no-repeat;
+            cursor: pointer;
+            transform: rotate(0deg);
+            transition: transform 2s ease-in-out 1s;
+        }
+        .box:hover{    
+            /* 旋转180度 */
+            transform:rotate(360deg);
+            /* 鼠标放上去一秒后执行 */
+            transition:transform 2s ease-in-out 1s;   
+    }
+    a::after{
+        content: ">>";
+    }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <a href="">首页</a>
+</body>
+</html>

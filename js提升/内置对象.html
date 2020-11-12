@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <script>
+
+
+        // Random() 返回一个随机小数 [0,1)
+        // 这个方法括号里面不跟参数
+        // 如何获取两个数字之间的随机数 并且 包含这两个数
+        // Math.floor(Math.random()*(max - min +1)) + min;
+        function getRandom (min,max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        var result = getRandom(1,10);
+        console.log(result);
+
+    // 随机点名
+        var arr = ['张三','李四','王五','赵六'];
+        // console.log(arr[num])    num == getRandom(0,3)
+        console.log(arr[getRandom(0,3)])
+    
+    // 猜数字游戏
+        // var random = getRandom(1,100);
+        // var flag = 1;
+        // while (flag <= 10) {
+        //     var num = prompt("请输入你猜的数字 输入1~100之间的数字哟！只有十次机会哟");
+        //     if (num > random) {
+        //         alert("你的数字太大了");
+        //         flag++;
+        //     }
+        //     else if (num < random) {
+        //         alert("你的数字太小了");
+        //         flag++;
+        //     }
+        //     else {
+        //         alert("你真是太聪明了！")
+        //         break;
+        //     }
+        // }
+        // if (flag > 10) {
+        //     alert('很遗憾哟！！')
+        // }
+
+
+        // 部分内置对象-------是一个构造函数 必须要new 来调用
+        var arr = new Array();
+        var obj = new Object();
+        var date = new Date();
+
+    // 获取Date总毫秒数 不是当前时间的毫秒数 而是从现在距离1970年1月1日开始走了多少毫秒数    优势： 永远不会有重复。
+    // 1. 通过 valueOf()  getTime()
+        // console.log(date.valueOf());
+        // console.log(date.getTime());
+    // 2. 简单的写法
+        var date1 = +new Date(); //如果为空返回的就是总毫秒数  (最常用)
+        console.log(date1)
+    // 3. H5新增 获取总毫秒数
+        console.log(Date.now())
+
+
+// instanceof 判断一个变量为什么类型  xx instanceof Object  返回值为布尔值
+    // 数组排序方法
+    // var arr = [8,75,91,24,1,2,54,10];
+    // arr.sort(function (a,b) {
+    //     return a - b;  // 升序   b - a 降序
+    // });
+    // console.log(arr)
+    // 去除数组重复      思想 : 遍历旧数组 在空数组中查找旧数组元素 如果没有就push
+    var arr = ['a','b','a','a','c','d','e','b','f','e'];
+    var str = [];
+    for (let i=0; i<arr.length; i++) {
+        if (str.indexOf(arr[i]) === -1) {
+            str.push(arr[i]);
+        }
+    }
+    console.log(str);
+
+    // 数组转换为字符串
+    // 1. toString() 
+    var arr1 = [1,2,3];
+    console.log(arr1.toString()); // 1,2,3
+    // 2. join(分隔符)
+    var arr2 = [1,2,3];
+    console.log(arr2.join()) // 1,2,3
+    console.log(arr2.join('-')) // 1-2-3
+
+    // 找元素在字符串中有几个   思想 : 先查找第一个要的元素 然后 通过指定查找 只要indexOf返回的不是-1就继续查找
+    function f1(x) {
+        var strr = 'dasjasbioaoihqwhdio';
+        var index = strr.indexOf(x);
+        var num = 0;
+        while (index !== -1) {
+            console.log(index);
+            index = strr.indexOf(x,index + 1);
+            num++;
+        }
+        console.log(num)
+    }
+    f1('a')
+
+    // 判断一个字符串中出现次数最多的字符，并统计次数 
+        var sttr = 'adsagfgaobsabaksbfallllllllllllllll'
+        var char = {};
+        for (let i = 0; i < sttr.length; i++) {
+            var chars = sttr.charAt(i);
+            if (char[chars]) {   // 判断对象中有没有这个字符
+                char[chars]++;
+            }
+            else {
+                char[chars] = 1; // 首先都是没有   没有就else 然后添加这个字符属性
+            }
+        }
+        // console.log(char);
+        var max = 0;
+        var who = '';
+        for (k in char) {
+            if (char[k] > max) {
+                max = char[k];
+                who = k;
+            }
+        }
+        console.log(max+who)
+    </script>
+</body>
+</html>

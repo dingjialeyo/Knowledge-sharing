@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="form">
+        <input type="text" name="username" id="uname">
+        <input type="password" name="password" id="pwd">
+        <input type="button" value="提交" id="btn">
+    </form>
+
+    <script>
+        var form = document.getElementById('form')
+        var btn = document.querySelector('#btn');
+        btn.onclick = function() {
+            // 将普通的表单变成form表单
+            var formdata = new FormData(form);
+            // formdata的方法
+            // 1. get('key') 获取表单对象属性的值 key对应了name的属性值
+            var username = formdata.get('username');
+            console.log(username);
+            // 2. set('key','value') 设置表单属性的值 key对应name属性值 value设置值
+            // 不管密码设置为多少 传过去的值都会是123
+            // 如果没有设置该值，将会创建这个表单属性值123
+            formdata.set('password','132'); 
+            // 3. delete('key')  删除表单的该属性key
+            // 4. append('key', 'value') 追加表单属性名称和值
+            formdata.append('age','19')
+            
+            var xhr = new XMLHttpRequest();
+            xhr.open('post', 'http://localhost:3000/formdata');
+            xhr.send(formdata);
+            xhr.onload = function() {
+                if (xhr.status == 200) {
+                    console.log(xhr.responseText)
+                }
+            }
+        }
+    </script>
+</body>
+</html>

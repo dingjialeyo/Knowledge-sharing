@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="弹框" id="btn">
+
+
+    <script>
+        function my$(id){
+            return document.getElementById(id)
+        }
+        //为一个元素绑定多个事件，指向同一个的处理函数
+        my$("btn").onclick = f1;
+        my$("btn").onmouseover = f1;
+        my$("btn").onmouseout = f1;
+        //   e是事件参数
+        function f1 (e){
+            switch (e.type){
+                case "click": 
+                    alert("hh"); 
+                    break;
+                case "onmouseover": 
+                    this.style.backgroundColor = "green"; 
+                    break;
+                case "onmouseout": 
+                    this.style.backgroundColor = "red"; 
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

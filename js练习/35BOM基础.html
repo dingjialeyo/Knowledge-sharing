@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <script>
+        //BOM ----------------->操作浏览器的
+
+        /*
+        *浏览器当中的顶级对象:window
+        *页面中的顶级对象:document
+        页面中的内容属于浏览器的，页面中的内容也都是window的
+        var num = 100;
+        console.log(window.num);  说明变量属于window的
+        function f1(){
+            console.log("abc")
+        }
+        window.f1();              函数也是window的;     
+        
+        特殊属性：window.name
+        console.log(window.name)
+
+        top和window
+        
+        对话框:
+        window.alert()   以后不用
+        window.prompt() 输入框   以后不用    这种用css做
+        window.confirm() //这个对话框有两个返回值  true和false    也不用
+
+        ***加载事件
+        onload事件      只要页面加载完毕，事件就触发       页面加载是指所有内容：标签，属性，文本，包括外部引入的文件。
+        window.onload = function(){} 
+
+        onunload事件   页面关闭后触发的事件            IE8       了解即可 
+        onbeforeunload事件     页面关闭之前触发        IE8      了解即可
+
+
+        
+        对象有属性和方法
+        location对象
+        console.log(window.location)
+        location属性成员
+        console.log(window.location.hash)                       地址栏上#及后面的内容
+        console.log(window.location.host)                       地址栏上的主机名及端口号
+        console.log(window.location.hostname)                   地址栏上的主机名
+        console.log(window.location.pathname)                   地址栏是文件的路径------相对路径
+        console.log(window.location.port)                       地址栏上的端口号
+        console.log(window.location.protocol)                   地址栏上的协议
+        console.log(window.location.search)                     搜索的内容
+
+        location方法
+        location.href="http://www.baidu.com"     设置地址    属性*****   有历史记录
+        location.assign("http://www.baidu.com")  设置地址    方法        有历史记录
+        location.reload()         重新加载    刷新
+        location.replace("http://www.baidu.com")  跳转地址   没有历史记录
+
+        history对象            了解即可
+        window.history.back()      后退
+        window.history.forward()   前进
+        window.history.go()         前进或后退    看正负值 
+
+        navigator对象
+        console.log(window.navigator.platform)          显示所在本机的系统
+        console.log(window.navigator.userAgent)         显示当前浏览器的属性***
+        */
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{pmsg}}</p>
+        <menu-item :parr="parr" @kuoda-text="kuoda($event)" :style="{fontSize : fontSize + 'px'}">
+
+        </menu-item>
+    </div>
+
+    <script src="./vue.js"></script>
+
+    <script>
+
+// 子组件向父组件传值  基本使用
+    // props传递数据 : 单向数据流-----> 只允许父组件向子组件传递props数据    不允许子组件操作props的数据
+    // 所以有了自定义事件来向父组件传值
+        Vue.component('menu-item',{
+            props : ['parr'],
+            template : `
+            <div>
+                <input type="text" />
+                <ul>
+                    <li :key="index" v-for="(item,index) in parr">{{item}}</li>
+                </ul>
+                <button @click="parr.push('xa')">点击</button>
+                <button @click="$emit('kuoda-text',10)">扩大字体</button>
+            </div>
+            `
+        })
+
+        var vm = new Vue({
+            el : '#app',
+            data : {
+                pmsg : '父组件内容',
+                parr : ['djl','zwl','lj','xmy'],
+                fontSize : 10
+            },
+            methods: {
+                kuoda : function (val) {
+                    this.fontSize += val
+                }
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            margin: 0 auto;
+        }
+
+        tr {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <span>按照价格查询</span><input type="text" name="" id="price"> <input type="button" value="搜索" id="p_btn">
+    <br>
+    <span>按照名称查询</span><input type="text" name="" id="pname"> <input type="button" value="查询" id="name">
+    <table width="300px" border="1" cellpadding="0">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>产品名称</th>
+                <th>价格</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script>
+        // 动态生成数据操作
+        var tbody = document.querySelector('tbody')
+        var data = [{
+                id: 1,
+                pname: '小米',
+                price: 3999
+            },
+            {
+                id: 2,
+                pname: 'vivo',
+                price: 2888,
+            },
+            {
+                id: 3,
+                pname: 'oppo',
+                price: 1988,
+            },
+            {
+                id: 4,
+                pname: 'iphone',
+                price: 5888,
+            }, {
+                id: 5,
+                pname: '华为',
+                price: 12888,
+            }
+        ];
+
+        function setData(mydata) {
+            // 先清空数据再渲染
+            tbody.innerHTML = '';
+            mydata.forEach(function (value, index, array) {
+                // console.log(data[index].id)
+                var tr = document.createElement('tr');
+                tbody.appendChild(tr);
+                tr.innerHTML = '<td>' + value.id + '</td><td>' + value.pname + '</td><td>' + value
+                    .price + '</td>';
+            });
+        };
+        setData(data);
+        // 查询操作
+        var p_btn = document.querySelector('#p_btn');
+        var btn_name = document.querySelector('#name');
+        var price = document.querySelector('#price');
+        var pname = document.querySelector('#pname');
+        p_btn.addEventListener('click', function () {
+            var arr = data.filter(function (value, index, array) {
+                return value.price > price.value
+            });
+            // console.log(arr)      拿到了判断后的数据
+            var tr = tbody.querySelector('tr');
+            setData(arr)
+        });
+        btn_name.addEventListener('click', function () {
+            var newArr = [];
+            var newdata = data.some(function (value,index,array) {
+                if (value.pname === pname.value){
+                    // console.log(value);
+                    newArr.push(value)        // 赋值给变量数组   push 可以将对象数据 存放进 数组对象中
+                    // console.log(newArr)      
+                    return true;          // some方法 后面必须return true 说明找到了这个数据 后面就不执行了
+                }
+            });
+            // console.log(newArr)
+            setData(newArr);
+        })
+    </script>
+</body>
+
+</html>

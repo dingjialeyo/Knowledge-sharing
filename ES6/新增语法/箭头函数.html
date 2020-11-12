@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        // 通常是通过变量来声明箭头函数
+        // const fn = () => {
+        //     console.log('abc')
+        // }
+        // fn()  // abc
+
+        // 当函数体只有一句时
+        const sum = (num1,num2) => num1 + num2;
+        console.log(sum(1,2)) // 3
+
+        // 当形参只有一个可以省略小括号
+        const obj = name => name;
+        console.log(obj('djl'))   // djl
+        // 箭头函数 不绑定this关键字      箭头函数中的this指向所在函数中的this
+        const user = {name: 'la'};
+        function fn() {
+            console.log(this);         // {name: "la"}  
+            return () => {
+                console.log(this)       // this 和 fn函数中this 一致   {name: "la"}
+            }
+        }
+        const result = fn.call(user);
+        result();
+
+        // 经典题
+        // var age = 100    如果在这声明了age 那么箭头函数中的this.age会是100
+        var o = {
+            age : 20,
+            say : () => {
+                // 箭头函数中的this 并没有作用域限制 指向的是全局作用域 this ----window
+                alert(this.age)        // undefined
+            }
+        };
+        o.say()
+    </script>
+</body>
+</html>

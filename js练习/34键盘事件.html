@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            margin: 200px auto;
+            width: 450px;
+        }
+        #txt{
+            width: 350px;
+        }
+        #pop{
+            width: 350px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <input type="text" name="" id="txt">
+        <input type="button" value="搜索" id="btn">
+    </div>
+    <script>
+        function my$(id){
+            return document.getElementById(id)
+        }
+        //这些东西应该是后台传过来的，这是模拟
+        var keyWords = ["你好","你好不好？","你确定吗！","我是你的朋友","我呀很不错","我的世界","我的天空","大脚丫","大品小品","啦啦啦啦"];
+        //获取文本框键盘抬起时的事件 onkeyup----->抬起
+        my$("txt").onkeyup = function () {
+
+            //小BUG 解决
+            //每一次键盘抬起时判断有没有div
+            if(my$("div")){
+                my$("box").removeChild(my$("div"));
+            }
+
+            //获取文本框输入的内容
+            var text = this.value;
+            var textArr = [];  //空数组 ，临时数组，用来存放对应数据
+            //把输入内容和数组中的数据对比
+            for(var i=0;i<keyWords.length;i++){
+                //找输入第一个值出现对应值的数组数据    、keyWords[i].indexOf(text)==0 是第一个值对应的索引
+                //例子: var str = "小米真厉害"
+                //      var index = str.indexOf("小")
+                //      console.log(index)      结果为0
+                if(keyWords[i].indexOf(text) == 0){
+                    textArr.push(keyWords[i])      //将出现的放进临时数组
+                    
+                }
+            }
+            // console.log(textArr)
+            //如果文本框为空或临时数组为空那就不用创建div显示框
+            //如果if不生效，下面创建执行
+            if(textArr.length==0 || this.value.length == 0){
+                //如果页面中有这个div显示框那么干掉
+                if(my$("div")){
+                    my$("box").removeChild(my$("div"));
+                }
+                return;               
+                //后面创建不执行
+            }
+            //如果有,创建div显示框
+            var divObj = document.createElement("div")      //创建div显示框
+            my$("box").appendChild(divObj);          //且追加到box的子元素中
+            //给div样式 ， 高度不用给
+            divObj.id = "div"
+            divObj.style.width = "350px";
+            // divObj.style.height = "200px"
+            // divObj.style.backgroundColor = "pink";
+            divObj.style.border = "1px solid #ccc"
+            divObj.style.marginTop = "-1px";
+            //循环遍历临时数组，创建对应的p标签将数组值赋给p标签的内容
+            for(var j=0;j<textArr.length;j++){
+                //创建p标签
+                var pObj = document.createElement("p");
+                my$("div").appendChild(pObj);        //将p标签追加到div显示框中
+                //意思是将textArr数组值遍历到p标签中  setInnerText是自己写的函数  也可以pObj.textContent = textArr[j]是一样的
+                setInnerText(pObj,textArr[j]);
+                //如何给p标签内容添加样式
+                pObj.style.margin = 0;
+                pObj.style.padding = 0;
+                pObj.style.cursor = "pointer";
+                pObj.style.marginTop = "5px";
+                pObj.style.marginLeft = "5px";
+                
+
+                //给个高亮显示鼠标进入离开事件
+                pObj.onmouseover = function(){
+                    this.style.backgroundColor = "red"
+                }
+                pObj.onmouseout = function(){
+                    this.style.backgroundColor = ""
+                }
+            }
+        }
+        //写兼容代码    element是元素，text是写的文本内容
+        //设置任意标签中的任意文本内容      设置是没有返回值
+        function setInnerText(element,text){
+            //判断是否支持这个属性
+            if(typeof element.textContent == "undefined"){//不支持
+                element.innerText=text;
+            }
+            else{//支持这个属性
+                element.textContent = text
+            }
+        }
+    </script>
+</body>
+</html>

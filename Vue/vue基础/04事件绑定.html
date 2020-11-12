@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 指令用法 -->
+        <!-- <button v-on:click='num++' v-text="num"></button> -->
+        <!-- 简写 -->
+        <!-- 函数调用的方法 -->
+        <button @click='add()' v-text="num"></button>
+        <!-- <button @mouseover='add()' v-text="num"></button> -->
+
+        <!-- 事件函数传递参数和$event事件对象 -->
+        <button @click="fn('djl',$event)">传递事件点击</button>
+
+        <!-- 事件绑定--事件修饰符 -->
+        <div @click="fuji()">
+            <!-- 当你点击ziji这个btn肯定会冒泡到fuji这个div的事件 -->
+            <!-- 事件后面加  .stop  阻止冒泡 -->
+            <button @click.stop="ziji()">点击jizi元素</button>   
+            <!-- 事件默认跳转 -->
+            <!-- 事件后面加  .prevent 阻止默认行为 -->
+            <a href="http://www.baidu.com" @click.prevent.stop>点击跳转</a>
+        </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue ({
+            el : '#app',
+            data : {
+                num : 0
+            },
+            methods: {
+                add: function() {
+                    this.num++;    // this ----> vm对象
+                },
+                fn :function(name,e) {
+                    console.log(name);  // djl
+                    console.log(e.target.innerHTML)      // 点击获取
+                },
+                ziji : function() {
+                    console.log('ziji')
+                },
+                fuji : function () {
+                    console.log('fuji')
+                },
+            },
+        })
+
+
+        // 1. v-on 事件绑定
+
+        /*
+        事件绑定--事件传递
+        1. 如果事件直接绑定的函数名没有加括号，那么默认会传递一个事件参数作为事件函数的第一个参数
+        2. 如果事件绑定的函数调用加括号，你如果要传递事件参数  事件参数必须作为最后一个参数传递，并且为$event
+        */
+
+        /*
+        事件绑定--事件修饰符
+        1. 事件后面加  .stop  阻止冒泡
+        原生js中的阻止冒泡    e.stopPropagation();
+        2. 事件后面加  .prevent 阻止默认行为
+        原生js中的阻止默认行为    e.preventDefault();
+        3. 使用修饰符时，顺序很重要；相应的代码会以同样的顺序产生。因此，用 v-on:click.prevent.self 会阻止所有的点击，而 v-on:click.self.prevent 只会阻止对元素自身的点击。
+
+        这么多修饰符  官网查
+        .stop
+        .prevent
+        .capture
+        .self
+        .once
+        .passive
+        .once     事件只会触发一次
+        */
+    </script>
+</body>
+</html>

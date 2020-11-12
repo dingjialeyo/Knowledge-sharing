@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a href="../页游模拟/img/knight.png" id="a"><img src="../页游模拟/img/role_knight.png" alt="" title="战士" id="knight"></a>
+
+    <div>
+        <img src="" alt="" id="img">
+        <p id="p">图片名称</p>
+    </div>
+    <script>
+    function my$(id) {
+        return document.getElementById(id)
+    }
+    my$("a").onclick = function () {
+        //点击时显示大图
+        my$("img").src = this.href;
+
+        //将p标签内容显示成title
+        my$("p").innerHTML = my$("knight").title
+
+        //阻止超链接跳转
+        return false;
+    }
+    </script>
+</body>
+</html>

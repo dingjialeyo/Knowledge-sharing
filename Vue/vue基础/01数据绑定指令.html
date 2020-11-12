@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 和插值表达式{{msg}}数据绑定类似 -->
+    <div id="app">
+        <div v-text="text"></div>
+        <div v-html="html"></div>
+    </div>   
+    <script src="./vue.js"></script>
+    <script>
+        new Vue ({
+            el : '#app',
+            data : {
+                text : 'text',
+                html : '<h1>html</h1>'
+            }
+        })
+
+        // 数据绑定指令
+        // 1. v-text 填充纯文本    没有闪动问题      插值表达式{{msg}}有闪动问题需要加v-cloak
+        // 2. v-html 填充HTML代码块    有安全问题 当访问跨域内容的数据是不能使用   不跨域可以使用
+        // 3. v-pre  显示原有信息，跳过编译    几乎不用
+    </script>
+</body>
+</html>

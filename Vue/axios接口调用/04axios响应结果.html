@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        
+    // axios 全局配置
+        // 1. 设置默认的URL地址后面加路径即可
+        axios.defaults.baseURL = 'http:localhost:3000/';
+        // 2. 设置请求头   应用场景 : 登录状态
+        axios.defaults.headers['mytoken'] = 'hello';
+
+
+
+        axios.get('geshi').then((result) => {
+            console.log(result.data)  // 后面的data才是要的数据是固定写法
+            console.log(result.status)  // 常用   获取状态码 200
+        })
+    </script>
+</body>
+</html>

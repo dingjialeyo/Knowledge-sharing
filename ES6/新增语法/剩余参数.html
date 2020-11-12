@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        // 当你实参大于形参时   在最后一个形参 前加 ...  即可将多余实参以数组形式包含在最后一个形参中
+
+        function fn(f1,...f2) {
+            console.log(f1);
+            console.log(f2);   // [20, 30, 40]
+        }
+        fn(10,20,30,40);
+
+        // 剩余参数 和 解构 配合使用
+        let stu = ['djl','zwl','xmy'];
+        let [s1,...s2] = stu;
+        console.log(s1);       // djl
+        console.log(s2);      // ["zwl", "xmy"]
+    </script>
+</body>
+</html>

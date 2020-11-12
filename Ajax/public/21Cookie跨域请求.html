@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <form action="" id="form">
+            <div class="form-group">
+                <label for="">用户名</label>
+                <input type="text" class="form-control" placeholder="请输入用户名" name="username">
+            </div>
+            <div class="form-group">
+                <label for="">密码</label>
+                <input type="password" class="form-control" placeholder="请输入密码" name="password">
+            </div>
+            <input type="button" value="登录" class="btn btn-default" id="login">
+            <input type="button" value="检测登录状态" class="btn btn-default" id="check">
+        </form>
+    </div>
+
+    <script src="js/ajax.js"></script>
+    <script>
+        var loginBtn = document.getElementById('login');
+        var checkBtn = document.getElementById('check');
+        var form = document.getElementById('form')
+        loginBtn.onclick = function () {
+            // 将普通的表单变成form表单
+            var formdata = new FormData(form);
+            // formdata的方法
+            // 1. get('key') 获取表单对象属性的值 key对应了name的属性值
+            var username = formdata.get('username');
+            var pwd = formdata.get('password');
+            console.log(username);
+            console.log(pwd);
+            var xhr = new XMLHttpRequest();
+            xhr.open('post', 'http://localhost:3001/cookie');
+            // 允许携带cookie跨域   在服务器端也需要设置
+            xhr.withCredentials = true;
+            xhr.send(formdata);
+            xhr.onload = function () {
+                console.log(xhr.responseText)
+            }
+        }
+
+        // 检查登录情况
+        checkBtn.onclick = function() {
+            ajax({
+                type : 'get',
+                url : 'http://localhost:3001/check',
+                success : function(data) {
+                    console.log(data)
+                }
+            })
+        }
+    </script>
+</body>
+</html>

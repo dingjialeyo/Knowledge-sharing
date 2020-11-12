@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <style>
+        div {
+            height: 100px;
+            width: 100px;
+            background: #000;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="my"></div>
+    <script>
+        function rgbColor() {
+            let r = Math.floor(Math.random() * 256);
+            let g = Math.floor(Math.random() * 256);
+            let b = Math.floor(Math.random() * 256);
+            let rgb = `rgb(${r},${g},${b})`;
+            return rgb;
+        }
+        var x = document.getElementById("my");
+        setInterval(
+            function () {
+                x.style.backgroundColor = rgbColor()
+            }, 1000
+        )
+        window.onload = function() {
+            var left = 0;
+            var num = 0;
+            function oO() {
+                if(num == 0){
+                    left+=1;
+                }
+                if(num == 1){
+                    left-=1;
+                }
+                if (left > 1000) {
+                    num = 1;
+                }
+                if(left<0){
+                    num = 0;
+                }
+                x.style.marginLeft = left+"px"
+            }
+            setInterval(oO, 1);
+        }
+        // console.log(x.offsetLeft);
+    </script>
+</body>
+
+</html>

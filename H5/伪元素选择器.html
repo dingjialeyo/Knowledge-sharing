@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* ::before  在元素内部前面插入内容 */
+        /* ::after   在元素内部后面插入内容 */
+        div {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+        }
+        div::before {
+            display: inline-block;
+            content: '我';
+            width: 50px;
+            height: 50px;
+            background-color: pink;
+        }
+        div::after {
+            content: "djl";
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: purple;
+        }
+
+        /* 使用伪元素字体图标    结构简单 */
+        div, p {
+            position: relative;
+            width: 200px;
+            height: 30px;
+            border: 1px solid #ccc;
+        }
+        span {
+            font-family: 'icomoon';
+        }
+        p::after {
+            content: "图标";
+            content: '\ea50';
+            font-family: 'icomoon';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div>
+        是
+    </div> -->
+
+    <div>
+        <span>图标</span>
+    </div>
+    <p></p>
+</body>
+</html>

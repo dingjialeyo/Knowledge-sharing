@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <textarea name="" id="texta" cols="30" rows="10" >
+        阅读我！！！！
+    </textarea>
+    <input type="button" value="请仔细阅读协议(5)" id="btn" >
+
+    <script>
+        function my$(id){
+            return document.getElementById(id)
+        }
+
+
+        var time = 5;
+        var timer = setInterval(function () {
+            time--;
+            if(time >= 0){
+                my$("btn").value = "请仔细阅读协议("+time+")"
+            }
+            else{
+                clearInterval(timer)
+                my$("btn").disabled = true;
+                my$("btn").value = "同意"
+            }
+        },1000)
+    </script>
+</body>
+</html>

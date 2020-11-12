@@ -1,0 +1,14 @@
+<!-- 骨架模板 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 两个坑需要填充 -->
+    {{block 'link'}} {{/blcok}}
+</head>
+<body>
+    {{block 'content'}} {{/block}}
+</body>
+</html>

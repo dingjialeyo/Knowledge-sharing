@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <ul id="ul">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+
+    <script>
+        function my$(id){
+            return document.getElementById(id)
+        }
+        var result = my$("ul")
+        //ul标签的父级节点
+        console.log(result.parentNode)
+        //ul标签的父级元素
+        console.log(result.parentElement)
+//节点种类：
+//nodeName------->节点的名字  ：大写的标签是标签，小写的属性名是属性，文本是#text
+//nodeType------->节点的类型  ：1是标签、2是属性、3是文本
+//nodeValue------>节点的值   ： 标签是null，属性是属性的值，文本是文本的内容
+        console.log(result.parentNode.nodeName)   //如果是标签----大写的标签名                文本的nodeName是#text
+        console.log(result.parentNode.nodeType)   //如果是标签----1        1是标签、2是属性、3是文本
+        console.log(result.parentNode.nodeValue)  //如果是标签----null
+    </script>
+</body>
+</html>

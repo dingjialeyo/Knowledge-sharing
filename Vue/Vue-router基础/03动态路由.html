@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div id="app">
+        <!-- router-link 相对于 a链接   to 相对于 href   to属性值会默认渲染为带#号的hash地址-->
+        <router-link to="/user/1">
+            User1
+        </router-link>
+        <router-link to="/user/2">
+            User2
+        </router-link>
+        <router-link to="/user/3">
+            User3
+        </router-link>
+        <router-link to="/stu">
+            Stu
+        </router-link>
+        <!-- 路由占位符 -->
+        <router-view>
+
+        </router-view>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        const Users = {
+            template: '<h1>User组件 {{$route.params.id}}</h1>'
+        }
+        const Stu = {
+            template: '<h1>Stu组件</h1>'
+        }
+        const router = new VueRouter({
+            routes: [ // path 对应了hash值    component 对应 组件
+                {
+                    path: '/',
+                    // 当为根目录时，   redirect会重定向到stu
+                    redirect : '/stu'
+                },
+                {
+                    // 动态获取user后的参数   写法:id   $route.params.id获取动态参数id
+                    path: '/user/:id',
+                    component: Users
+                },
+                {
+                    path: '/stu',
+                    component: Stu
+                }
+            ]
+        })
+        const vm = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            // 挂载路由实例对象
+            // router : router   属性名和属性值一样可以简写  ES6
+            router
+        })
+    </script>
+</body>
+
+</html>

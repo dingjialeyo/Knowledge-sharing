@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .current {
+            color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 会将这里的内容传入给插槽   如果在子组件中没有设置插槽 父组件填写的内容将无效-->
+        <fruit-list :list="list">
+            <!-- 将子组件的插槽属性赋值给slotProps -->
+            <template slot-scope="slotProps">
+                <strong v-if="slotProps.info.id == 2" class="current">
+                    {{slotProps.info.name}}
+                </strong>
+            </template>
+        </fruit-list>
+    </div>
+
+    <script src="./vue.js"></script>
+
+    <script>
+
+        Vue.component('fruit-list',{
+            props : ['list'],
+            template : `
+                <div>
+                    <li :key='items.id' v-for='items in list'>
+                        <slot :info="items">{{items.name}}</slot>
+                    </li>
+                </div>
+            `
+        })
+
+        var vm = new Vue({
+            el : '#app',
+            data : {
+                list : [{
+                    id : 1,
+                    name : 'apple'
+                },{
+                    id : 2,
+                    name : 'orange'
+                },{
+                    id : 3,
+                    name : 'banana'
+                }]
+            },
+        })
+    </script>
+</body>
+</html>

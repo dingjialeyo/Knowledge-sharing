@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="msg">
+        <div v-text='msg'>
+        </div>
+        <h1 v-text="msg"></h1>
+
+        <!-- 不使用v-model实现双向绑定  v-model的原理就是用了v-bind + 事件 实现双向绑定-->
+        <input type="text" v-bind:value="info" @input="handle">
+        <span v-text="info"></span>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var vm = new Vue ({
+            el : '#app',
+            data : {
+                msg : 'hello',
+                info : ''
+            },
+            methods: {
+                handle : function(e) {
+                    this.info = e.target.value;
+                }
+            },
+        })
+
+        // 1. v-model 数据绑定     可以赋值给多个你需要绑定的数据   修改一个内容值会影响到另一个内容变化
+        /* 2. MVVM设计思想          
+            M-->(model)   数据模型
+            V-->(view)    视图模型
+            VM-->(view-model)
+            从视图到模型数据是监听事件         从模型数据到视图是绑定事件
+        */
+    </script>
+</body>
+</html>

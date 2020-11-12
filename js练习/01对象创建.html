@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <script src="./1.js"></script>
+</head>
+
+<body>
+    <h2>为 JSON 字符串创建对象</h2>
+    <p id="demo"></p>
+    <script>
+        //系统自带的对象定义
+        // function pC(color,weight,logo){
+        //     var obj = new Object();
+        //     obj.color = color;
+        //     obj.weight = weight;
+        //     obj.logo = logo;
+        //     console.log("我的颜色是:"+color+"体重是:"+weight+"logo是:"+logo)
+        //     obj.play = function (){
+        //         console.log("可以玩游戏"+logo);
+        //     }
+        //     obj.music = function (){
+        //         console.log("可以听音乐");
+        //     }
+        //     return obj;
+        // }
+        // console.log(pC instanceof Object);
+        // var pcc = pC("red",180,"美的");
+        // pcc.play();
+        //自定义的对象创建
+        // function Pc(color,weight,logo){
+        //     this.color = color;
+        //     this.weight = weight;
+        //     this.logo = logo;
+        //     this.sayhi = function (){
+        //         console.log("color:"+color+"weight:"+weight+"logo"+logo);
+        //     }
+        // }
+        // var obj = new Pc("yellow",18,"卡级");
+        // console.log(Pc instanceof Object);
+        // console.log(obj.color)
+        // obj.sayhi();
+        //字面量创建对象--------键值法
+        // var pc = {
+        //     color : "blue",
+        //     weight : 18,
+        //     logo : "哈哈哈",
+        //     la : function () {
+        //         console.log("a"+this.color+"b"+this.weight+"c"+this.logo)
+        //     }
+        // }
+        // // console.log(pc.color);
+        // pc.la()
+        //自己实现一个求最大值的方法
+        // function MyMath(){
+        //     this.getMax = function(){
+        //         var max = arguments[0];
+        //     for(var i=0;i<arguments.length;i++){
+        //         if(max<arguments[i]){
+        //             max = arguments[i];
+        //         }
+        //     }
+        //     return max;
+        //     };
+        // }
+        // var MAX = new MyMath();
+        // var result = MAX.getMax(20,15,99,152,30,5);
+        // console.log(result);
+    </script>
+</body>
+
+</html>

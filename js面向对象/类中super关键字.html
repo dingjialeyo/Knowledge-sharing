@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button>点击</button>
+
+
+    <script>
+
+        class Father {
+            constructor (x,y) {
+                this.x = x;
+                this.y = y;
+            }
+            sum () {
+                console.log(this.x + this.y)
+            }
+            say () {
+                return '我是爸爸'
+            }
+        }
+
+        class Son extends Father{     // 继承父亲
+            // constructor 里面的this 指向的是  实例化的对象 son  但是方法里面this 是 谁调用了他 this 就指向谁
+            constructor (x,y) {
+                super(x,y); // 调用父亲的构造函数   如果调用且要先声明这个
+                this.x = x;
+                this.y = y;
+                this.say();     // 自调用这个say方法
+                this.btn = document.querySelector('button');
+                this.btn.onclick = this.clic;       // 这个this.clic; 里面的this 指向的是btn   因为是btn调用
+                }
+            
+            say () {
+                console.log(super.say()+'的儿子')   // super.say() 就是调用父类中的普通函数 say()
+            } 
+            sub () {
+                console.log(Math.abs(this.x - this.y))
+            }
+            clic () {
+                console.log('aiya')
+            }
+        }
+        
+        var son = new Son(5,9);
+        son.sum();
+        son.say()
+        // 类的继承中的属性和方法 采用    就近原则
+        son.sub();
+    </script>
+</body>
+</html>

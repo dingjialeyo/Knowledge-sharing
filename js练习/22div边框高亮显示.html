@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    div{
+        height: 150px;
+        background-color: yellow;
+        float: left;
+        margin-left: 10px;
+        width: 100px;
+    }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <script>
+        function my$(id){
+            return document.getElementById(id)
+        }
+    //通过标签获取元素
+    var div = document.getElementsByTagName("div")
+    //遍历每个div标签
+        for(var i=0;i<div.length;i++){
+            //鼠标进入事件
+            div[i].onmouseover = function (){
+                this.style.border = "1px solid red"
+            }
+            //鼠标离开事件
+            div[i].onmouseout = function(){
+                this.style.border = ""
+            }
+        }
+    </script>
+</body>
+</html>

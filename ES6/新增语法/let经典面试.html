@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 关于 var全局变量 题
+        var arr = [];
+        for (var i = 0; i < 10; i++) {
+            arr[i] = function () {
+                console.log(i)
+            }
+        };
+
+        // 分解
+        /* 
+        var arr = [];
+        var i;   // 变量提升了
+        for ( i = 0; i < 2; i++) {     
+            arr[i] = function () {
+                console.log(i)
+            }
+        };
+        console.log(arr[5]())   // 10       你调用的时候i是全局的，i已经循环完了为10;
+        */
+        arr[5]();    // 10     因为当i=2时才结束循环执行下面代码此是 var i = 2,所以调用函数访问的是全局变量i
+
+// 用let解决
+        // 关于 let块级变量 题
+        var arr = [];
+        for (let i = 0; i < 2; i++) {
+            arr[i] = function () {
+                console.log(i)
+            }
+        };
+        arr[0]();    // 0    当你使用的是let块级变量时，变量是互不影响的，所以要找对应的块级作用域中的变量i
+        arr[1]();    // 1    
+        // 题解 : 关键在于每次循环都会产生一个块级作用域, 每个块级作用域中的变量都是不同的, 函数执行时输出的是自己这个块级作用域下的变量i值
+    </script>
+</body>
+</html>
